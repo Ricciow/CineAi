@@ -1,9 +1,11 @@
-import { useState, type ChangeEvent } from "react";
+import { useRef, useState, type ChangeEvent } from "react";
 import { NavLink } from "react-router-dom";
 import ArquivoButton from "./components/ArquivoButton";
 
-export default function Aside({ projeto }: { projeto: string }) {
+export default function Sidebar({ projeto }: { projeto: string }) {
     const [arquivos, setArquivos] = useState<File[]>([]);
+
+    const inputRef = useRef<HTMLInputElement>(null);
 
     //Propriamente enviar/deletar arquivos no futuro
     function handleUpload(e : ChangeEvent<HTMLInputElement>) {
@@ -11,6 +13,7 @@ export default function Aside({ projeto }: { projeto: string }) {
         
         if (files) {
             const file = files[0];
+            inputRef.current!.value = '';
             if(arquivos.find(arquivo => arquivo.name === file.name)) {
                 alert("Arquivo com mesmo nome já existe!");
                 return
@@ -64,6 +67,7 @@ export default function Aside({ projeto }: { projeto: string }) {
                     id="file_upload" 
                     type="file" 
                     className="sidebar_input"
+                    ref={inputRef}
                     onChange={handleUpload}
                 />
                 <label htmlFor="file_upload" className="sidebar_label">Novo Arquivo</label>

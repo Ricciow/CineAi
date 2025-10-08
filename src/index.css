@@ -199,6 +199,7 @@ header {
     font-size: var(--font-text);
     align-self: flex-end;
     cursor: pointer;
+    transition: color 0.3s ease-in-out;
 }
 
 .delete_arquivo_button:hover {
