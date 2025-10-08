@@ -1,8 +1,27 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import { NavLink } from "react-router-dom";
+import ArquivoButton from "./components/ArquivoButton";
 
 export default function Aside({ projeto }: { projeto: string }) {
-    const [arquivos, setArquivos] = useState([]);
+    const [arquivos, setArquivos] = useState<File[]>([]);
+
+    //Propriamente enviar/deletar arquivos no futuro
+    function handleUpload(e : ChangeEvent<HTMLInputElement>) {
+        const files = e.target.files;
+        
+        if (files) {
+            const file = files[0];
+            if(arquivos.find(arquivo => arquivo.name === file.name)) {
+                alert("Arquivo com mesmo nome já existe!");
+                return
+            }
+            setArquivos([...arquivos, file]);
+        }
+    }
+
+    function handleDelete(index : number) {
+        setArquivos(arquivos.filter((_, i) => i !== index));
+    }
 
     return (
         <aside className="sidebar">
@@ -36,7 +55,17 @@ export default function Aside({ projeto }: { projeto: string }) {
             <div className="sidebar_files">
                 <hr className="sidebar_divider"/>
                 <h1 className="sidebar_title">Arquivos de Projeto</h1>
-                <input id="file_upload" type="file" className="sidebar_input"></input>
+
+                {arquivos && arquivos.map((arquivo, index) => (
+                    <ArquivoButton key={arquivo.name} arquivo={arquivo} onDelete={() => handleDelete(index)}/>
+                ))}
+
+                <input 
+                    id="file_upload" 
+                    type="file" 
+                    className="sidebar_input"
+                    onChange={handleUpload}
+                />
                 <label htmlFor="file_upload" className="sidebar_label">Novo Arquivo</label>
             </div>
         </aside>

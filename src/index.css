@@ -1,4 +1,5 @@
 @import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css');
 
 :root {
     --primary-color: oklch(21% 0.034 264.665);
@@ -12,6 +13,7 @@
 
     --text-white: #fff;
     --text-gray: #666;
+    --text-red: rgba(255, 110, 110, 0.75);
 
     --xs: 0.25rem;
     --sm: 0.5rem;
@@ -168,9 +170,42 @@ header {
     background-color: color-mix(in srgb, var(--midway-color) 50%, transparent);
     padding: var(--sm) var(--md);
     color: var(--text-white);
+    font-size: var(--font-text);
+    cursor: pointer;
 }
 
 .sidebar_label:hover {
-    cursor: pointer;
     background-color: color-mix(in srgb, var(--midway-color) 75%, transparent);
+}
+
+.arquivo_button {
+    position: relative;
+}
+
+.download_arquivo_button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-white);
+    font-size: var(--font-text);
+    cursor: pointer;
+}
+
+.delete_arquivo_button {
+    background-color: transparent;
+    position: absolute;
+    right: var(--sm);
+    border: none;
+    color: color-mix(in srgb, var(--text-white) 30%, transparent);
+    font-size: var(--font-text);
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.delete_arquivo_button:hover {
+    color: var(--text-red);
+}
+
+.delete_arquivo_button_icon {
+    display: flex;
+    align-items: center;
 }
