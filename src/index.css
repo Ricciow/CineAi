@@ -9,7 +9,7 @@
 
     --nav-selected-color: oklch(55.8% 0.288 302.321 / 30%);
     --nav-selected-text-color: oklch(82.7% 0.119 306.383);
-    --nav-hover-color: oklch(100% 0.00011 271.152 / 25%);
+    --nav-hover-color: oklch(100% 0.00011 271.152 / 10%);
 
     --text-white: #fff;
     --text-gray: #666;
