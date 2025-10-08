@@ -11,6 +11,7 @@ export default function Aside({ projeto }: { projeto: string }) {
                 <NavLink 
                     to={`/projetos/${projeto}/roteiro`}
                     className={({ isActive }) => isActive ? "sidebar_link active" : "sidebar_link"}
+                    aria-label="Roteirização"
                 >
                     <i className="fi fi-rr-document"></i>
                     <p>Roteirização</p>
@@ -18,6 +19,7 @@ export default function Aside({ projeto }: { projeto: string }) {
                 <NavLink 
                     to={`/projetos/${projeto}/esboco`}
                     className={({ isActive }) => isActive ? "sidebar_link active" : "sidebar_link"}
+                    aria-label="Esboço"
                 >
                     <i className="fi fi-rr-layout-fluid"></i>
                     <p>Esboço</p>
@@ -25,6 +27,7 @@ export default function Aside({ projeto }: { projeto: string }) {
                 <NavLink 
                     to={`/projetos/${projeto}/video`}
                     className={({ isActive }) => isActive ? "sidebar_link active" : "sidebar_link"}
+                    aria-label="Geração de vídeo"
                 >
                     <i className="fi fi-rr-video-camera-alt"></i>
                     <p>Geração de vídeo</p>
