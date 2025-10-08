@@ -139,3 +139,7 @@ header {
     background-color: var(--nav-selected-color);
     color: var(--nav-selected-text-color);
 }
+
+.layout_content {
+    grid-area: main;
+}

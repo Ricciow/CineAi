@@ -1,7 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import React from 'react'; // Necessário para usar React.Fragment
 
-export default function Header({ pathnames }: { pathnames: string[] }) {
+export default function Header() {
+    // URL atual
+    const location = useLocation();
+
+    // Divide a URL
+    const pathnames = location.pathname.split('/').filter((x) => x);
+    
+
     return (
         <header className="header">
             <h1 className="header_title">CineAI</h1>
@@ -13,7 +20,7 @@ export default function Header({ pathnames }: { pathnames: string[] }) {
                     const isLast = (index === pathnames.length - 1);
 
                     return (
-                        <React.Fragment key={routeTo}>
+                        <React.Fragment>
                             <NavLink
                                 end
                                 to={routeTo}
