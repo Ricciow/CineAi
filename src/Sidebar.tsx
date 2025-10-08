@@ -39,7 +39,7 @@ export default function Sidebar({ projeto }: { projeto: string }) {
                     <p>Roteirização</p>
                 </NavLink>
                 <NavLink 
-                    to={`/projetos/${projeto}/esboco`}
+                    to={`/projetos/${projeto}/imagem`}
                     className={({ isActive }) => isActive ? "sidebar_link active" : "sidebar_link"}
                     aria-label="Esboço"
                 >

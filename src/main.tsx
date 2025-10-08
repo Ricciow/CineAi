@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         element: <div>roteiro</div>
       },
       {
-        path: 'esboco',
+        path: 'imagem',
         element: <div>esboco</div>
       },
       {

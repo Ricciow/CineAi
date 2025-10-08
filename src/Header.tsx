@@ -14,10 +14,12 @@ export default function Header() {
             <h1 className="header_title">CineAI</h1>
             <i className="fi fi-rr-angle-small-right header_arrow"></i>
             <nav className="header_nav">
-                {pathnames.map((name, index) => {
+                {pathnames.map((name_unformatted, index) => {
                     // Link para o segmento atual
                     const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
                     const isLast = (index === pathnames.length - 1);
+                    
+                    const name = name_unformatted.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 
                     return (
                         <React.Fragment>
@@ -26,7 +28,7 @@ export default function Header() {
                                 to={routeTo}
                                 className={({ isActive }) => isActive ? "header_link active" : "header_link"}
                             >
-                                {name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                                {name}
                             </NavLink>
                             {!isLast && <p>/</p>}
                         </React.Fragment>
