@@ -5,6 +5,7 @@
     --midway-color: oklch(37.3% 0.034 259.733);
     --secondary-color: oklch(27.8% 0.033 256.848);
 
+
     --nav-selected-color: oklch(55.8% 0.288 302.321 / 30%);
     --nav-selected-text-color: oklch(82.7% 0.119 306.383);
     --nav-hover-color: oklch(100% 0.00011 271.152 / 25%);
@@ -118,6 +119,7 @@ header {
     flex-direction: column;
     gap: var(--md);
     min-width: 14rem;
+    flex: 1;
 }
 
 .sidebar_link {
@@ -142,4 +144,33 @@ header {
 
 .layout_content {
     grid-area: main;
+}
+
+.sidebar_files {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md);
+}
+
+.sidebar_divider {
+    border: 1px solid var(--midway-color);
+}
+
+.sidebar_input {
+    display: none;
+}
+
+.sidebar_label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--sm);
+    background-color: color-mix(in srgb, var(--midway-color) 50%, transparent);
+    padding: var(--sm) var(--md);
+    color: var(--text-white);
+}
+
+.sidebar_label:hover {
+    cursor: pointer;
+    background-color: color-mix(in srgb, var(--midway-color) 75%, transparent);
 }

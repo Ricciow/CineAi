@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Aside({ projeto }: { projeto: string }) {
+    const [arquivos, setArquivos] = useState([]);
+
     return (
         <aside className="sidebar">
             <h1 className="sidebar_title">Etapas do Projeto</h1>
@@ -27,6 +30,12 @@ export default function Aside({ projeto }: { projeto: string }) {
                     <p>Geração de vídeo</p>
                 </NavLink>
             </nav>
+            <div className="sidebar_files">
+                <hr className="sidebar_divider"/>
+                <h1 className="sidebar_title">Arquivos de Projeto</h1>
+                <input id="file_upload" type="file" className="sidebar_input"></input>
+                <label htmlFor="file_upload" className="sidebar_label">Novo Arquivo</label>
+            </div>
         </aside>
     )
 }
