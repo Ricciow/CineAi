@@ -8,7 +8,7 @@ export function projetoLoader({ params }: LoaderFunctionArgs) {
     }
 }
 
-export default function LayoutProjeto({ children }: { children?: React.ReactNode }) {
+export default function LayoutProjeto() {
     const { projeto } = useLoaderData();
 
     return (
@@ -18,7 +18,6 @@ export default function LayoutProjeto({ children }: { children?: React.ReactNode
             <div className="layout_content">
                 <Outlet />
             </div>
-            {children}
         </div>
     )
 }
