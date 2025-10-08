@@ -172,6 +172,7 @@ header {
     color: var(--text-white);
     font-size: var(--font-text);
     cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .sidebar_label:hover {
