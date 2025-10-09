@@ -4,6 +4,7 @@ import './index.css'
 import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
 import LayoutProjeto, { projetoLoader } from './LayoutProjeto'
 import RoteiroPage from './pages/RoteiroPage'
+import ErrorPage from './pages/ErrorPage'
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 'video',
         element: <div>video</div>
+      },
+      {
+        path: '*',
+        element: <ErrorPage />
       }
     ]
   }
