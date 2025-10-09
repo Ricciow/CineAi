@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
 import LayoutProjeto, { projetoLoader } from './LayoutProjeto'
+import RoteiroPage from './pages/RoteiroPage'
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'roteiro',
-        element: <div>roteiro</div>
+        element: <RoteiroPage />  
       },
       {
         path: 'imagem',

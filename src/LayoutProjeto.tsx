@@ -15,9 +15,9 @@ export default function LayoutProjeto() {
         <div className="layout">
             <Header />
             <Sidebar projeto={projeto} />
-            <div className="layout_content">
+            <main className="layout_content">
                 <Outlet />
-            </div>
+            </main>
         </div>
     )
 }

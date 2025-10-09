@@ -11,7 +11,11 @@
     --nav-selected-text-color: oklch(82.7% 0.119 306.383);
     --nav-hover-color: oklch(100% 0.00011 271.152 / 10%);
 
+    --purple-button-color: oklch(55.8% 0.288 302.321);
+    --purple-button-hover: oklch(49.6% 0.265 301.924);
+
     --text-white: #fff;
+    --text-light-gray: oklch(70.7% 0.022 261.325);
     --text-gray: #666;
     --text-red: rgba(255, 110, 110, 0.75);
 
@@ -210,4 +214,62 @@ header {
 .delete_arquivo_button_icon {
     display: flex;
     align-items: center;
+}
+
+.projeto_main {
+    padding: var(--xl);
+}
+
+.projeto_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sm);
+}
+
+.projeto_header_title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
+    max-width: 50rem;
+}
+
+.projeto_title {
+    color: var(--text-white);
+}
+
+.projeto_description {
+    color: var(--text-light-gray);
+    font-size: var(--font-subtitle);
+}
+
+.projeto_button {
+    border: none;
+    border-radius: var(--sm);
+    padding: var(--md) var(--lg);
+    font-size: var(--font-text);
+    font-weight: bold;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sm);
+
+    background-color: var(--purple-button-color);
+    color: var(--text-white);
+    
+    cursor: pointer;
+    
+    transition: scale 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.projeto_button:hover {
+    background-color: var(--purple-button-hover);
+    scale: 1.05;
+}
+
+.projeto_button i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
