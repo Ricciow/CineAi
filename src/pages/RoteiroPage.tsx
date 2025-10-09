@@ -1,4 +1,4 @@
-import ProjetoButton from "../components/ProjetoButton";
+import ProjetoButton from "../components/projetos/ProjetoButton";
 
 export default function RoteiroPage() {
     return (

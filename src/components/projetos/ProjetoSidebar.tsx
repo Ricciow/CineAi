@@ -1,8 +1,8 @@
 import { useRef, useState, type ChangeEvent } from "react";
 import { NavLink } from "react-router-dom";
-import ArquivoButton from "./components/ArquivoButton";
+import ArquivoButton from "./ArquivoButton";
 
-export default function Sidebar({ projeto }: { projeto: string }) {
+export default function ProjetoSidebar({ projeto }: { projeto: string }) {
     const [arquivos, setArquivos] = useState<File[]>([]);
 
     const inputRef = useRef<HTMLInputElement>(null);

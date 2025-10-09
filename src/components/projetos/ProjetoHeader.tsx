@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import React from 'react'; // Necessário para usar React.Fragment
 
-export default function Header() {
+export default function ProjetoHeader() {
     // URL atual
     const location = useLocation();
 

@@ -1,6 +1,6 @@
 import { Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router-dom";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+import ProjetoHeader from "./components/projetos/ProjetoHeader";
+import ProjetoSidebar from "./components/projetos/ProjetoSidebar";
 
 export function projetoLoader({ params }: LoaderFunctionArgs) {
     return {
@@ -13,8 +13,8 @@ export default function LayoutProjeto() {
 
     return (
         <div className="layout">
-            <Header />
-            <Sidebar projeto={projeto} />
+            <ProjetoHeader />
+            <ProjetoSidebar projeto={projeto} />
             <main className="layout_content">
                 <Outlet />
             </main>
