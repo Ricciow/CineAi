@@ -1,13 +1,11 @@
 import ProjetoButton from "../components/projetos/ProjetoButton";
+import ProjetoTitle from "../components/projetos/ProjetoTitle";
 
 export default function RoteiroPage() {
     return (
         <div className="projeto_main">
             <div className="projeto_header">
-                <div className="projeto_header_title">
-                    <h1 className="projeto_title">Roteirização</h1>
-                    <p className="projeto_description">Crie, analise e refine seu roteiro. Comece um novo chat para gerar uma história, corrija um script ou peça sugestões à IA.</p>
-                </div>
+                <ProjetoTitle title="Roteirização" description="Crie, analise e refine seu roteiro. Comece um novo chat para gerar uma história, corrija um script ou peça sugestões à IA."/>
                 <ProjetoButton />
             </div>
         </div>
