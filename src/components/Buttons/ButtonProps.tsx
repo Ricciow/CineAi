@@ -5,7 +5,6 @@ export type buttonStyle = 'projeto_button' | 'sidebar_label'
 export type BaseButton = {
     text?: string,
     onClick?: () => void,
-    spaced?: boolean
 
     iconClass?: string
 }

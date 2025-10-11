@@ -7,9 +7,9 @@ export type ArquivoButtonProps = {
     style: buttonStyle
 };
 
-export default function ArquivoButton({ arquivo, onClick, onDelete }: ArquivoButtonProps) {
+export default function ArquivoButton({ arquivo, onClick, onDelete, style }: ArquivoButtonProps) {
     return (
-        <label htmlFor="arquivo_button" className="arquivo_button sidebar_label">
+        <label htmlFor="arquivo_button" className={`arquivo_button ${style}`}>
             <button 
                 id="arquivo_button" 
                 className="download_arquivo_button"
