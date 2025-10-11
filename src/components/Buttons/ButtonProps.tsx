@@ -10,6 +10,7 @@ export type BaseButton = {
 }
 
 export type ButtonProps = | (
+    //Botão de arquivo
     BaseButton & {
         style: buttonStyle
 
@@ -19,6 +20,7 @@ export type ButtonProps = | (
         fileInput?: never
     }
 ) | (
+    //Botão de navegação
     BaseButton & {
         style?: never
         file?: never
@@ -30,6 +32,7 @@ export type ButtonProps = | (
         fileInput?: never
     }
 ) | (
+    //Botão de upload de arquivos
     BaseButton & {
         style: buttonStyle
         file?: never
@@ -37,6 +40,5 @@ export type ButtonProps = | (
         
         fileInput: Boolean
         onChange?: (e : ChangeEvent<HTMLInputElement>) => void
-        
     }
 )

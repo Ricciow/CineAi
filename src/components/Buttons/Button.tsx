@@ -3,6 +3,20 @@ import ArquivoInputButton from "./ArquivoInputButton"
 import type { ButtonProps } from "./ButtonProps"
 import NavLinkButton from "./NavLinkButton"
 
+/**
+ * Componente de botão genérico
+ * 
+ * @param {ButtonProps} props
+ * @returns {JSX.Element}
+ * 
+ * Se ```props.file``` for verdadeiro, retorna um componente ```ArquivoButton```
+ * 
+ * Se ```props.to``` for verdadeiro, retorna um componente ```NavLinkButton```
+ * 
+ * Se ```props.fileInput``` for verdadeiro, retorna um componente ```ArquivoInputButton```
+ * 
+ * Caso contrário, retorna um botão padrão
+ */
 export default function Button(props : ButtonProps) {
     if(props.file) {
         return <ArquivoButton 

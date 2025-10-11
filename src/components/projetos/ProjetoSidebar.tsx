@@ -59,7 +59,6 @@ export default function ProjetoSidebar({ projeto }: { projeto: string }) {
                     onChange={handleUpload} 
                     style="sidebar_label"
                 />
-
             </div>
         </aside>
     )
