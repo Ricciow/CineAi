@@ -1,0 +1,15 @@
+.projeto_header_title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
+    max-width: 50rem;
+}
+
+.projeto_title {
+    color: var(--text-white);
+}
+
+.projeto_description {
+    color: var(--text-light-gray);
+    font-size: var(--font-subtitle);
+}

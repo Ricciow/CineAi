@@ -30,19 +30,14 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>index</div>
+        element: <div></div>,
+        loader: () => {
+          return redirect('/projetos/vingadores/roteiro')
+        }
       },
       {
         path: 'roteiro',
         element: <RoteiroPage />  
-      },
-      {
-        path: 'imagem',
-        element: <div>esboco</div>
-      },
-      {
-        path: 'video',
-        element: <div>video</div>
       },
       {
         path: '*',

@@ -1,0 +1,10 @@
+.error_page {
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--md);
+    width: 100%;
+    height: 100%;
+}

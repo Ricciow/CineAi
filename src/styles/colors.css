@@ -1,0 +1,31 @@
+:root {
+    --primary-color: oklch(21% 0.034 264.665);
+    --midway-color: oklch(37.3% 0.034 259.733);
+    --secondary-color: oklch(27.8% 0.033 256.848);
+
+
+    --nav-selected-color: oklch(55.8% 0.288 302.321 / 30%);
+    --nav-selected-text-color: oklch(82.7% 0.119 306.383);
+    --nav-hover-color: oklch(100% 0.00011 271.152 / 10%);
+
+    --purple-button-color: oklch(55.8% 0.288 302.321);
+    --purple-button-hover: oklch(49.6% 0.265 301.924);
+
+    --text-white: #fff;
+    --text-light-gray: oklch(70.7% 0.022 261.325);
+    --text-gray: #666;
+    --text-red: rgba(255, 110, 110, 0.75);
+
+    --xs: 0.25rem;
+    --sm: 0.5rem;
+    --smd: 0.75rem;
+    --md: 1rem;
+    --lg: 1.5rem;
+    --xl: 2rem;
+
+    --font-title: 2.5rem;
+    --font-header: 1.75rem;
+    --font-subtitle: 1.25rem;
+    --font-text: 1rem;
+    --font-small: 0.75rem;
+}

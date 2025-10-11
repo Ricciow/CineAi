@@ -1,0 +1,73 @@
+.sidebar {
+    background-color: color-mix(in oklch, var(--secondary-color) 30%, transparent);
+    border-right: 1px solid var(--midway-color);
+    grid-area: sidebar;
+    padding: var(--md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--md);
+}
+
+.sidebar_title {
+    color: var(--text-white);
+    font-size: var(--font-subtitle);
+}
+
+.sidebar_nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md);
+    min-width: 14rem;
+    flex: 1;
+}
+
+.sidebar_link {
+    color: var(--text-white);
+    padding: var(--smd) var(--md);
+    border-radius: var(--sm);
+    text-justify: center;
+    font-size: var(--font-text);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    gap: var(--sm);
+}
+
+.sidebar_link:hover {
+    background-color: var(--nav-hover-color);
+}
+
+.sidebar_link.active {
+    background-color: var(--nav-selected-color);
+    color: var(--nav-selected-text-color);
+}
+
+.sidebar_files {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md);
+}
+
+.sidebar_divider {
+    border: 1px solid var(--midway-color);
+}
+
+.sidebar_input {
+    display: none;
+}
+
+.sidebar_label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--sm);
+    background-color: color-mix(in srgb, var(--midway-color) 50%, transparent);
+    padding: var(--sm) var(--md);
+    color: var(--text-white);
+    font-size: var(--font-text);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sidebar_label:hover {
+    background-color: color-mix(in srgb, var(--midway-color) 75%, transparent);
+}

@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
 import React from 'react'; // Necessário para usar React.Fragment
+import Button from "../Buttons/Button";
 
 export default function ProjetoHeader() {
     // URL atual
@@ -23,13 +24,12 @@ export default function ProjetoHeader() {
 
                     return (
                         <React.Fragment>
-                            <NavLink
+                            <Button
                                 end
                                 to={routeTo}
-                                className={({ isActive }) => isActive ? "header_link active" : "header_link"}
-                            >
-                                {name}
-                            </NavLink>
+                                type="header"
+                                text={name}
+                            />
                             {!isLast && <p>/</p>}
                         </React.Fragment>
                     );

@@ -1,0 +1,14 @@
+.layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "header header"
+        "sidebar main";
+    width: 100vw;
+    height: 100vh;
+}
+
+.layout_content {
+    grid-area: main;
+}

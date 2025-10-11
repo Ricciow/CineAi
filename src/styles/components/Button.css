@@ -1,0 +1,63 @@
+.arquivo_button {
+    position: relative;
+}
+
+.download_arquivo_button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-white);
+    font-size: var(--font-text);
+    cursor: pointer;
+}
+
+.delete_arquivo_button {
+    background-color: transparent;
+    position: absolute;
+    right: var(--sm);
+    border: none;
+    color: color-mix(in srgb, var(--text-white) 30%, transparent);
+    font-size: var(--font-text);
+    align-self: flex-end;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.delete_arquivo_button:hover {
+    color: var(--text-red);
+}
+
+.delete_arquivo_button_icon {
+    display: flex;
+    align-items: center;
+}
+
+.projeto_button {
+    border: none;
+    border-radius: var(--sm);
+    padding: var(--md) var(--lg);
+    font-size: var(--font-text);
+    font-weight: bold;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sm);
+
+    background-color: var(--purple-button-color);
+    color: var(--text-white);
+    
+    cursor: pointer;
+
+    transition: scale 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.projeto_button:hover {
+    background-color: var(--purple-button-hover);
+    scale: 1.05;
+}
+
+.projeto_button i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
