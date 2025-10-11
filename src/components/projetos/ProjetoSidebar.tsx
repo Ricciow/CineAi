@@ -1,6 +1,4 @@
 import { useState, type ChangeEvent } from "react";
-import { NavLink } from "react-router-dom";
-import ArquivoButton from "../Buttons/ArquivoButton";
 import Button from "../Buttons/Button";
 
 export default function ProjetoSidebar({ projeto }: { projeto: string }) {
