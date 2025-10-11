@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import React from 'react'; // Necessário para usar React.Fragment
+import React from 'react';
 import Button from "../Buttons/Button";
 
 export default function ProjetoHeader() {
