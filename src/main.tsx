@@ -1,27 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
-import LayoutProjeto, { projetoLoader } from './LayoutProjeto'
-import RoteiroPage from './pages/RoteiroPage'
-import ErrorPage from './pages/ErrorPage'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import {createBrowserRouter, redirect, RouterProvider} from 'react-router-dom';
+import LayoutProjeto, { projetoLoader } from './LayoutProjeto';
+import RoteiroPage from './pages/RoteiroPage';
+import ErrorPage from './pages/ErrorPage';
+import CineAI from './pages/CineAI';
 
 const router = createBrowserRouter([
   {
-    // Redireciona para a pagina de projeto para o MVP
     path: '/',
-    element: <div></div>,
-    loader: () => {
-      return redirect('/projetos/vingadores')
-    }
-  },
-  {
-    // Redireciona para a pagina de projeto para o MVP
-    path: '/:qualquer',
-    element: <div></div>,
-    loader: () => {
-      return redirect('/projetos/vingadores')
-    }
+    element: <CineAI />,
   },
   {
     path: '/projetos/:projeto',
@@ -30,25 +19,26 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div></div>,
-        loader: () => {
-          return redirect('/projetos/vingadores/roteiro')
-        }
+        loader: () => redirect('/projetos/vingadores/roteiro'),
       },
       {
         path: 'roteiro',
-        element: <RoteiroPage />  
+        element: <RoteiroPage />,
       },
       {
         path: '*',
-        element: <ErrorPage />
-      }
-    ]
-  }
-])
+        element: <ErrorPage />,
+      },
+    ],
+  },
+  {
+    path: '*',
+    element: <ErrorPage />,
+  },
+]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
-)
+  </StrictMode>
+);
