@@ -1,0 +1,70 @@
+.cineai-container {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.cineai-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--secondary-color);
+  padding: var(--md) var(--xl);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.cineai-navbar .logo {
+  font-size: var(--font-header);
+  font-weight: 700;
+  color: var(--purple-button-hover);
+}
+
+.cineai-navbar nav a {
+  color: var(--text-white);
+  text-decoration: none;
+  margin: 0 var(--sm);
+  transition: color 0.3s ease;
+}
+
+.cineai-navbar nav a:hover {
+  color: var(--purple-button-hover);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: var(--xs);
+}
+
+.login-btn,
+.signup-btn {
+  border: none;
+  border-radius: var(--smd);
+  padding: var(--smd) var(--md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn {
+  background: transparent;
+  border: 1px solid var(--purple-button-hover);
+  color: var(--purple-button-hover);
+}
+
+.signup-btn {
+  background: linear-gradient(90deg, var(--purple-button-color), var(--purple-button-hover));
+  color: var(--text-white);
+}
+
+.login-btn:hover {
+  background: var(--purple-button-hover);
+  color: var(--primary-color);
+}
+
+.signup-btn:hover {
+  transform: scale(1.05);
+}
