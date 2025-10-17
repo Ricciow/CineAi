@@ -1,0 +1,20 @@
+.cineai-footer {
+  padding: var(--md);
+  background: var(--secondary-color);
+  font-size: var(--font-small);
+  color: var(--text-gray);
+}
+
+.social-icons {
+  margin-top: var(--xs);
+}
+
+.social-icons i {
+  margin: 0 var(--xs);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.social-icons i:hover {
+  color: var(--purple-button-hover);
+}

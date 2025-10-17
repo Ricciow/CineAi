@@ -1,0 +1,223 @@
+/* Main Poster */
+.cineai-hero {
+  padding: calc(var(--xl) * 5) var(--md) calc(var(--xl) * 3);
+  background: linear-gradient(
+    180deg,
+    var(--purple-button-color),
+    var(--primary-color)
+  );
+}
+
+.cineai-hero h2 {
+  font-size: calc(var(--font-title) * 1.6);
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.cineai-hero h2 span {
+  color: var(--purple-button-hover);
+}
+
+.cineai-hero p {
+  font-size: var(--font-subtitle);
+  margin-top: var(--sm);
+  color: var(--text-light-gray);
+}
+
+/* Video Demonstration */
+.cineai-demo {
+  padding: calc(var(--xl) * 4) var(--md);
+}
+
+.cineai-demo h3 {
+  font-size: var(--font-header);
+  margin-bottom: var(--xs);
+}
+
+.cineai-demo p {
+  color: var(--text-light-gray);
+}
+
+.video-demo {
+  background-color: var(--secondary-color);
+  border-radius: var(--smd);
+  padding: calc(var(--xl) * 3);
+  margin: var(--xl) auto 0;
+  width: 80%;
+  max-width: 600px;
+}
+
+.video-placeholder {
+  color: var(--purple-button-hover);
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+/* Plans */
+.cineai-plans {
+  background: var(--primary-color);
+  padding: calc(var(--xl) * 4) var(--md);
+}
+
+.cineai-plans h3 {
+  font-size: var(--font-header);
+}
+
+.plans-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: calc(var(--xl) * 1.5);
+  margin-top: var(--xl);
+}
+
+.plan-card {
+  background: var(--secondary-color);
+  padding: var(--xl);
+  border-radius: var(--smd);
+  width: 250px;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  border: 2px solid var(--purple-button-hover);
+}
+
+.plan-card h4 {
+  color: var(--text-white);
+}
+
+.plan-card .price {
+  font-size: 1.3rem;
+  margin: var(--sm) 0;
+  color: var(--purple-button-hover);
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--text-light-gray);
+}
+
+.plan-card li {
+  margin: var(--xs) 0;
+}
+
+/* Our Mission */
+.cineai-mission {
+  padding: calc(var(--xl) * 4) var(--md);
+  background: var(--midway-color);
+  max-width: 800px;
+  margin: var(--xl) auto;
+  border-radius: var(--smd);
+}
+
+.cineai-mission h3 {
+  font-size: var(--font-header);
+  margin-bottom: var(--sm);
+  color: var(--purple-button-hover);
+}
+
+.cineai-mission p {
+  color: var(--text-light-gray);
+  line-height: 1.6;
+}
+
+/* Developers */
+.cineai-devs {
+  padding: calc(var(--xl) * 4) var(--md);
+  background: var(--secondary-color);
+}
+
+.cineai-devs h3 {
+  font-size: var(--font-header);
+}
+
+.devs-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: calc(var(--xl) * 2);
+  margin-top: var(--xl);
+}
+
+.dev-card {
+  background: var(--midway-color);
+  padding: var(--md);
+  border-radius: var(--md);
+  width: 180px;
+  transition: 0.3s ease;
+}
+
+.dev-card:hover {
+  transform: translateY(-5px);
+}
+
+.dev-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: var(--xs);
+}
+
+.dev-card h4 {
+  color: var(--text-white);
+  margin-bottom: var(--xs);
+}
+
+.dev-card p {
+  color: var(--text-light-gray);
+}
+
+/* Newsletter Signature */
+.cineai-newsletter {
+  background: var(--midway-color);
+  padding: calc(var(--xl) * 4) var(--md);
+}
+
+.cineai-newsletter h3 {
+  font-size: var(--font-header);
+  margin-bottom: var(--xs);
+}
+
+.cineai-newsletter p {
+  color: var(--text-light-gray);
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--sm);
+  gap: var(--xs);
+}
+
+.newsletter-form input {
+  padding: var(--smd) var(--md);
+  border-radius: var(--smd);
+  border: none;
+  width: 250px;
+}
+
+.newsletter-form button {
+  padding: var(--smd) var(--lg);
+  border-radius: var(--smd);
+  border: none;
+  background: linear-gradient(
+    90deg,
+    var(--purple-button-color),
+    var(--purple-button-hover)
+  );
+  color: var(--text-white);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  transform: scale(1.05);
+}
