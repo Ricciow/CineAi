@@ -18,11 +18,12 @@
 /* Páginas */
 @import url(styles/pages/ErrorPage.css);
 @import url(styles/pages/RoteiroPage.css);
+@import url(styles/pages/CineAI.css);
 
 /* Outros */
 @import url(styles/Utility.css);
 
-/* Coisas globais */
+/* Elementos globais */
 * {
     margin: 0;
     padding: 0;
