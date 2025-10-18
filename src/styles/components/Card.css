@@ -1,0 +1,36 @@
+.chat_card {
+    background-color: color-mix(in oklch, var(--secondary-color) 30%, transparent);
+    border: 1px solid var(--midway-color);
+    padding: var(--md);
+    border-radius: var(--md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
+}
+
+.chat_card_header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat_card h2 {
+    color: var(--text-white);
+    font-size: var(--font-subtitle);
+}
+
+.chat_card p {
+    color: var(--text-light-gray);
+    font-size: var(--font-text);
+}
+
+.chat_card a {
+    color: var(--purple-button-color);
+    font-size: var(--font-text);
+    align-self: flex-end;
+}
+
+.chat_card a:hover {
+    color: var(--purple-button-hover);
+}

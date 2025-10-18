@@ -1,3 +1,12 @@
 .projeto_main {
+    display: flex;
+    flex-direction: column;
     padding: var(--xl);
+    gap: var(--lg);
+}
+
+.projeto_content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;   
+    gap: var(--lg);
 }

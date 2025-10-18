@@ -65,41 +65,41 @@
 /* CineAI buttons */
 
 .hero-buttons {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .primary-btn,
-  .secondary-btn {
-    border: none;
-    border-radius: 8px;
-    padding: 12px 30px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-  
-  .primary-btn {
-    background: linear-gradient(90deg, #7c4dff, #b388ff);
-    color: #fff;
-  }
-  
-  .secondary-btn {
-    background: transparent;
-    border: 1px solid #b388ff;
-    color: #b388ff;
-  }
-  
-  .primary-btn:hover {
-    transform: scale(1.05);
-  }
-  
-  .secondary-btn:hover {
-    background: #b388ff;
-    color: #0b0b1f;
-  }
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.primary-btn {
+  background: linear-gradient(90deg, #7c4dff, #b388ff);
+  color: #fff;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid #b388ff;
+  color: #b388ff;
+}
+
+.primary-btn:hover {
+  transform: scale(1.05);
+}
+
+.secondary-btn:hover {
+  background: #b388ff;
+  color: #0b0b1f;
+}
 
 .plan-btn {
     margin-top: auto;
@@ -110,8 +110,24 @@
     padding: 10px 20px;
     cursor: pointer;
     transition: 0.3s ease;
-  }
+}
   
-  .plan-btn:hover {
-    transform: scale(1.05);
-  }
+.plan-btn:hover {
+  transform: scale(1.05);
+}
+
+.delete_button {
+    background-color: transparent;
+    position: absolute;
+    right: var(--sm);
+    border: none;
+    color: color-mix(in srgb, var(--text-white) 30%, transparent);
+    font-size: var(--font-text);
+    align-self: flex-end;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.delete_button:hover {
+    color: var(--text-red);
+}

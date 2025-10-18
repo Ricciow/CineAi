@@ -1,10 +1,10 @@
 import type { ChangeEvent } from "react"
 
-export type buttonStyle = 'projeto_button' | 'sidebar_label'
+export type buttonStyle = 'projeto_button' | 'sidebar_label' | 'delete_button'
 
 export type BaseButton = {
     text?: string,
-    onClick?: () => void,
+    onClick?: (...args: any) => void,
 
     iconClass?: string
 }
