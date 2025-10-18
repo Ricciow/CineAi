@@ -6,6 +6,7 @@ header {
     align-items: center;
     gap: var(--sm);
     grid-area: header;
+    height: var(--header-height);
 }
 
 .header_arrow {

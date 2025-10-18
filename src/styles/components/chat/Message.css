@@ -1,0 +1,22 @@
+.message {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-white);
+    font-size: var(--font-text);
+    margin: 0px var(--md);
+}
+
+.message.user {
+    display: flex;
+    align-items: flex-end;
+}
+
+.message.user p{
+    background-color: var(--midway-color);
+    padding: var(--smd) var(--md);
+    border-radius: var(--md);
+}
+
+.message.agent {
+    align-self: flex-start;
+}

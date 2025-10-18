@@ -22,6 +22,8 @@
 
     text-justify: center;
     font-size: var(--font-text);
+
+    scrollbar-color: var(--midway-color) transparent;
 }
 
 .prompter_input:focus {
