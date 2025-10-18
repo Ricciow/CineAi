@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import React from 'react';
 import Button from "../Buttons/Button";
 
-export default function CineAIHeader(): JSX.Element {
+export default function CineAIHeader() {
     // URL atual
     const location = useLocation();
 
