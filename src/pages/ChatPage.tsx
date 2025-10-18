@@ -1,6 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router-dom"
 import ProjetoTitle from "../components/projetos/ProjetoTitle";
 import Dropdown from "../components/Dropdown/Dropdown";
+import Propmter from "../components/Prompter";
 
 import geminiLogo from "../assets/gemini.svg";
 import gptLogo from "../assets/openai.svg";
@@ -21,9 +22,15 @@ export default function ChatPage() {
 
     return (
         <div className="chat_main">
-            <div className="chat_main_header">
+            <div className="chat_header">
                 <ProjetoTitle title={chatName} description={chatDescription} />
-                <Dropdown title="Modelos" options={options} onSelect={(value) => {}} titleByOption/>
+                <Dropdown title="Modelos" options={options} onSelect={() => {}} titleByOption/>
+            </div>
+            <div className="chat_content">
+                <p>Conteúdo do chat</p>
+            </div>
+            <div className="chat_footer">
+                <Propmter />
             </div>
         </div>
     )

@@ -1,13 +1,22 @@
 .chat_main {
-    display: flex;
-    flex-direction: column;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     padding: var(--xl);
     gap: var(--md);
 }
 
-.chat_main_header {
+.chat_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: var(--md);
+}
+
+.chat_content {
+    height: 100%;
+}
+
+.chat_footer {
+    display: flex;
 }

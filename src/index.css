@@ -17,6 +17,7 @@
 @import url(styles/components/Button.css);
 @import url(styles/components/Card.css);
 @import url(styles/components/Dropdown.css);
+@import url(styles/components/Prompter.css);
 
 /* Páginas */
 @import url(styles/pages/ErrorPage.css);
