@@ -21,9 +21,7 @@ type ChatMessage = {
 export async function chatPageLoader({ params }: LoaderFunctionArgs) {
     const id = params.id;
 
-    console.log(BackendUrl);
-
-    const response = await fetch(`${BackendUrl}/conversation-history?conversation_id=${id}`);
+    const response = await fetch(`${BackendUrl}/conversation/history/${id}`);
 
     if (!response.ok) {
         throw new Response("Não foi possível carregar o histórico do chat.", { 
@@ -33,7 +31,7 @@ export async function chatPageLoader({ params }: LoaderFunctionArgs) {
     }
 
     const data: ChatMessage[] = await response.json();
-
+    
     return {
         id: id,
         fetchedConversation: data,
@@ -53,8 +51,18 @@ export default function ChatPage() {
         const userMessage = { role: "user", content: prompt }
         setConversation([...conversation, userMessage])
 
-        const result = await fetch(`${BackendUrl}/message?conversation_id=${id}&user_input=${prompt}`, {
-            method: "POST",  
+        console.log(JSON.stringify({
+                user_input: prompt
+            }))
+
+        const result = await fetch(`${BackendUrl}/message/${id}`, {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user_input: prompt
+            })
         })
 
         if(result.ok) {
