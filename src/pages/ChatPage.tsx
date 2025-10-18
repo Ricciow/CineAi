@@ -9,6 +9,7 @@ import claudeLogo from "../assets/claude.svg";
 import UserMessage from "../components/chat/UserMessage";
 import AgentMessage from "../components/chat/AgentMessage";
 import { BackendUrl } from "../constants/env";
+import { useState } from "react";
 
 const options = [{ name: "Gemini 2.5 pro", icon: geminiLogo, image: true, value: 1}, { name: "Gpt 5", icon: gptLogo, image: true, value: 1}, { name: "Claude 4.5 Sonnet", icon: claudeLogo, image: true, value: 1}]
 
@@ -32,19 +33,34 @@ export async function chatPageLoader({ params }: LoaderFunctionArgs) {
     }
 
     const data: ChatMessage[] = await response.json();
-  
-    console.log(data)
 
     return {
         id: id,
-        conversation: data,
+        fetchedConversation: data,
     };
 }
 
 export default function ChatPage() {
-    const { id, conversation } : { id: string, conversation: ChatMessage[] } = useLoaderData();
+    const { id, fetchedConversation } : { id: string, fetchedConversation: ChatMessage[] } = useLoaderData();
+    const [conversation, setConversation] = useState<ChatMessage[]>(fetchedConversation);
+
     const chatName = `Chat ${id}`
     const chatDescription = `Descrição do chat ${id}`
+
+    async function handleSendPrompt(prompt: string) {
+        const userMessage = { role: "user", content: prompt }
+
+        setConversation([...conversation, userMessage])
+
+        const result = await fetch(`${BackendUrl}/message?conversation_id=${id}&user_input=${prompt}`, {
+            method: "POST",  
+        })
+
+        if(result.ok) {
+            const response : ChatMessage = await result.json();
+            setConversation([...conversation, userMessage, response])
+        }   
+    }
 
     return (
         <div className="chat_main">
@@ -56,7 +72,7 @@ export default function ChatPage() {
                 {conversation.map((message, index) => message.role === "user" ? <UserMessage key={index} message={message.content} /> : <AgentMessage key={index} message={message.content} />)}
             </div>
             <div className="chat_footer">
-                <Propmter />
+                <Propmter onSubmit={handleSendPrompt}/>
             </div>
         </div>
     )
