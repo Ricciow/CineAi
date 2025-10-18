@@ -1,3 +1,10 @@
 .hidden {
     display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.invisible {
+    opacity: 0;
+    visibility: hidden;
 }

@@ -6,6 +6,7 @@ import LayoutProjeto, { projetoLoader } from './LayoutProjeto';
 import RoteiroPage from './pages/RoteiroPage';
 import ErrorPage from './pages/ErrorPage';
 import CineAI from './pages/CineAI';
+import ChatPage, { chatPageLoader } from './pages/ChatPage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
       {
         path: 'roteiro',
         element: <RoteiroPage />,
+      },
+      {
+        path: 'roteiro/:id',
+        loader: chatPageLoader,
+        element: <ChatPage />,
       },
       {
         path: '*',

@@ -1,6 +1,7 @@
 /* Icones */
 @import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 @import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css');
+@import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
 
 /* Cores */
 @import url(styles/colors.css);
@@ -15,10 +16,12 @@
 /* Componentes genéricos */
 @import url(styles/components/Button.css);
 @import url(styles/components/Card.css);
+@import url(styles/components/Dropdown.css);
 
 /* Páginas */
 @import url(styles/pages/ErrorPage.css);
 @import url(styles/pages/RoteiroPage.css);
+@import url(styles/pages/ChatPage.css);
 @import url(styles/pages/CineAI.css);
 
 /* Outros */

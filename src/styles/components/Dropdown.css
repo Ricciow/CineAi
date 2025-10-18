@@ -1,0 +1,70 @@
+.dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
+    color: var(--text-white);
+
+    width: 12rem;
+}
+
+.dropbtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: color-mix(in oklch, var(--secondary-color) 80%, transparent);
+    border: 1px solid var(--midway-color);
+    border-radius: var(--sm);
+
+    color: var(--text-white);
+    font-size: var(--font-text);
+
+    cursor: pointer;
+
+    padding: var(--sm) var(--md);
+    gap: var(--sm);
+
+    height: 3rem;
+}
+
+.dropbtn i {
+    display: flex;
+    align-items: center;
+    color: var(--text-white);
+}
+
+.dropdown-content {
+    background-color: color-mix(in oklch, var(--secondary-color) 80%, transparent);
+    border: 1px solid var(--midway-color);
+    border-radius: var(--sm);
+    
+    padding: var(--xs);
+
+    position: absolute;
+    top: 3.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
+    width: 100%;
+} 
+
+.dropdown_option {
+    display: flex;
+    align-items: space-around;
+    background-color: transparent;
+    border: none;
+    color: var(--text-white);
+    padding: var(--sm);
+    gap: var(--sm);
+}
+
+.dropdown_option:hover {
+    background-color: var(--midway-color);
+    border-radius: var(--sm);
+}
+
+.dropdown_option img {
+    filter: invert(100%);
+}

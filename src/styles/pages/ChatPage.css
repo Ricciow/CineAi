@@ -1,0 +1,13 @@
+.chat_main {
+    display: flex;
+    flex-direction: column;
+    padding: var(--xl);
+    gap: var(--md);
+}
+
+.chat_main_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--md);
+}
