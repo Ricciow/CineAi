@@ -30,6 +30,7 @@ const router = createBrowserRouter([
         path: 'roteiro/:id',
         loader: chatPageLoader,
         element: <ChatPage />,
+        errorElement: <ErrorPage />,
       },
       {
         path: '*',

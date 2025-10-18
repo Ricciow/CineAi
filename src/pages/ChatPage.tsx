@@ -8,56 +8,41 @@ import gptLogo from "../assets/openai.svg";
 import claudeLogo from "../assets/claude.svg";
 import UserMessage from "../components/chat/UserMessage";
 import AgentMessage from "../components/chat/AgentMessage";
+import { BackendUrl } from "../constants/env";
 
 const options = [{ name: "Gemini 2.5 pro", icon: geminiLogo, image: true, value: 1}, { name: "Gpt 5", icon: gptLogo, image: true, value: 1}, { name: "Claude 4.5 Sonnet", icon: claudeLogo, image: true, value: 1}]
 
-const conversa = [
-  {
-    role: "user",
-    message:"blabla"
-  },
-  {
-    role:"agent",
-    message:"B"
-  },
-  {
-    role: "user",
-    message:"blabla2"
-  },
-  {
-    role:"agent",
-    message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur enim justo, ultricies sit amet luctus vitae, malesuada sit amet lectus. Integer aliquet bibendum sem, et porta lacus efficitur ac. Curabitur quis ante mi. Maecenas posuere dolor ut leo eleifend aliquam vel sit amet nulla. Nunc volutpat venenatis nisi, id viverra ligula condimentum id. Pellentesque consequat dignissim sagittis. Mauris eu odio a ex congue bibendum in ac magna. Donec quis risus congue, hendrerit urna vehicula, tincidunt elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam auctor congue rhoncus. Nam aliquet ex a nisl condimentum facilisis. Mauris a pretium lectus. Aliquam ut mi in tellus porttitor laoreet. Pellentesque at fermentum purus, vitae sollicitudin erat. Donec gravida dignissim porta. Suspendisse sollicitudin leo eu velit euismod, a lacinia ex euismod. Nullam tempor mi at feugiat egestas. Cras quis pretium est. Aliquam facilisis dui non blandit scelerisque."
-  },
-  {
-    role:"agent",
-    message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur enim justo, ultricies sit amet luctus vitae, malesuada sit amet lectus. Integer aliquet bibendum sem, et porta lacus efficitur ac. Curabitur quis ante mi. Maecenas posuere dolor ut leo eleifend aliquam vel sit amet nulla. Nunc volutpat venenatis nisi, id viverra ligula condimentum id. Pellentesque consequat dignissim sagittis. Mauris eu odio a ex congue bibendum in ac magna. Donec quis risus congue, hendrerit urna vehicula, tincidunt elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam auctor congue rhoncus. Nam aliquet ex a nisl condimentum facilisis. Mauris a pretium lectus. Aliquam ut mi in tellus porttitor laoreet. Pellentesque at fermentum purus, vitae sollicitudin erat. Donec gravida dignissim porta. Suspendisse sollicitudin leo eu velit euismod, a lacinia ex euismod. Nullam tempor mi at feugiat egestas. Cras quis pretium est. Aliquam facilisis dui non blandit scelerisque."
-  },
-  {
-    role:"agent",
-    message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur enim justo, ultricies sit amet luctus vitae, malesuada sit amet lectus. Integer aliquet bibendum sem, et porta lacus efficitur ac. Curabitur quis ante mi. Maecenas posuere dolor ut leo eleifend aliquam vel sit amet nulla. Nunc volutpat venenatis nisi, id viverra ligula condimentum id. Pellentesque consequat dignissim sagittis. Mauris eu odio a ex congue bibendum in ac magna. Donec quis risus congue, hendrerit urna vehicula, tincidunt elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam auctor congue rhoncus. Nam aliquet ex a nisl condimentum facilisis. Mauris a pretium lectus. Aliquam ut mi in tellus porttitor laoreet. Pellentesque at fermentum purus, vitae sollicitudin erat. Donec gravida dignissim porta. Suspendisse sollicitudin leo eu velit euismod, a lacinia ex euismod. Nullam tempor mi at feugiat egestas. Cras quis pretium est. Aliquam facilisis dui non blandit scelerisque."
-  },
-  {
-    role:"agent",
-    message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur enim justo, ultricies sit amet luctus vitae, malesuada sit amet lectus. Integer aliquet bibendum sem, et porta lacus efficitur ac. Curabitur quis ante mi. Maecenas posuere dolor ut leo eleifend aliquam vel sit amet nulla. Nunc volutpat venenatis nisi, id viverra ligula condimentum id. Pellentesque consequat dignissim sagittis. Mauris eu odio a ex congue bibendum in ac magna. Donec quis risus congue, hendrerit urna vehicula, tincidunt elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam auctor congue rhoncus. Nam aliquet ex a nisl condimentum facilisis. Mauris a pretium lectus. Aliquam ut mi in tellus porttitor laoreet. Pellentesque at fermentum purus, vitae sollicitudin erat. Donec gravida dignissim porta. Suspendisse sollicitudin leo eu velit euismod, a lacinia ex euismod. Nullam tempor mi at feugiat egestas. Cras quis pretium est. Aliquam facilisis dui non blandit scelerisque."
-  },
-  {
-    role:"agent",
-    message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur enim justo, ultricies sit amet luctus vitae, malesuada sit amet lectus. Integer aliquet bibendum sem, et porta lacus efficitur ac. Curabitur quis ante mi. Maecenas posuere dolor ut leo eleifend aliquam vel sit amet nulla. Nunc volutpat venenatis nisi, id viverra ligula condimentum id. Pellentesque consequat dignissim sagittis. Mauris eu odio a ex congue bibendum in ac magna. Donec quis risus congue, hendrerit urna vehicula, tincidunt elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam auctor congue rhoncus. Nam aliquet ex a nisl condimentum facilisis. Mauris a pretium lectus. Aliquam ut mi in tellus porttitor laoreet. Pellentesque at fermentum purus, vitae sollicitudin erat. Donec gravida dignissim porta. Suspendisse sollicitudin leo eu velit euismod, a lacinia ex euismod. Nullam tempor mi at feugiat egestas. Cras quis pretium est. Aliquam facilisis dui non blandit scelerisque."
-  },
-  {
-    role:"agent",
-    message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur enim justo, ultricies sit amet luctus vitae, malesuada sit amet lectus. Integer aliquet bibendum sem, et porta lacus efficitur ac. Curabitur quis ante mi. Maecenas posuere dolor ut leo eleifend aliquam vel sit amet nulla. Nunc volutpat venenatis nisi, id viverra ligula condimentum id. Pellentesque consequat dignissim sagittis. Mauris eu odio a ex congue bibendum in ac magna. Donec quis risus congue, hendrerit urna vehicula, tincidunt elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam auctor congue rhoncus. Nam aliquet ex a nisl condimentum facilisis. Mauris a pretium lectus. Aliquam ut mi in tellus porttitor laoreet. Pellentesque at fermentum purus, vitae sollicitudin erat. Donec gravida dignissim porta. Suspendisse sollicitudin leo eu velit euismod, a lacinia ex euismod. Nullam tempor mi at feugiat egestas. Cras quis pretium est. Aliquam facilisis dui non blandit scelerisque."
-  }
-]
+type ChatMessage = {
+    role: string,
+    content: string
+}
 
-export function chatPageLoader({ params }: LoaderFunctionArgs) {
-    return {
-        id: params.id
+export async function chatPageLoader({ params }: LoaderFunctionArgs) {
+    const id = params.id;
+
+    console.log(BackendUrl);
+
+    const response = await fetch(`${BackendUrl}/conversation-history?conversation_id=${id}`);
+
+    if (!response.ok) {
+        throw new Response("Não foi possível carregar o histórico do chat.", { 
+            status: response.status,
+            statusText: response.statusText,
+        });
     }
+
+    const data: ChatMessage[] = await response.json();
+  
+    console.log(data)
+
+    return {
+        id: id,
+        conversation: data,
+    };
 }
 
 export default function ChatPage() {
-    const { id } = useLoaderData();
+    const { id, conversation } : { id: string, conversation: ChatMessage[] } = useLoaderData();
     const chatName = `Chat ${id}`
     const chatDescription = `Descrição do chat ${id}`
 
@@ -68,7 +53,7 @@ export default function ChatPage() {
                 <Dropdown title="Modelos" options={options} onSelect={() => {}} titleByOption/>
             </div>
             <div className="chat_content">
-                {conversa.map((message, index) => message.role === "user" ? <UserMessage key={index} message={message.message} /> : <AgentMessage key={index} message={message.message} />)}
+                {conversation.map((message, index) => message.role === "user" ? <UserMessage key={index} message={message.content} /> : <AgentMessage key={index} message={message.content} />)}
             </div>
             <div className="chat_footer">
                 <Propmter />
