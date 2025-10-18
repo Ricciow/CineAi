@@ -5,15 +5,18 @@
     max-height: calc(100vh - var(--header-height));
     position: relative;
         
-    padding: var(--xl);
+    padding: var(--xl) var(--xl) var(--md) var(--xl);
     gap: var(--md);
 }
 
 .chat_header {
+    position: relative;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: var(--md);
+    box-shadow: 0px var(--xl) 1rem color-mix(in srgb, var(--primary-color) 70%, transparent);
 }
 
 .chat_content {
@@ -27,4 +30,7 @@
 
 .chat_footer {
     display: flex;
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0px calc(-1 * var(--xl)) 1rem color-mix(in srgb, var(--primary-color) 70%, transparent);
 }

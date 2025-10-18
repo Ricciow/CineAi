@@ -78,6 +78,7 @@ export default function ChatPage() {
             </div>
             <div className="chat_content" ref={chatContentRef}>
                 {conversation.map((message, index) => message.role === "user" ? <UserMessage key={index} message={message.content} /> : <AgentMessage key={index} message={message.content} />)}
+                <div></div>
             </div>
             <div className="chat_footer">
                 <Propmter onSubmit={handleSendPrompt}/>
