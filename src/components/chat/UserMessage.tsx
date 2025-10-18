@@ -1,11 +1,17 @@
+import { memo } from "react";
+
 type UserMessageProps = {
     message: string
 }
 
-export default function UserMessage({message} : UserMessageProps) {
+function UserMessage({message} : UserMessageProps) {
+    console.log("Renderizou mensagem");
+
     return (
         <div className="message user"> 
             <p>{message}</p>
         </div>
     )
 }
+
+export default memo(UserMessage)

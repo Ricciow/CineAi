@@ -1,9 +1,13 @@
+import { memo } from "react";
+
 type AgentMessageProps = {
     model?: string
     message: string
 }
 
-export default function AgentMessage({ model, message }: AgentMessageProps) {
+function AgentMessage({ model, message }: AgentMessageProps) {
+    console.log("Renderizou mensagem");
+
     return (
         <div className="message agent"> 
             {model && <h2>{model}</h2>}
@@ -11,3 +15,5 @@ export default function AgentMessage({ model, message }: AgentMessageProps) {
         </div>
     )
 }
+
+export default memo(AgentMessage)
