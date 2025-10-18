@@ -9,7 +9,7 @@ import claudeLogo from "../assets/claude.svg";
 import UserMessage from "../components/chat/UserMessage";
 import AgentMessage from "../components/chat/AgentMessage";
 import { BackendUrl } from "../constants/env";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const options = [{ name: "Gemini 2.5 pro", icon: geminiLogo, image: true, value: 1}, { name: "Gpt 5", icon: gptLogo, image: true, value: 1}, { name: "Claude 4.5 Sonnet", icon: claudeLogo, image: true, value: 1}]
 
@@ -47,9 +47,10 @@ export default function ChatPage() {
     const chatName = `Chat ${id}`
     const chatDescription = `Descrição do chat ${id}`
 
+    const chatContentRef = useRef<HTMLDivElement>(null);
+
     async function handleSendPrompt(prompt: string) {
         const userMessage = { role: "user", content: prompt }
-
         setConversation([...conversation, userMessage])
 
         const result = await fetch(`${BackendUrl}/message?conversation_id=${id}&user_input=${prompt}`, {
@@ -62,13 +63,20 @@ export default function ChatPage() {
         }   
     }
 
+    useEffect(() => {
+        const node = chatContentRef.current;
+        if (node) {
+            node.scrollTop = node.scrollHeight;
+        }
+    }, [conversation])
+
     return (
         <div className="chat_main">
             <div className="chat_header">
                 <ProjetoTitle title={chatName} description={chatDescription} />
                 <Dropdown title="Modelos" options={options} onSelect={() => {}} titleByOption/>
             </div>
-            <div className="chat_content">
+            <div className="chat_content" ref={chatContentRef}>
                 {conversation.map((message, index) => message.role === "user" ? <UserMessage key={index} message={message.content} /> : <AgentMessage key={index} message={message.content} />)}
             </div>
             <div className="chat_footer">
