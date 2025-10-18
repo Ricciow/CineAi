@@ -5,8 +5,6 @@ type UserMessageProps = {
 }
 
 function UserMessage({message} : UserMessageProps) {
-    console.log("Renderizou mensagem");
-
     return (
         <div className="message user"> 
             <p>{message}</p>

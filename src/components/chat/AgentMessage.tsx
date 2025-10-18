@@ -6,8 +6,6 @@ type AgentMessageProps = {
 }
 
 function AgentMessage({ model, message }: AgentMessageProps) {
-    console.log("Renderizou mensagem");
-
     return (
         <div className="message agent"> 
             {model && <h2>{model}</h2>}
