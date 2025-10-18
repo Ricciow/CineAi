@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import React from 'react';
 import Button from "../Buttons/Button";
 
@@ -12,7 +12,7 @@ export default function ProjetoHeader() {
 
     return (
         <header className="header">
-            <h1 className="header_title">CineAI</h1>
+            <Link to="/" className="header_title">CineAI</Link>
             <i className="fi fi-rr-angle-small-right header_arrow"></i>
             <nav className="header_nav">
                 {pathnames.map((name_unformatted, index) => {

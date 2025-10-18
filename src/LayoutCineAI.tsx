@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import CineAIHeader from './components/projetos/CineAIHeader';
 
-export default function LayoutCineAI(): JSX.Element {
+export default function LayoutCineAI() {
   return (
     <div className="layout">
       <CineAIHeader />
