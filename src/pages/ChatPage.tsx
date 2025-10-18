@@ -77,6 +77,7 @@ export default function ChatPage() {
                 <Dropdown title="Modelos" options={options} onSelect={() => {}} titleByOption/>
             </div>
             <div className="chat_content" ref={chatContentRef}>
+                <div></div>
                 {conversation.map((message, index) => message.role === "user" ? <UserMessage key={index} message={message.content} /> : <AgentMessage key={index} message={message.content} />)}
                 <div></div>
             </div>
