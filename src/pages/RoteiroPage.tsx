@@ -2,11 +2,11 @@ import { useState } from "react";
 import Button from "../components/Buttons/Button";
 import ChatCard, { type ChatCardProps } from "../components/Card/ChatCard";
 import ProjetoTitle from "../components/projetos/ProjetoTitle";
-import { useLoaderData, type LoaderFunctionArgs } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { BackendUrl } from "../constants/env";
 
-export async function roteiroPageLoader({ params }: LoaderFunctionArgs) {
-    const projeto = params.projeto
+export async function roteiroPageLoader() {
+    // const projeto = params.projeto
 
     const response = await fetch(`${BackendUrl}/conversation`)
 
