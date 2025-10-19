@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import {createBrowserRouter, redirect, RouterProvider} from 'react-router-dom';
 import LayoutProjeto, { projetoLoader } from './LayoutProjeto';
-import RoteiroPage from './pages/RoteiroPage';
+import RoteiroPage, { roteiroPageLoader } from './pages/RoteiroPage';
 import ErrorPage from './pages/ErrorPage';
 import CineAI from './pages/CineAI';
 import ChatPage, { chatPageLoader } from './pages/ChatPage';
@@ -24,6 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'roteiro',
+        loader: roteiroPageLoader,
         element: <RoteiroPage />,
       },
       {
