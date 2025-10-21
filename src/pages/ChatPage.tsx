@@ -16,6 +16,7 @@ const options = [{ name: "Gemini 2.5 pro", icon: geminiLogo, image: true, value:
 type ChatMessage = {
     role: string,
     content: string
+    reasoning?: string
 }
 
 export async function chatPageLoader({ params }: LoaderFunctionArgs) {
@@ -49,14 +50,11 @@ export default function ChatPage() {
 
     async function handleSendPrompt(prompt: string) {
         const userMessage = { role: "user", content: prompt }
-        setConversation([...conversation, userMessage])
+        const agentMessage = { role: "assistant", content: "", reasoning: "" }
+        setConversation([...conversation, userMessage, agentMessage])
 
-        console.log(JSON.stringify({
-                user_input: prompt
-            }))
-
-        const result = await fetch(`${BackendUrl}/message/${id}`, {
-            method: "POST", 
+        const response = await fetch(`${BackendUrl}/message/${id}`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -65,10 +63,52 @@ export default function ChatPage() {
             })
         })
 
-        if(result.ok) {
-            const response : ChatMessage = await result.json();
-            setConversation([...conversation, userMessage, response])
-        }   
+        if (!response.ok || !response.body) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+        
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        let baseResponse = {
+            role: "assistant",
+            content: "",
+            reasoning: "",
+        }
+
+        async function processStream() {
+            const { done, value } = await reader.read();
+
+            if (done) {
+                console.log('Stream finalizado.');
+                return;
+            }
+
+            const chunkString = decoder.decode(value, { stream: true });
+
+            const jsonStrings = chunkString.trim().split('\n');
+
+            jsonStrings.forEach(str => {
+                if (str) {
+                    try {
+                        const jsonData = JSON.parse(str);
+                        baseResponse.content += jsonData.content;
+                        baseResponse.reasoning += jsonData.reasoning;
+
+                        setConversation(prev => {
+                            prev = prev.slice(0, -1);
+                            return [...prev, baseResponse]
+                        });
+                    } catch (err) {
+                        console.error("Não foi possível parsear o JSON do chunk:", str, err);
+                    }
+                }
+            });
+
+            processStream();
+        };
+
+        processStream();
     }
 
     useEffect(() => {
@@ -86,7 +126,7 @@ export default function ChatPage() {
             </div>
             <div className="chat_content" ref={chatContentRef}>
                 <div></div>
-                {conversation.map((message, index) => message.role === "user" ? <UserMessage key={index} message={message.content} /> : <AgentMessage key={index} message={message.content} />)}
+                {conversation.map((message, index) => message.role === "user" ? <UserMessage key={index} message={message.content} /> : <AgentMessage key={index} message={message.content} reasoning={message?.reasoning} />)}
                 <div></div>
             </div>
             <div className="chat_footer">

@@ -13,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
 
-    background-color: color-mix(in oklch, var(--secondary-color) 80%, transparent);
+    background-color: var(--secondary-color);
     border: 1px solid var(--midway-color);
     border-radius: var(--sm);
 
@@ -35,7 +35,7 @@
 }
 
 .dropdown-content {
-    background-color: color-mix(in oklch, var(--secondary-color) 80%, transparent);
+    background-color: var(--secondary-color);
     border: 1px solid var(--midway-color);
     border-radius: var(--sm);
     
