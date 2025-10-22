@@ -10,6 +10,10 @@
 
     --purple-button-color: oklch(55.8% 0.288 302.321);
     --purple-button-hover: oklch(49.6% 0.265 301.924);
+    
+    --bright-purple-button-color: oklch(70.594% 0.20461 308.836);
+    --bright-purple-button-hover: oklch(55.8% 0.288 302.321);
+
 
     --text-white: #fff;
     --text-light-gray: oklch(70.7% 0.022 261.325);

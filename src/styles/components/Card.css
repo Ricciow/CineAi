@@ -26,11 +26,11 @@
 }
 
 .chat_card a {
-    color: var(--purple-button-color);
+    color: var(--bright-purple-button-color);
     font-size: var(--font-text);
     align-self: flex-end;
 }
 
 .chat_card a:hover {
-    color: var(--purple-button-hover);
+    color: var(--bright-purple-button-hover);
 }
