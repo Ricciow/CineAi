@@ -118,7 +118,6 @@
 
 .delete_button {
     background-color: transparent;
-    position: absolute;
     right: var(--sm);
     border: none;
     color: color-mix(in srgb, var(--text-white) 30%, transparent);
@@ -130,4 +129,36 @@
 
 .delete_button:hover {
     color: var(--text-red);
+}
+
+.delete_button_bg {
+    background-color: var(--text-red);
+    color: var(--text-black);
+    font-size: var(--font-text);
+    padding: var(--smd) var(--md);
+    border: none;
+    border-radius: var(--sm);
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    flex: 1;
+}
+
+.delete_button_bg:hover {
+    background-color: color-mix(in srgb, var(--text-red) 80%, black);
+}
+
+.generic_button {
+    background-color: var(--midway-color);
+    color: var(--text-white);
+    font-size: var(--font-text);
+    padding: var(--smd) var(--md);
+    border: none;
+    border-radius: var(--sm);
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    flex: 1;
+}
+
+.generic_button:hover {
+    background-color: color-mix(in srgb, var(--midway-color) 80%, black);
 }

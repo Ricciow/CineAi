@@ -1,6 +1,6 @@
 import type { ChangeEvent } from "react"
 
-export type buttonStyle = 'projeto_button' | 'sidebar_label' | 'delete_button'
+export type buttonStyle = 'projeto_button' | 'sidebar_label' | 'delete_button' | 'delete_button_bg' | 'generic_button'
 
 export type BaseButton = {
     text?: string,
@@ -18,6 +18,7 @@ export type ButtonProps = | (
         onDelete?: () => void
         to?: never
         fileInput?: never
+        className?: never
     }
 ) | (
     //Botão de navegação
@@ -30,6 +31,7 @@ export type ButtonProps = | (
         end?: boolean
 
         fileInput?: never
+        className?: never
     }
 ) | (
     //Botão de upload de arquivos
@@ -40,5 +42,16 @@ export type ButtonProps = | (
         
         fileInput: Boolean
         onChange?: (e : ChangeEvent<HTMLInputElement>) => void
+        className?: never
+    }
+) | (
+    //Botão para uso genérico com className
+    BaseButton & {
+        style?: buttonStyle
+        file?: never
+        to?: never
+        fileInput?: never
+
+        className: string
     }
 )

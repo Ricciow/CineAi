@@ -42,13 +42,24 @@ export default function Button(props : ButtonProps) {
             text={props.text} 
         />
     }
+    if(props.className) {
+        return (
+            <button 
+                className={props.className}
+                onClick={props.onClick}
+            >
+                {props.iconClass &&<i className={props.iconClass}></i>}
+                {props.text && <p>{props.text}</p>}
+            </button>
+        )
+    }
     return (
         <button 
             className={props.style}
             onClick={props.onClick}
         >
-            <i className={props.iconClass}></i>
-            <p>{props.text}</p>
+            {props.iconClass &&<i className={props.iconClass}></i>}
+            {props.text && <p>{props.text}</p>}
         </button>
     )
 }

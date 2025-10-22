@@ -19,6 +19,7 @@
     --text-light-gray: oklch(70.7% 0.022 261.325);
     --text-gray: #666;
     --text-red: rgba(255, 110, 110, 0.75);
+    --text-black: #000;
 
     --xs: 0.25rem;
     --sm: 0.5rem;
@@ -34,4 +35,5 @@
     --font-small: 0.75rem;
 
     --header-height: 4.5rem;
+    --darkened-color: rgba(0, 0, 0, 0.25);
 }
