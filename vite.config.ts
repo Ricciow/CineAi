@@ -8,6 +8,6 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: 8080,
-    allowedHosts: ["*"],
+    allowedHosts: ["cine-ai.azurewebsites.net"],
   },
 })
