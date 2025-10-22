@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../components/Buttons/Button";
 import ChatCard, { type ChatCardProps } from "../components/Card/ChatCard";
 import ProjetoTitle from "../components/projetos/ProjetoTitle";
-import { redirect, useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { BackendUrl } from "../constants/env";
 
 export async function roteiroPageLoader() {

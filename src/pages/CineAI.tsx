@@ -1,264 +1,156 @@
-import React, { type FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/pages/CineAI.css';
-import '../styles/components/projetos/CineAIHeader.css';
-import '../styles/components/projetos/CineAIFooter.css';
-import dev1 from '../assets/dev1.jpg';
-import dev2 from '../assets/dev2.jpg';
-import dev3 from '../assets/dev3.jpg';
+import { Link } from "react-router-dom";
+import "../styles/pages/CineAI.css";
+import "../styles/components/projetos/CineAIHeader.css";
+import "../styles/components/projetos/CineAIFooter.css";
+import dev1 from "../assets/dev1.jpg";
+import dev2 from "../assets/dev2.jpg";
+import dev3 from "../assets/dev3.jpg";
 
-const CineAI: FC = () => {
-  const navigate = useNavigate();
+export default function CineAI() {
+    return (
+        <div className="cineai-container">
+            <header className="cineai-navbar">
+                <h1 className="logo">CineAI</h1>
+                <nav>
+                    <a href="#demo">Demonstração</a>
+                    <a href="#plans">Planos</a>
+                    <a href="#about">Sobre</a>
+                    <a href="#devs">Desenvolvedores</a>
+                </nav>
+                <div className="nav-buttons">
+                    <button className="login-btn">Login</button>
+                    <button className="signup-btn">Inscreva-se</button>
+                </div>
+            </header>
 
-  const handleAccessSystem = (): void => {
-    navigate('/projetos/vingadores');
-  };
+            <section className="cineai-hero">
+                <h2>
+                    Transforme Ideias em <span>Obras Cinematográficas</span> com
+                    IA
+                </h2>
+                <p>
+                    Nossa plataforma utiliza inteligência artificial de ponta
+                    para auxiliar em todo o processo criativo, desde o roteiro
+                    até a geração de vídeo, otimizando seu tempo e expandindo
+                    suas possibilidades.
+                </p>
+                <div className="hero-buttons">
+                    <Link className="primary-btn" to="/projetos/vingadores">
+                        Acessar o Sistema
+                    </Link>
+                    <button className="secondary-btn">Ver Demonstração</button>
+                </div>
+            </section>
 
-  return React.createElement(
-    'div',
-    { className: 'cineai-container' },
+            <section id="demo" className="cineai-demo">
+                <h3>Veja a Mágica Acontecer</h3>
+                <p>
+                    Descubra como nossa ferramenta foi usada para criar algo
+                    incrível.
+                </p>
+                <div className="video-demo">
+                    <div className="video-placeholder">
+                        Demonstração em Vídeo
+                    </div>
+                </div>
+            </section>
 
-    // Navbar
-    React.createElement(
-      'header',
-      { className: 'cineai-navbar' },
-      React.createElement('h1', { className: 'logo' }, 'CineAI'),
-      React.createElement(
-        'nav',
-        null,
-        React.createElement('a', { href: '#demo' }, 'Demonstração'),
-        React.createElement('a', { href: '#plans' }, 'Planos'),
-        React.createElement('a', { href: '#about' }, 'Sobre'),
-        React.createElement('a', { href: '#devs' }, 'Desenvolvedores')
-      ),
-      React.createElement(
-        'div',
-        { className: 'nav-buttons' },
-        React.createElement('button', { className: 'login-btn' }, 'Login'),
-        React.createElement(
-          'button',
-          { className: 'signup-btn' },
-          'Inscreva-se'
-        )
-      )
-    ),
+            {/* Plans */}
+            <section id="plans" className="cineai-plans">
+                <h3>Planos Flexíveis para Cada Criador</h3>
+                <div className="plans-grid">
+                    {/* Beginner Plan */}
+                    <div className="plan-card">
+                        <h4>Iniciante</h4>
+                        <p className="price">Grátis</p>
+                        <ul>
+                            <li>1 Projeto</li>
+                            <li>Geração de Roteiro Básica</li>
+                            <li>10 Gerações de Imagem/mês</li>
+                        </ul>
+                        <button className="plan-btn">Comece Agora</button>
+                    </div>
 
-    // Hero Section
-    React.createElement(
-      'section',
-      { className: 'cineai-hero' },
-      React.createElement(
-        'h2',
-        null,
-        'Transforme Ideias em ',
-        React.createElement('span', null, 'Obras Cinematográficas'),
-        ' com IA'
-      ),
-      React.createElement(
-        'p',
-        null,
-        'Nossa plataforma utiliza inteligência artificial de ponta para auxiliar em todo o processo criativo, desde o roteiro até a geração de vídeo, otimizando seu tempo e expandindo suas possibilidades.'
-      ),
-      React.createElement(
-        'div',
-        { className: 'hero-buttons' },
-        React.createElement(
-          'button',
-          {
-            className: 'primary-btn',
-            onClick: handleAccessSystem, // 👈 redirecionamento TS-safe
-          },
-          'Acessar o Sistema'
-        ),
-        React.createElement(
-          'button',
-          { className: 'secondary-btn' },
-          'Ver Demonstração'
-        )
-      )
-    ),
+                    {/* Pro Plan */}
+                    <div className="plan-card">
+                        <h4>
+                            Pro <span className="badge">Mais Popular</span>
+                        </h4>
+                        <p className="price">R$ 99/mês</p>
+                        <ul>
+                            <li>Projetos Ilimitados</li>
+                            <li>Geração de Roteiro Avançada</li>
+                            <li>500 Gerações de Imagem/mês</li>
+                            <li>20 Gerações de Vídeo/mês</li>
+                        </ul>
+                        <button className="plan-btn">Ir para Pagamento</button>
+                    </div>
 
-    // Video Demonstration
-    React.createElement(
-      'section',
-      { id: 'demo', className: 'cineai-demo' },
-      React.createElement('h3', null, 'Veja a Mágica Acontecer'),
-      React.createElement(
-        'p',
-        null,
-        'Descubra como nossa ferramenta foi usada para criar algo incrível.'
-      ),
-      React.createElement(
-        'div',
-        { className: 'video-demo' },
-        React.createElement(
-          'div',
-          { className: 'video-placeholder' },
-          'Demonstração em Vídeo'
-        )
-      )
-    ),
+                    {/* Business Plan */}
+                    <div className="plan-card">
+                        <h4>Empresarial</h4>
+                        <p className="price">Customizado</p>
+                        <ul>
+                            <li>Tudo do plano Pro</li>
+                            <li>Modelos de IA Dedicados</li>
+                            <li>Suporte Prioritário 24/7</li>
+                        </ul>
+                        <button className="plan-btn">Entre em Contato</button>
+                    </div>
+                </div>
+            </section>
 
-    // Plans
-    React.createElement(
-      'section',
-      { id: 'plans', className: 'cineai-plans' },
-      React.createElement('h3', null, 'Planos Flexíveis para Cada Criador'),
-      React.createElement(
-        'div',
-        { className: 'plans-grid' },
+            <section id="about" className="cineai-mission">
+                <h3>Nossa Missão</h3>
+                <p>
+                    A CineAI nasceu da paixão pelo cinema e pela tecnologia.
+                    Acreditamos que a inteligência artificial pode ser uma
+                    poderosa aliada para contar histórias, quebrando barreiras
+                    criativas e democratizando a produção audiovisual.
+                </p>
+            </section>
 
-        // Beginner Plan
-        React.createElement(
-          'div',
-          { className: 'plan-card' },
-          React.createElement('h4', null, 'Iniciante'),
-          React.createElement('p', { className: 'price' }, 'Grátis'),
-          React.createElement(
-            'ul',
-            null,
-            React.createElement('li', null, '1 Projeto'),
-            React.createElement('li', null, 'Geração de Roteiro Básica'),
-            React.createElement('li', null, '10 Gerações de Imagem/mês')
-          ),
-          React.createElement(
-            'button',
-            { className: 'plan-btn' },
-            'Comece Agora'
-          )
-        ),
+            <section id="devs" className="cineai-devs">
+                <h3>Conheça os Desenvolvedores</h3>
+                <div className="devs-grid">
+                    <div className="dev-card">
+                        <img src={dev1} alt="Dev1" />
+                        <h4>Dev1</h4>
+                        <p>Caroline Atolini</p>
+                    </div>
+                    <div className="dev-card">
+                        <img src={dev2} alt="Dev2" />
+                        <h4>Dev2</h4>
+                        <p>Dylan</p>
+                    </div>
+                    <div className="dev-card">
+                        <img src={dev3} alt="Dev3" />
+                        <h4>Dev3</h4>
+                        <p>Fernando</p>
+                    </div>
+                </div>
+            </section>
 
-        // Pro Plan
-        React.createElement(
-          'div',
-          { className: 'plan-card' },
-          React.createElement(
-            'h4',
-            null,
-            'Pro ',
-            React.createElement('span', { className: 'badge' }, 'Mais Popular')
-          ),
-          React.createElement('p', { className: 'price' }, 'R$ 99/mês'),
-          React.createElement(
-            'ul',
-            null,
-            React.createElement('li', null, 'Projetos Ilimitados'),
-            React.createElement('li', null, 'Geração de Roteiro Avançada'),
-            React.createElement('li', null, '500 Gerações de Imagem/mês'),
-            React.createElement('li', null, '20 Gerações de Vídeo/mês')
-          ),
-          React.createElement(
-            'button',
-            { className: 'plan-btn' },
-            'Ir para Pagamento'
-          )
-        ),
+            <section className="cineai-newsletter">
+                <h3>Obtenha Vantagens Exclusivas</h3>
+                <p>
+                    Inscreva-se na nossa newsletter para receber atualizações e
+                    novidades.
+                </p>
+                <div className="newsletter-form">
+                    <input type="email" placeholder="Seu melhor e-mail" />
+                    <button>Inscrever-se</button>
+                </div>
+            </section>
 
-        // Business Plan
-        React.createElement(
-          'div',
-          { className: 'plan-card' },
-          React.createElement('h4', null, 'Empresarial'),
-          React.createElement('p', { className: 'price' }, 'Customizado'),
-          React.createElement(
-            'ul',
-            null,
-            React.createElement('li', null, 'Tudo do plano Pro'),
-            React.createElement('li', null, 'Modelos de IA Dedicados'),
-            React.createElement('li', null, 'Suporte Prioritário 24/7')
-          ),
-          React.createElement(
-            'button',
-            { className: 'plan-btn' },
-            'Entre em Contato'
-          )
-        )
-      )
-    ),
-
-    // Our Mission
-    React.createElement(
-      'section',
-      { id: 'about', className: 'cineai-mission' },
-      React.createElement('h3', null, 'Nossa Missão'),
-      React.createElement(
-        'p',
-        null,
-        'A CineAI nasceu da paixão pelo cinema e pela tecnologia. Acreditamos que a inteligência artificial pode ser uma poderosa aliada para contar histórias, quebrando barreiras criativas e democratizando a produção audiovisual.'
-      )
-    ),
-
-    // Developers
-    React.createElement(
-      'section',
-      { id: 'devs', className: 'cineai-devs' },
-      React.createElement('h3', null, 'Conheça os Desenvolvedores'),
-      React.createElement(
-        'div',
-        { className: 'devs-grid' },
-        React.createElement(
-          'div',
-          { className: 'dev-card' },
-          React.createElement('img', { src: dev1, alt: 'Dev1' }),
-          React.createElement('h4', null, 'Dev1'),
-          React.createElement('p', null, 'Caroline Atolini')
-        ),
-        React.createElement(
-          'div',
-          { className: 'dev-card' },
-          React.createElement('img', { src: dev2, alt: 'Dev2' }),
-          React.createElement('h4', null, 'Dev2'),
-          React.createElement('p', null, 'Dylan')
-        ),
-        React.createElement(
-          'div',
-          { className: 'dev-card' },
-          React.createElement('img', { src: dev3, alt: 'Dev3' }),
-          React.createElement('h4', null, 'Dev3'),
-          React.createElement('p', null, 'Fernando')
-        )
-      )
-    ),
-
-    // Newsletter
-    React.createElement(
-      'section',
-      { className: 'cineai-newsletter' },
-      React.createElement('h3', null, 'Obtenha Vantagens Exclusivas'),
-      React.createElement(
-        'p',
-        null,
-        'Inscreva-se na nossa newsletter para receber atualizações e novidades.'
-      ),
-      React.createElement(
-        'div',
-        { className: 'newsletter-form' },
-        React.createElement('input', {
-          type: 'email',
-          placeholder: 'Seu melhor e-mail',
-        }),
-        React.createElement('button', null, 'Inscrever-se')
-      )
-    ),
-
-    // Footer
-    React.createElement(
-      'footer',
-      { className: 'cineai-footer' },
-      React.createElement(
-        'p',
-        null,
-        '© 2024 CineAI. Todos os direitos reservados.'
-      ),
-      React.createElement(
-        'div',
-        { className: 'social-icons' },
-        React.createElement('i', { className: 'fa fa-twitter' }),
-        React.createElement('i', { className: 'fa fa-instagram' }),
-        React.createElement('i', { className: 'fa fa-github' })
-      )
-    )
-  );
-};
-
-export default CineAI;
+            <footer className="cineai-footer">
+                <p>© 2024 CineAI. Todos os direitos reservados.</p>
+                <div className="social-icons">
+                    <i className="fa fa-twitter" />
+                    <i className="fa fa-instagram" />
+                    <i className="fa fa-github" />
+                </div>
+            </footer>
+        </div>
+    );
+}
