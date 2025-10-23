@@ -20,6 +20,7 @@
 @import url(styles/components/chat/Prompter.css);
 @import url(styles/components/chat/Message.css);
 @import url(styles/components/EditableText.css);
+@import url(styles/components/Outros.css);
 
 /* Páginas */
 @import url(styles/pages/ErrorPage.css);

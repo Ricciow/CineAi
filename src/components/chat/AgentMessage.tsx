@@ -2,6 +2,7 @@ import { memo } from "react";
 import TextDropdown from "../Dropdown/TextDropdown";
 import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
+import Spinner from "../Outros/Spinner";
 
 type AgentMessageProps = {
     model?: string
@@ -10,7 +11,9 @@ type AgentMessageProps = {
 }
 
 function AgentMessage({ model, message, reasoning }: AgentMessageProps) {
-    console.log(message)
+    if(message == "" && reasoning == "") {
+        return (<div className="message agent"><Spinner message="Carregando..."/></div>)
+    }
 
     return (
         <div className="message agent"> 

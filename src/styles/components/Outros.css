@@ -1,0 +1,20 @@
+.spinner-container {
+    display: flex;
+    align-items: center;
+    gap: var(--sm);
+    font-weight: bold;
+}
+
+.spinner {
+  width: var(--lg);
+  height: var(--lg);
+  border: 0.2rem solid var(--secondary-color);
+  border-top: 0.2rem solid var(--midway-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
