@@ -13,6 +13,12 @@ import { useEffect, useRef, useState } from "react";
 
 const options = [{ name: "Gemini 2.5 pro", icon: geminiLogo, image: true, value: 1}, { name: "Gpt 5", icon: gptLogo, image: true, value: 1}, { name: "Claude 4.5 Sonnet", icon: claudeLogo, image: true, value: 1}]
 
+type Conversation = {
+    title: string,
+    description: string,
+    messages: ChatMessage[],
+}
+
 type ChatMessage = {
     role: string,
     content: string
@@ -22,7 +28,7 @@ type ChatMessage = {
 export async function chatPageLoader({ params }: LoaderFunctionArgs) {
     const id = params.id;
 
-    const response = await fetch(`${BackendUrl}/conversation/history/${id}`);
+    const response = await fetch(`${BackendUrl}/conversation/${id}`);
 
     if (!response.ok) {
         throw new Response("Não foi possível carregar o histórico do chat.", { 
@@ -31,20 +37,22 @@ export async function chatPageLoader({ params }: LoaderFunctionArgs) {
         });
     }
 
-    const data: ChatMessage[] = await response.json();
+    const data: Conversation = await response.json();
     
     return {
         id: id,
-        fetchedConversation: data,
+        fetchedConversation: data.messages,
+        title: data.title,
+        description: data.description
     };
 }
 
 export default function ChatPage() {
-    const { id, fetchedConversation } : { id: string, fetchedConversation: ChatMessage[] } = useLoaderData();
+    const { id, fetchedConversation , title, description } : { id: string, fetchedConversation: ChatMessage[], title: string, description: string } = useLoaderData();
     const [conversation, setConversation] = useState<ChatMessage[]>(fetchedConversation);
 
-    const chatName = `Chat ${id}`
-    const chatDescription = `Descrição do chat ${id}`
+    const chatName = title
+    const chatDescription = description
 
     const chatContentRef = useRef<HTMLDivElement>(null);
 
