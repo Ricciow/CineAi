@@ -8,3 +8,9 @@
     opacity: 0;
     visibility: hidden;
 }
+
+.fi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
