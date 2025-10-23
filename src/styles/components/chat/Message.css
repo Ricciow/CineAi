@@ -4,6 +4,7 @@
     color: var(--text-white);
     font-size: var(--font-text);
     margin: 0px var(--md);
+    gap: var(--md);
 }
 
 .message.user {
@@ -19,4 +20,111 @@
 
 .message.agent {
     align-self: flex-start;
+    width: calc(100% - 2rem);
+}
+
+.message_area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md);
+}
+
+.message_area ul, ol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--xs);
+    padding-left: var(--lg);
+}
+
+.message_area li ol, ul {
+    padding-top: var(--sm);
+}
+
+.message_area li {
+    padding-top: var(--xs);
+}
+
+.message_area pre {
+    background-color: var(--midway-color);
+    padding: var(--smd) var(--md);
+    border-radius: var(--md);
+}
+
+.message_area hr {
+    border: 1px solid var(--midway-color);
+}
+
+.message_area h1 {
+    font-size: var(--font-header);
+}
+
+.message_area h2 {
+    font-size: var(--font-subtitle);
+}
+
+.message_area h3 {
+    font-size: var(--font-text);
+}
+
+.message_area h4 {
+    font-size: var(--font-small);
+    color: var(--text-light-gray);
+}
+
+.message_area h5 {
+    font-size: var(--font-very-small);
+    color: var(--text-light-gray);
+}
+
+.message_area h6 {
+    font-size: var(--font-very-small);
+    color: var(--text-light-gray);
+}
+
+.message_area a {
+    color: var(--bright-purple-button-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.message_area a:hover {
+    color: var(--bright-purple-button-hover);
+}
+
+.message_area table {
+    overflow: hidden;
+    border-radius: var(--md);
+    width: fit-content;
+}
+
+.message_area table * {
+    display: flex;
+    flex: 1;
+}
+
+.message_area table tbody {
+    flex-direction: column;
+}
+
+
+.message_area table th, td {
+    padding: var(--smd) var(--md);
+    border: 1px solid var(--primary-color);
+    background-color: var(--midway-color);
+}
+
+.message_area table th, td, td * {
+    justify-content: center;
+    align-items: center;
+}
+
+.message_area th {
+    color: var(--text-white);
+}
+
+.message_area code {
+    background-color: var(--midway-color);
+    padding: 0.1rem;
+    border-radius: var(--xs);
+    line-height: var(--lg);
 }

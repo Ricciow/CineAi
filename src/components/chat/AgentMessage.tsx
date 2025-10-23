@@ -1,5 +1,7 @@
 import { memo } from "react";
 import TextDropdown from "../Dropdown/TextDropdown";
+import Markdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
 
 type AgentMessageProps = {
     model?: string
@@ -8,13 +10,15 @@ type AgentMessageProps = {
 }
 
 function AgentMessage({ model, message, reasoning }: AgentMessageProps) {
-    const linhasMensagem = message.split("\n");
+    console.log(message)
 
     return (
         <div className="message agent"> 
             {model && <h2>{model}</h2>}
             {reasoning && <TextDropdown title="Pensamento" text={reasoning} />}
-            <p>{linhasMensagem.map((linha, index) => <>{linha}<br key={index}/></>)}</p>
+            <div className="message_area">
+                <Markdown remarkPlugins={[remarkGfm]}>{message}</Markdown>
+            </div>
         </div>
     )
 }

@@ -33,6 +33,8 @@
     --font-subtitle: 1.25rem;
     --font-text: 1rem;
     --font-small: 0.75rem;
+    --font-very-small: 0.5rem;
+    --font-tiny: 0.25rem;
 
     --header-height: 4.5rem;
     --darkened-color: rgba(0, 0, 0, 0.25);
