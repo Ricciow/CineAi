@@ -23,14 +23,15 @@ export default function EditableText({ startingText, onSubmit, className, maxLen
     }, [editing]);
 
     function handleEnableEdit() {
+        setEditing(true);
+    }
+    
+    function handleDisableEdit() {
+        if(!allowEmpty && text === "") return;
+        
         if(editing && text !== startingText) {
             onSubmit && onSubmit(text);
         }
-        setEditing(true);
-    }
-
-    function handleDisableEdit() {
-        if(!allowEmpty && text === "") return;
         setEditing(false);
     }
 
