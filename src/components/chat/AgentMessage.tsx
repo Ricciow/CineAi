@@ -12,7 +12,7 @@ type AgentMessageProps = {
 
 function AgentMessage({ model, message, reasoning }: AgentMessageProps) {
     if(message == "" && reasoning == "") {
-        return (<div className="message agent"><Spinner message="Carregando..."/></div>)
+        return (<div className="message agent"><Spinner message="Gerando..."/></div>)
     }
 
     return (
