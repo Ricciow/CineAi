@@ -119,6 +119,18 @@ export default function ChatPage() {
         processStream();
     }
 
+    function handleUpdateTitle(title: string) {
+        fetch(`${BackendUrl}/conversation/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title: title
+            })
+        })
+    }
+
     useEffect(() => {
         const node = chatContentRef.current;
         if (node) {
@@ -129,7 +141,7 @@ export default function ChatPage() {
     return (
         <div className="chat_main">
             <div className="chat_header">
-                <ProjetoTitle title={chatName} description={chatDescription} />
+                <ProjetoTitle title={chatName} description={chatDescription} editable onSubmit={handleUpdateTitle}/>
                 <Dropdown title="Modelos" options={options} onSelect={() => {}} titleByOption/>
             </div>
             <div className="chat_content" ref={chatContentRef}>

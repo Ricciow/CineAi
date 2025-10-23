@@ -45,7 +45,7 @@ export default function Button(props : ButtonProps) {
     if(props.className) {
         return (
             <button 
-                className={props.className}
+                className={props.style ? `${props.style} ${props.className}` : props.className}
                 onClick={props.onClick}
             >
                 {props.iconClass &&<i className={props.iconClass}></i>}

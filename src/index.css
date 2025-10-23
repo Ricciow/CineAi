@@ -19,6 +19,7 @@
 @import url(styles/components/Dropdown.css);
 @import url(styles/components/chat/Prompter.css);
 @import url(styles/components/chat/Message.css);
+@import url(styles/components/EditableText.css);
 
 /* Páginas */
 @import url(styles/pages/ErrorPage.css);

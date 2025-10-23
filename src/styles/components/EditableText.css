@@ -1,0 +1,12 @@
+.editable_text_button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-white);
+    font-size: var(--font-subtitle);
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, opacity 0.15s ease-in-out;
+}
+
+.editable_text_button:hover {
+    color: var(--text-gray);
+}
