@@ -1,73 +1,65 @@
-import { useState } from "react";
+import { Suspense } from "react";
 import Button from "../components/Buttons/Button";
-import ChatCard, { type ChatCardProps } from "../components/Card/ChatCard";
+import { type ChatCardProps } from "../components/Card/ChatCard";
 import ProjetoTitle from "../components/projetos/ProjetoTitle";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import { BackendUrl } from "../constants/env";
+import ChatList from "../components/chat/ChatList";
+import Spinner from "../components/Outros/Spinner";
 
-export async function roteiroPageLoader() {
-    // const projeto = params.projeto
+async function loadChats() {
+    const response = await fetch(`${BackendUrl}/conversation`);
 
-    const response = await fetch(`${BackendUrl}/conversation`)
-
-    if(!response.ok) {
-        throw new Response("Nao foi possivel carregar os chats", { status: response.status, statusText: response.statusText })
+    if (!response.ok) {
+        throw new Response("Nao foi possivel carregar os chats", { status: response.status, statusText: response.statusText });
     }
-
-    const data: ChatCardProps[] = await response.json();
-
-    return { chatsRequest: data }
+    
+    return response.json(); 
 }
 
+export async function roteiroPageLoader() {
+    const chatsPromise = loadChats();
+
+    return { chatsRequest: chatsPromise }; 
+}
+
+
 export default function RoteiroPage() {
-    const { chatsRequest } : { chatsRequest: ChatCardProps[]}= useLoaderData();
-
-    const [chats, setChats] = useState<ChatCardProps[]>(chatsRequest);
-
+    const loaderData = useLoaderData() as { chatsRequest: Promise<ChatCardProps[]> };
     const navigate = useNavigate();
 
     async function handleCreateChat() {
-
-        const response = await fetch(`${BackendUrl}/conversation`, 
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({title: "Novo Chat", description: "Sem descrição"})
-            });
-
-        if(!response.ok) {
-            throw new Response("Nao foi possivel criar o chat", { status: response.status, statusText: response.statusText })
+        const response = await fetch(`${BackendUrl}/conversation`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title: "Novo Chat", description: "Sem descrição" })
+        });
+        if (!response.ok) {
+            throw new Response("Nao foi possivel criar o chat", { status: response.status, statusText: response.statusText });
         }
-
         const newChat = await response.json();
-
-        navigate(`./${newChat.id}`, );
-
-        setChats([...chats, newChat])
-    }
-    
-    async function handleChatDelete(id: string) {
-        const chatsBackup = [...chats];
-        setChats(chats.filter(chat => chat.id !== id));
-
-        const response = await fetch(`${BackendUrl}/conversation/${id}`, {method: "DELETE"})
-
-        if(!response.ok) {
-            setChats(chatsBackup);
-        }
+        navigate(`./${newChat.id}`);
     }
 
     return (
         <div className="projeto_main">
             <div className="projeto_header">
-                <ProjetoTitle title="Roteirização" description="Crie, analise e refine seu roteiro. Comece um novo chat para gerar uma história, corrija um script ou peça sugestões à IA."/>
-                <Button text="Novo Chat de Roteiro" style="projeto_button" iconClass="fi fi-rr-add" fileInput={false} onClick={handleCreateChat}/>
+                <ProjetoTitle title="Roteirização" description="Crie, analise e refine seu roteiro. Comece um novo chat para gerar uma história, corrija um script ou peça sugestões à IA." />
+                <Button text="Novo Chat de Roteiro" style="projeto_button" iconClass="fi fi-rr-add" fileInput={false} onClick={handleCreateChat} />
             </div>
+            
             <div className="projeto_content">
-                {chats.map((chat) => <ChatCard key={chat.id} title={chat.title} description={chat.description} id={chat.id} onDelete={handleChatDelete}/>) }
+                <Suspense fallback={<Spinner message="Carregando chats..." />}>
+                    <Await
+                        resolve={loaderData.chatsRequest}
+                        errorElement={<p style={{ color: 'red' }}>Erro ao carregar os chats.</p>}
+                    >
+                        {(resolvedChats: ChatCardProps[]) => (
+                            <ChatList initialChats={resolvedChats} />
+                        )}
+                    </Await>
+                </Suspense>
             </div>
         </div>
-    )
+    );
 }

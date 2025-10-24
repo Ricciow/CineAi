@@ -3,6 +3,7 @@
     align-items: center;
     gap: var(--sm);
     font-weight: bold;
+    color: var(--text-white);
 }
 
 .spinner {
