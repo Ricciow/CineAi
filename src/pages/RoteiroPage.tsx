@@ -8,7 +8,7 @@ import ChatList from "../components/chat/ChatList";
 import Spinner from "../components/Outros/Spinner";
 
 async function loadChats() {
-    const response = await fetch(`${BackendUrl}/conversation`);
+    const response = await fetch(`${BackendUrl}/conversation/`);
 
     if (!response.ok) {
         throw new Response("Nao foi possivel carregar os chats", { status: response.status, statusText: response.statusText });
@@ -29,7 +29,7 @@ export default function RoteiroPage() {
     const navigate = useNavigate();
 
     async function handleCreateChat() {
-        const response = await fetch(`${BackendUrl}/conversation`, {
+        const response = await fetch(`${BackendUrl}/conversation/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ title: "Novo Chat", description: "Sem descrição" })
