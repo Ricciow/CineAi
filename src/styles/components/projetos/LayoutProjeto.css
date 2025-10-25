@@ -11,5 +11,5 @@
 
 .layout_content {
     grid-area: main;
-    max-height: min-content;
+    position: relative;
 }

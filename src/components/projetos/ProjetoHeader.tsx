@@ -8,7 +8,6 @@ export default function ProjetoHeader() {
 
     // Divide a URL
     const pathnames = location.pathname.split('/').filter((x) => x);
-    
 
     return (
         <header className="header">
