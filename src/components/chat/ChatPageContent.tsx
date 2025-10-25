@@ -23,7 +23,7 @@ export default function ChatPageContent({ id, initialData }: { id: string, initi
         const agentMessage = { role: "assistant", content: "", reasoning: "" }
         setConversation([...conversation, userMessage, agentMessage])
 
-        const response = await fetch(`${BackendUrl}/message/${id}`, {
+        const response = await fetch(`${BackendUrl}/conversation/${id}/message`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -34,6 +34,7 @@ export default function ChatPageContent({ id, initialData }: { id: string, initi
         })
 
         if (!response.ok || !response.body) {
+            setConversation(prev => [...prev.slice(0, -1)]);
             throw new Error(`Erro na requisição: ${response.status}`);
         }
         
