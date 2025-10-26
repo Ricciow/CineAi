@@ -9,12 +9,14 @@ import geminiLogo from "../../assets//gemini.svg";
 import gptLogo from "../../assets//openai.svg";
 import claudeLogo from "../../assets/claude.svg";
 import Prompter from "./Prompter";
+import { useAuth } from "../Auth/AuthProvider";
 
 const options = [{ name: "Gemini 2.5 pro", icon: geminiLogo, image: true, value: 1}, { name: "Gpt 5", icon: gptLogo, image: true, value: 1}, { name: "Claude 4.5 Sonnet", icon: claudeLogo, image: true, value: 1}]
 
 export default function ChatPageContent({ id, initialData }: { id: string, initialData: Conversation }) {
     const { messages, title, description } = initialData;
     const [conversation, setConversation] = useState<ChatMessage[]>(messages);
+    const { authToken } = useAuth();
     const chatName = title
     const chatDescription = description
 
@@ -26,7 +28,8 @@ export default function ChatPageContent({ id, initialData }: { id: string, initi
         const response = await fetch(`${BackendUrl}/conversation/${id}/message`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${authToken}`
             },
             body: JSON.stringify({
                 user_input: prompt
@@ -86,7 +89,8 @@ export default function ChatPageContent({ id, initialData }: { id: string, initi
         fetch(`${BackendUrl}/conversation/${id}`, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${authToken}`
             },
             body: JSON.stringify({
                 title: title

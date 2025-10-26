@@ -1,6 +1,7 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext, useEffect } from "react"
 import { BackendUrl } from "../../constants/env"
 import { useLocalStorage } from "react-use"
+import { jwtDecode } from "jwt-decode"
 
 type AuthContext = {
     authToken?: string | null,
@@ -16,8 +17,36 @@ type AuthProviderProps = {
 
 export default function Authprovider({ children }: AuthProviderProps) {
     const [authToken, setAuthToken] = useLocalStorage<string | null>("token", undefined)
+    
+    var expiration : number | undefined;
+    if(authToken) {
+        expiration = jwtDecode(authToken).exp;
+        console.log(expiration! * 1000, Date.now(), expiration! * 1000 < Date.now());
+    }
 
-    //Adicionar "renew token" com useEffect
+    useEffect(() => {
+        async function refreshToken() {
+            if(expiration && expiration * 1000 < Date.now()) {
+                try {
+                    const result = await fetch(`${BackendUrl}/auth/login/refresh`, {
+                        method: "POST",
+                        credentials: "include"
+                    })
+    
+                    if(result.ok) {
+                        const data = await result.json();
+                        console.log(JSON.stringify(data))
+                        setAuthToken(data.token);
+                    }
+                }
+                catch(e) {
+                    setAuthToken(null);
+                }
+            }
+        }
+
+        refreshToken();
+    }, [])
 
     async function handleLogin(email: string, password: string) {
         const response = await fetch(`${BackendUrl}/auth/login`, {
@@ -25,6 +54,7 @@ export default function Authprovider({ children }: AuthProviderProps) {
                 "Content-Type": "application/json"
             },
             method: "POST",
+            credentials: "include",
             body: JSON.stringify({ 
                 email, 
                   password 

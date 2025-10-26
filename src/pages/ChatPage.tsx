@@ -11,7 +11,11 @@ import Spinner from "../components/Outros/Spinner";
 import ChatPageContent from "../components/chat/ChatPageContent";
 
 async function loadConversation(id: string): Promise<Conversation> {
-    const response = await fetch(`${BackendUrl}/conversation/${id}`);
+    const token = localStorage.getItem("token")?.slice(1, -1);
+    const response = await fetch(`${BackendUrl}/conversation/${id}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    });
 
     if (!response.ok) {
         throw new Response("Não foi possível carregar o histórico do chat.", { 

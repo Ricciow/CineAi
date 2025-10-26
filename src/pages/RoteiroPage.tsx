@@ -6,9 +6,14 @@ import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import { BackendUrl } from "../constants/env";
 import ChatList from "../components/chat/ChatList";
 import Spinner from "../components/Outros/Spinner";
+import { useAuth } from "../components/Auth/AuthProvider";
 
 async function loadChats() {
-    const response = await fetch(`${BackendUrl}/conversation/`);
+    const token = localStorage.getItem("token")?.slice(1, -1);
+    const response = await fetch(`${BackendUrl}/conversation/`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    });
 
     if (!response.ok) {
         throw new Response("Nao foi possivel carregar os chats", { status: response.status, statusText: response.statusText });
@@ -25,13 +30,17 @@ export async function roteiroPageLoader() {
 
 
 export default function RoteiroPage() {
-    const loaderData = useLoaderData() as { chatsRequest: Promise<ChatCardProps[]> };
+    const loaderData : { chatsRequest: Promise<ChatCardProps[]>} = useLoaderData();
+    const { authToken } = useAuth();
     const navigate = useNavigate();
 
     async function handleCreateChat() {
         const response = await fetch(`${BackendUrl}/conversation/`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${authToken}`
+            },
             body: JSON.stringify({ title: "Novo Chat", description: "Sem descrição" })
         });
         if (!response.ok) {
