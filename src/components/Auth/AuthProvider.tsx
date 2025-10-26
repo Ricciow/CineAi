@@ -15,7 +15,9 @@ type AuthProviderProps = {
 }
 
 export default function Authprovider({ children }: AuthProviderProps) {
-    const [authToken, setAuthToken] = useLocalStorage<string | null>("token", null)
+    const [authToken, setAuthToken] = useLocalStorage<string | null>("token", undefined)
+
+    //Adicionar "renew token" com useEffect
 
     async function handleLogin(email: string, password: string) {
         const response = await fetch(`${BackendUrl}/auth/login`, {

@@ -36,7 +36,7 @@ export default function LoginPage() {
 
     return (
         <div className="login_main"> 
-            <h1 className="cine_ai_title">CineAI</h1>
+            <Link to="/" className="cine_ai_title">CineAI</Link>
             <Form method="post" className="login_form" onSubmit={handleSubmit}>
                 <FormTitle title="Bem-vindo de volta!" description="Acesse sua conta para continuar"/>
                 <FormField type="email" name="email" placeholder="Email" title="Email" required value=""/>

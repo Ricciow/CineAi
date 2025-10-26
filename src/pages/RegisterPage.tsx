@@ -43,7 +43,7 @@ export default function RegisterPage() {
 
     return (
         <div className="login_main"> 
-            <h1 className="cine_ai_title">CineAI</h1>
+            <Link to="/" className="cine_ai_title">CineAI</Link>
             <Form method="post" className="login_form" onSubmit={handleSubmit}>
                 <FormTitle title="Crie sua Conta" description="Comece sua jornada criativa hoje mesmo."/>
                 <FormField type="text" name="username" placeholder="Nome" title="Nome de usuário" required value=""/>
