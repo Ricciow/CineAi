@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import FormField from "../components/Form/FormField";
 import FormTitle from "../components/Form/FormTitle";
 
@@ -11,6 +11,7 @@ export default function LoginPage() {
                 <FormField type="email" name="email" placeholder="Email" title="Email" required value=""/>
                 <FormField type="password" name="password" placeholder="Senha" title="Senha" required value=""/>
                 <FormField type="submit" name="submit" placeholder="" required value="Entrar"/>
+                <p className="register_text">Ainda não possui uma conta? <Link to="/cadastro" className="register_link">Cadastre-se</Link></p>
             </Form>
         </div>
     )

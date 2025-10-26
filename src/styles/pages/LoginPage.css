@@ -21,3 +21,20 @@
     color: var(--text-white);
     font-size: var(--font-text);
 }
+
+.register_text {
+    display: flex;
+    justify-content: center;
+    color: var(--text-light-gray);
+    gap: var(--sm);
+}
+
+.register_link {
+    color: var(--bright-purple-button-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register_link:hover {
+    color: var(--bright-purple-button-hover);
+}
