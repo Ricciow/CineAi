@@ -19,7 +19,7 @@ export default function Authprovider({ children }: AuthProviderProps) {
     const [authToken, setAuthToken] = useLocalStorage<string | null>("token", undefined)
     
     async function refreshToken() {
-        if(expiration && expiration * 1000 < Date.now()) {
+        if(expiration && expiration * 1000 + 30000 < Date.now()) {
             try {
                 const result = await fetch(`${BackendUrl}/auth/login/refresh`, {
                     method: "POST",
