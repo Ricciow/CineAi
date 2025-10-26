@@ -1,10 +1,11 @@
-import { createContext, useContext, useEffect } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { BackendUrl } from "../../constants/env"
 import { useLocalStorage } from "react-use"
 import { jwtDecode } from "jwt-decode"
 
 type AuthContext = {
     authToken?: string | null,
+    userId?: string | null,
     handleLogin: (email: string, password: string) => Promise<void>
     handleLogout: () => Promise<void>
 }
@@ -17,7 +18,8 @@ type AuthProviderProps = {
 
 export default function Authprovider({ children }: AuthProviderProps) {
     const [authToken, setAuthToken] = useLocalStorage<string | null>("token", undefined)
-    
+    const [userId, setUserId] = useState<string | null>()
+
     async function refreshToken() {
         if(expiration && expiration * 1000 + 30000 < Date.now()) {
             try {
@@ -28,12 +30,14 @@ export default function Authprovider({ children }: AuthProviderProps) {
 
                 if(result.ok) {
                     const data = await result.json();
-                    console.log(JSON.stringify(data))
                     setAuthToken(data.token);
+                    const tokenData : { user_id: string } = jwtDecode(data.token);
+                    setUserId(tokenData.user_id);
                 }
             }
             catch(e) {
                 setAuthToken(null);
+                setUserId(null);
             }
         }
     }
@@ -78,6 +82,7 @@ export default function Authprovider({ children }: AuthProviderProps) {
     <AuthContext.Provider
         value={{
             authToken,
+            userId,
             handleLogin,
             handleLogout
         }}
