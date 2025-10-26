@@ -17,7 +17,7 @@ export default function ProtectedRoute({ children, loading, denied, forceNavigat
     
     useEffect(() => {
         if(authToken == null && forceNavigateToLogin) {
-            navigate('/login')
+            navigate('/login', { replace: true });
         }
     })
 
