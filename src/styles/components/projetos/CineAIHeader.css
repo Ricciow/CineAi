@@ -51,8 +51,8 @@
 
 .login-btn {
   background: transparent;
-  border: 1px solid var(--purple-button-hover);
-  color: var(--purple-button-hover);
+  border: 1px solid var(--bright-purple-button-color);
+  color: var(--bright-purple-button-color);
 }
 
 .signup-btn {
@@ -61,8 +61,10 @@
 }
 
 .login-btn:hover {
-  background: var(--purple-button-hover);
-  color: var(--primary-color);
+  background: var(--purple-button-color);
+  border: 1px solid var(--purple-button-color);
+  color: var(--text-white);
+  scale: 1.05;
 }
 
 .signup-btn:hover {
