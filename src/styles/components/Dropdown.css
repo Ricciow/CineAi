@@ -68,3 +68,7 @@
 .dropdown_option img {
     filter: invert(100%);
 }
+
+.text-dropdown-content {
+    padding: var(--md) 0px;
+}

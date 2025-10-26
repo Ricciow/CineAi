@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type TextDropdownProps = {
     icon?: string
@@ -8,7 +10,6 @@ type TextDropdownProps = {
 
 export default function TextDropdown({ icon, title, text } : TextDropdownProps) {
     const [open, setOpen] = useState(false);
-    const linhasText = text.split("\n");
 
     return (
         <div className="text-dropdown">
@@ -18,7 +19,9 @@ export default function TextDropdown({ icon, title, text } : TextDropdownProps) 
                 <i className={`fi fi-br-angle-${open ? "up" : "down"}`}></i>
             </button>
             <div className={open ? "" : " hidden"}>
-                <p>{linhasText.map((linha, index) => <>{linha}<br key={index}/></>)}</p>
+                <div className="text-dropdown-content">
+                    <Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown>
+                </div>
                 <hr className="dropdownSplitter"></hr>
             </div>
         </div>
