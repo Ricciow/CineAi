@@ -3,7 +3,7 @@
   padding: calc(var(--xl) * 5) var(--md) calc(var(--xl) * 3);
   background: linear-gradient(
     180deg,
-    var(--purple-button-color),
+    var(--purple-button-hover),
     var(--primary-color)
   );
 }
@@ -15,7 +15,7 @@
 }
 
 .cineai-hero h2 span {
-  color: var(--purple-button-hover);
+  color: var(--bright-purple-button-color);
 }
 
 .cineai-hero p {
