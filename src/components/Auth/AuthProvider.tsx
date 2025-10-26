@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import { BackendUrl } from "../../constants/env"
+import { useLocalStorage } from "react-use"
 
 type AuthContext = {
     authToken?: string | null,
@@ -14,7 +15,7 @@ type AuthProviderProps = {
 }
 
 export default function Authprovider({ children }: AuthProviderProps) {
-    const [authToken, setAuthToken] = useState<string | null>(null)
+    const [authToken, setAuthToken] = useLocalStorage<string | null>("token", null)
 
     async function handleLogin(email: string, password: string) {
         const response = await fetch(`${BackendUrl}/auth/login`, {
@@ -22,15 +23,20 @@ export default function Authprovider({ children }: AuthProviderProps) {
                 "Content-Type": "application/json"
             },
             method: "POST",
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ 
+                email, 
+                  password 
+            })
         })
 
-        try {
-            const data = await response.json();
-            setAuthToken(data.token);
-        } catch (error) {
+        const data = await response.json();
+
+        if(!response.ok) {
             setAuthToken(null);
+            throw new Error(data.detail);
         }
+
+        setAuthToken(data.token);
     }
 
     async function handleLogout() {

@@ -7,15 +7,24 @@
 }
 
 .spinner {
-  width: var(--lg);
-  height: var(--lg);
-  border: 0.2rem solid var(--secondary-color);
-  border-top: 0.2rem solid var(--midway-color);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+    width: var(--lg);
+    height: var(--lg);
+    border: 0.2rem solid var(--secondary-color);
+    border-top: 0.2rem solid var(--midway-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.error {
+    color: var(--text-red);
+    text-align: center;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

@@ -8,6 +8,7 @@ import ErrorPage from './pages/ErrorPage';
 import CineAI from './pages/CineAI';
 import ChatPage, { chatPageLoader } from './pages/ChatPage';
 import LoginPage from './pages/LoginPage';
+import Authprovider from './components/Auth/AuthProvider';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Authprovider>
+      <RouterProvider router={router} />
+    </Authprovider>
   </StrictMode>
 );
