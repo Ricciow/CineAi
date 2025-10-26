@@ -8,7 +8,10 @@ type AuthContext = {
     userId?: string | null,
     handleLogin: (email: string, password: string) => Promise<void>
     handleLogout: () => Promise<void>
+    handleRefresh: () => Promise<void>
 }
+
+const MARGEM_EXPIRACAO = 30000
 
 const AuthContext = createContext<AuthContext | undefined>(undefined)
 
@@ -20,8 +23,8 @@ export default function Authprovider({ children }: AuthProviderProps) {
     const [authToken, setAuthToken] = useLocalStorage<string | null>("token", undefined)
     const [userId, setUserId] = useState<string | null>()
 
-    async function refreshToken() {
-        if(expiration && expiration * 1000 + 30000 < Date.now()) {
+    async function handleRefresh() {
+        if(expiration && expiration * 1000 + MARGEM_EXPIRACAO < Date.now()) {
             try {
                 const result = await fetch(`${BackendUrl}/auth/login/refresh`, {
                     method: "POST",
@@ -46,10 +49,6 @@ export default function Authprovider({ children }: AuthProviderProps) {
     if(authToken) {
         expiration = jwtDecode(authToken).exp;
     }
-
-    useEffect(() => {
-        refreshToken();
-    }, [])
 
     async function handleLogin(email: string, password: string) {
         const response = await fetch(`${BackendUrl}/auth/login`, {
@@ -78,13 +77,19 @@ export default function Authprovider({ children }: AuthProviderProps) {
         setAuthToken(null);
     }
 
+    useEffect(() => {
+        handleRefresh();
+    }, [])
+
+
     return (
     <AuthContext.Provider
         value={{
             authToken,
             userId,
             handleLogin,
-            handleLogout
+            handleLogout,
+            handleRefresh
         }}
     >
         {children}
