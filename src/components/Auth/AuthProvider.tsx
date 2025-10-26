@@ -24,7 +24,7 @@ export default function Authprovider({ children }: AuthProviderProps) {
     const [userId, setUserId] = useState<string | null>()
 
     async function handleRefresh() {
-        if(expiration && expiration * 1000 + MARGEM_EXPIRACAO < Date.now()) {
+        if(expiration && expiration * 1000 + MARGEM_EXPIRACAO < Date.now() || !authToken) {
             try {
                 const result = await fetch(`${BackendUrl}/auth/login/refresh`, {
                     method: "POST",
