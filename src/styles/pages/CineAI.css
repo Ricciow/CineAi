@@ -94,7 +94,7 @@
 .plan-card .price {
   font-size: 1.3rem;
   margin: var(--sm) 0;
-  color: var(--purple-button-hover);
+  color: var(--bright-purple-button-color);
 }
 
 .plan-card ul {
@@ -120,7 +120,7 @@
 .cineai-mission h3 {
   font-size: var(--font-header);
   margin-bottom: var(--sm);
-  color: var(--purple-button-hover);
+  color: var(--bright-purple-button-color);
 }
 
 .cineai-mission p {

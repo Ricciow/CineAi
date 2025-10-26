@@ -5,6 +5,7 @@ import "../styles/components/projetos/CineAIFooter.css";
 import dev1 from "../assets/dev1.jpg";
 import dev2 from "../assets/dev2.jpg";
 import dev3 from "../assets/dev3.jpg";
+import AuthentifiedComponent from "../components/Auth/AuthentifiedComponent";
 
 export default function CineAI() {
     return (
@@ -18,7 +19,9 @@ export default function CineAI() {
                     <a href="#devs">Desenvolvedores</a>
                 </nav>
                 <div className="nav-buttons">
-                    <Link to="/login" className="login-btn">Login</Link>
+                    <AuthentifiedComponent unauthorized={<Link to="/login" className="login-btn">Login</Link>}>
+                        <Link to="/projetos" className="login-btn">Entrar</Link>
+                    </AuthentifiedComponent>
                     <button className="signup-btn">Inscreva-se</button>
                 </div>
             </header>
