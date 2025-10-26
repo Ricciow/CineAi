@@ -1,0 +1,31 @@
+.form_input_container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--xs);
+    width: 100%;
+}
+
+.form_label {
+    color: var(--text-white);
+    font-size: var(--font-small);
+    font-weight: bold;
+}
+
+.form_input {
+    border: none;
+    border-radius: var(--sm);
+    color: var(--text-white);
+    padding: var(--sm);
+    background-color: var(--midway-color);
+    height: var(--xl);
+}
+
+.form_input[type="submit"] {
+    background-color: var(--purple-button-color);
+    color: var(--text-white);
+    cursor: pointer;
+}
+
+.form_input[type="submit"]:hover {
+    background-color: var(--purple-button-hover);
+}

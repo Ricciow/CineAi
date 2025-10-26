@@ -16,7 +16,7 @@ header {
     align-items: center;
 }
 
-.header_title {
+.cine_ai_title {
     background-image: linear-gradient(90deg, #5347E6, #A555F6);
     font-size: var(--font-header);
     font-weight: bold;

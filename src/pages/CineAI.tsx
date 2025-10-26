@@ -10,7 +10,7 @@ export default function CineAI() {
     return (
         <div className="cineai-container">
             <header className="cineai-navbar">
-                <h1 className="logo">CineAI</h1>
+                <h1 className="cine_ai_title">CineAI</h1>
                 <nav>
                     <a href="#demo">Demonstração</a>
                     <a href="#plans">Planos</a>

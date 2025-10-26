@@ -7,11 +7,16 @@ import RoteiroPage, { roteiroPageLoader } from './pages/RoteiroPage';
 import ErrorPage from './pages/ErrorPage';
 import CineAI from './pages/CineAI';
 import ChatPage, { chatPageLoader } from './pages/ChatPage';
+import LoginPage from './pages/LoginPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <CineAI />,
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
   },
   {
     path: '/projetos/:projeto',

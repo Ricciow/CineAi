@@ -1,0 +1,23 @@
+.login_main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    gap: var(--xl);
+}
+
+.login_form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md);
+    width: 100%;
+    max-width: 24rem;
+    padding: var(--md);
+    background-color: var(--secondary-color);
+    border: 1px solid var(--midway-color);
+    border-radius: var(--md);
+    color: var(--text-white);
+    font-size: var(--font-text);
+}

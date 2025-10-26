@@ -21,12 +21,14 @@
 @import url(styles/components/chat/Message.css);
 @import url(styles/components/EditableText.css);
 @import url(styles/components/Outros.css);
+@import url(styles/components/Form.css);
 
 /* Páginas */
 @import url(styles/pages/ErrorPage.css);
 @import url(styles/pages/RoteiroPage.css);
 @import url(styles/pages/ChatPage.css);
 @import url(styles/pages/CineAI.css);
+@import url(styles/pages/LoginPage.css);
 
 /* Outros */
 @import url(styles/Utility.css);
