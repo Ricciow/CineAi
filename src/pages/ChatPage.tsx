@@ -9,9 +9,10 @@ import type { Conversation } from "../components/chat/chatTypes";
 import ErrorPage from "./ErrorPage";
 import Spinner from "../components/Outros/Spinner";
 import ChatPageContent from "../components/chat/ChatPageContent";
+import { authTokenLocalStorage } from "../constants/localstorage";
 
 async function loadConversation(id: string): Promise<Conversation> {
-    const token = localStorage.getItem("token")?.slice(1, -1);
+    const token = authTokenLocalStorage();
     const response = await fetch(`${BackendUrl}/conversation/${id}`, {
         method: "GET",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }

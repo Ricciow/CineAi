@@ -1,0 +1,1 @@
+export const authTokenLocalStorage = () => localStorage.getItem("token")?.slice(1, -1);
