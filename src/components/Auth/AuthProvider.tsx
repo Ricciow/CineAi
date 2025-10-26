@@ -18,33 +18,32 @@ type AuthProviderProps = {
 export default function Authprovider({ children }: AuthProviderProps) {
     const [authToken, setAuthToken] = useLocalStorage<string | null>("token", undefined)
     
+    async function refreshToken() {
+        if(expiration && expiration * 1000 < Date.now()) {
+            try {
+                const result = await fetch(`${BackendUrl}/auth/login/refresh`, {
+                    method: "POST",
+                    credentials: "include"
+                })
+
+                if(result.ok) {
+                    const data = await result.json();
+                    console.log(JSON.stringify(data))
+                    setAuthToken(data.token);
+                }
+            }
+            catch(e) {
+                setAuthToken(null);
+            }
+        }
+    }
+
     var expiration : number | undefined;
     if(authToken) {
         expiration = jwtDecode(authToken).exp;
-        console.log(expiration! * 1000, Date.now(), expiration! * 1000 < Date.now());
     }
 
     useEffect(() => {
-        async function refreshToken() {
-            if(expiration && expiration * 1000 < Date.now()) {
-                try {
-                    const result = await fetch(`${BackendUrl}/auth/login/refresh`, {
-                        method: "POST",
-                        credentials: "include"
-                    })
-    
-                    if(result.ok) {
-                        const data = await result.json();
-                        console.log(JSON.stringify(data))
-                        setAuthToken(data.token);
-                    }
-                }
-                catch(e) {
-                    setAuthToken(null);
-                }
-            }
-        }
-
         refreshToken();
     }, [])
 

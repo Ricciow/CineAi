@@ -7,9 +7,10 @@ import { BackendUrl } from "../constants/env";
 import ChatList from "../components/chat/ChatList";
 import Spinner from "../components/Outros/Spinner";
 import { useAuth } from "../components/Auth/AuthProvider";
+import { authTokenLocalStorage } from "../constants/localstorage";
 
 async function loadChats() {
-    const token = localStorage.getItem("token")?.slice(1, -1);
+    const token = authTokenLocalStorage();
     const response = await fetch(`${BackendUrl}/conversation/`, {
         method: "GET",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
