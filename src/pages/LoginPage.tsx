@@ -32,7 +32,7 @@ export default function LoginPage() {
         if(authToken) {
             navigate('/projetos')
         }
-    })
+    }, [])
 
     return (
         <div className="login_main"> 
