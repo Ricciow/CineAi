@@ -9,6 +9,7 @@ import CineAI from './pages/CineAI';
 import ChatPage, { chatPageLoader } from './pages/ChatPage';
 import LoginPage from './pages/LoginPage';
 import Authprovider from './components/Auth/AuthProvider';
+import RegisterPage from './pages/RegisterPage';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+  },
+  {
+    path: '/projetos',
+    loader: () => redirect('/projetos/vingadores/roteiro'),
   },
   {
     path: '/projetos/:projeto',

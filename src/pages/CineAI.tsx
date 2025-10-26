@@ -18,7 +18,7 @@ export default function CineAI() {
                     <a href="#devs">Desenvolvedores</a>
                 </nav>
                 <div className="nav-buttons">
-                    <button className="login-btn">Login</button>
+                    <Link to="/login" className="login-btn">Login</Link>
                     <button className="signup-btn">Inscreva-se</button>
                 </div>
             </header>

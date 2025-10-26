@@ -3,10 +3,10 @@ import FormField from "../components/Form/FormField";
 import FormTitle from "../components/Form/FormTitle";
 import { useAuth } from "../components/Auth/AuthProvider";
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function LoginPage() {
-    const { handleLogin } = useAuth();  
+    const { handleLogin, authToken } = useAuth();  
     const navigate = useNavigate();
     const [error, setError] = useState<string | null>(null);
 
@@ -28,6 +28,12 @@ export default function LoginPage() {
         }
     }
 
+    useEffect(() => {
+        if(authToken) {
+            navigate('/projetos')
+        }
+    })
+
     return (
         <div className="login_main"> 
             <h1 className="cine_ai_title">CineAI</h1>
@@ -37,7 +43,7 @@ export default function LoginPage() {
                 <FormField type="password" name="password" placeholder="Senha" title="Senha" required value=""/>
                 {error && <p className="error">{error}</p>}
                 <FormField type="submit" name="submit" placeholder="" required value="Entrar"/>
-                <p className="register_text">Ainda não possui uma conta? <Link to="/cadastro" className="register_link">Cadastre-se</Link></p>
+                <p className="register_text">Ainda não possui uma conta? <Link to="/register" className="register_link">Cadastre-se</Link></p>
             </Form>
         </div>
     )
