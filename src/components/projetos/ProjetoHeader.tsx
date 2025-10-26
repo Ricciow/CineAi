@@ -22,7 +22,7 @@ export default function ProjetoHeader() {
                     const name = name_unformatted.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 
                     return (
-                        <React.Fragment>
+                        <React.Fragment key={routeTo}>
                             <Button
                                 end
                                 to={routeTo}
