@@ -3,13 +3,13 @@ import Dropdown from "../Dropdown/Dropdown";
 import ProjetoTitle from "../projetos/ProjetoTitle";
 import ChatArea from "./ChatArea";
 import type { ChatMessage, Conversation } from "./chatTypes";
-import { BackendUrl } from "../../constants/env";
 
 import geminiLogo from "../../assets//gemini.svg";
 import gptLogo from "../../assets//openai.svg";
 import claudeLogo from "../../assets/claude.svg";
 import Prompter from "./Prompter";
 import { useAuth } from "../Auth/AuthProvider";
+import authenticatedFetch from "../../api/authenticatedFetch";
 
 const options = [{ name: "Gemini 2.5 pro", icon: geminiLogo, image: true, value: 1}, { name: "Gpt 5", icon: gptLogo, image: true, value: 1}, { name: "Claude 4.5 Sonnet", icon: claudeLogo, image: true, value: 1}]
 
@@ -25,16 +25,11 @@ export default function ChatPageContent({ id, initialData }: { id: string, initi
         const agentMessage = { role: "assistant", content: "", reasoning: "" }
         setConversation([...conversation, userMessage, agentMessage])
 
-        const response = await fetch(`${BackendUrl}/conversation/${id}/message`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${authToken}`
-            },
-            body: JSON.stringify({
-                user_input: prompt
-            })
-        })
+        const response = await authenticatedFetch(`conversation/${id}/message`, { 
+            method: "POST", 
+            body: { 
+                user_input: prompt 
+            }}, authToken);
 
         if (!response.ok || !response.body) {
             setConversation(prev => [...prev.slice(0, -1)]);
@@ -85,17 +80,15 @@ export default function ChatPageContent({ id, initialData }: { id: string, initi
         await processStream();
     }
 
-    function handleUpdateTitle(title: string) {
-        fetch(`${BackendUrl}/conversation/${id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${authToken}`
-            },
-            body: JSON.stringify({
-                title: title
-            })
-        })
+    async function handleUpdateTitle(title: string) {
+        await authenticatedFetch(`conversation/${id}`, 
+            { 
+                method: "PATCH",
+                body: {
+                    title: title
+                }
+            }, 
+        authToken)
     }
 
     return (

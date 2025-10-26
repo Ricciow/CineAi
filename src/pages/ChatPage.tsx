@@ -3,20 +3,22 @@ import {
     type LoaderFunctionArgs, 
     Await // Await remains
 } from "react-router-dom";
-import { BackendUrl } from "../constants/env";
 import { Suspense } from "react"; // Suspense remains
 import type { Conversation } from "../components/chat/chatTypes";
 import ErrorPage from "./ErrorPage";
 import Spinner from "../components/Outros/Spinner";
 import ChatPageContent from "../components/chat/ChatPageContent";
 import { authTokenLocalStorage } from "../constants/localstorage";
+import authenticatedFetch from "../api/authenticatedFetch";
 
 async function loadConversation(id: string): Promise<Conversation> {
     const token = authTokenLocalStorage();
-    const response = await fetch(`${BackendUrl}/conversation/${id}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
-    });
+    const response = await authenticatedFetch(`conversation/${id}`, 
+        { 
+            method: "GET" 
+        }, 
+        token
+    );
 
     if (!response.ok) {
         throw new Response("Não foi possível carregar o histórico do chat.", { 
