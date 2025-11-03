@@ -36,6 +36,9 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
     if(modelNumber && modelNumber > modelsData.length - 1) {
         setModelNumber(0);
     }
+    if(modelNumber && modelsData[modelNumber] && model !== modelsData[modelNumber].model) {
+        setModel(modelsData[modelNumber].model);
+    }
     const { authToken } = useAuth();
     const chatName = title
     const chatDescription = description
