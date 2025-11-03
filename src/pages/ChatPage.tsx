@@ -4,7 +4,7 @@ import {
     Await // Await remains
 } from "react-router-dom";
 import { Suspense } from "react"; // Suspense remains
-import type { Conversation } from "../components/chat/chatTypes";
+import type { ChatModel, Conversation } from "../components/chat/chatTypes";
 import ErrorPage from "./ErrorPage";
 import Spinner from "../components/Outros/Spinner";
 import ChatPageContent from "../components/chat/ChatPageContent";
@@ -36,19 +36,50 @@ async function loadConversation(id: string): Promise<Conversation> {
     };
 }
 
-export async function chatPageLoader({ params }: LoaderFunctionArgs) {
+async function loadModels(): Promise<ChatModel[]> {
+    const token = authTokenLocalStorage();
+    const response = await authenticatedFetch(`conversation/models`, 
+        {
+            method: "GET"
+        }, 
+        token
+    );
+
+    if (!response.ok) {
+        throw new Response("Nao foi possivel carregar os modelos", { 
+            status: response.status,
+            statusText: response.statusText,
+        });
+    }
+
+    const responseJson = await response.json();
+
+    return responseJson
+}
+
+type loaderFunctionResult = {
+    id: string,
+    conversationData: Promise<Conversation>,
+    modelsData: Promise<ChatModel[]>
+}
+
+export async function chatPageLoader({ params }: LoaderFunctionArgs): Promise<loaderFunctionResult> {
     const id = params.id as string;
 
     const conversationPromise = loadConversation(id);
     
+    const modelsPromise = loadModels();
+
     return {
         id: id,
         conversationData: conversationPromise, 
+        modelsData: modelsPromise
     };
 }
 
+
 export default function ChatPage() {
-    const { id, conversationData } = useLoaderData() as { id: string, conversationData: Promise<Conversation> };
+    const { id, conversationData, modelsData } = useLoaderData() as loaderFunctionResult;
 
     return (
         <Suspense fallback={
@@ -59,7 +90,14 @@ export default function ChatPage() {
                 errorElement={<ErrorPage />}
             >
                 {(resolvedData) => (
-                    <ChatPageContent id={id} initialData={resolvedData} />
+                    <Await
+                        resolve={modelsData}
+                        errorElement={<ErrorPage />}
+                    >
+                        {(resolvedModels) => (
+                            <ChatPageContent id={id} initialData={resolvedData} modelsData={resolvedModels} />
+                        )}
+                    </Await>
                 )}
             </Await>
         </Suspense>

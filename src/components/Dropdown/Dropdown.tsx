@@ -13,7 +13,7 @@ type DropDownProps = {
     options: Option[];
     selected?: number;
     titleByOption?: boolean;
-    onSelect: (value: any) => void;
+    onSelect: (value: any, index: number) => void;
 }
 
 export default function Dropdown({ title, options, selected = 0, titleByOption = false, onSelect }: DropDownProps) {
@@ -26,7 +26,7 @@ export default function Dropdown({ title, options, selected = 0, titleByOption =
     }
 
     function handleSelect(index: number) {
-        onSelect(options[index].value);
+        onSelect(options[index].value, index);
         setTitleUsed(titleByOption ? (options[index]?.name) ?? title : title);
         setOpen(false);
     }

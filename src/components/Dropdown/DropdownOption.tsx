@@ -13,7 +13,7 @@ export default function DropdownOption({ name, icon, image, index, onSelect }: D
             className="dropdown_option"
             onClick={() => onSelect(index)}
         >
-            {image ? <img src={icon} alt={name} /> : <i className={icon}></i>}
+            {image ? <img src={icon} alt={name} /> : icon && <i className={icon}></i>}
             <p>{name}</p>
         </button>
     )

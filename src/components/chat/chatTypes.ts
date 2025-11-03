@@ -9,3 +9,9 @@ export type ChatMessage = {
     content: string
     reasoning?: string
 }
+
+export type ChatModel = {
+    name: string,
+    model: string,
+    provider: string
+}

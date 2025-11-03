@@ -2,7 +2,7 @@ import { useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import ProjetoTitle from "../projetos/ProjetoTitle";
 import ChatArea from "./ChatArea";
-import type { ChatMessage, Conversation } from "./chatTypes";
+import type { ChatMessage, ChatModel, Conversation } from "./chatTypes";
 
 import geminiLogo from "../../assets//gemini.svg";
 import gptLogo from "../../assets//openai.svg";
@@ -10,15 +10,37 @@ import claudeLogo from "../../assets/claude.svg";
 import Prompter from "./Prompter";
 import { useAuth } from "../Auth/AuthProvider";
 import authenticatedFetch from "../../api/authenticatedFetch";
+import { useLocalStorage } from "react-use";
 
-const options = [{ name: "Gemini 2.5 pro", icon: geminiLogo, image: true, value: 1}, { name: "Gpt 5", icon: gptLogo, image: true, value: 1}, { name: "Claude 4.5 Sonnet", icon: claudeLogo, image: true, value: 1}]
+function modelToOption(modelsData: ChatModel[]) {
+    return modelsData.map(model => {
+        let icon;
+        if (model.provider === "openai") {
+            icon = gptLogo;
+        } else if (model.provider === "gemini") {
+            icon = geminiLogo;
+        } else if (model.provider === "claude") {
+            icon = claudeLogo;
+        } else {
+            icon = "";
+        }
+        return { name: model.name, icon: icon, image: icon !== "", value: model.model };
+    });
+}
 
-export default function ChatPageContent({ id, initialData }: { id: string, initialData: Conversation }) {
+export default function ChatPageContent({ id, initialData, modelsData }: { id: string, initialData: Conversation, modelsData: ChatModel[] }) {
     const { messages, title, description } = initialData;
     const [conversation, setConversation] = useState<ChatMessage[]>(messages);
+    const [model, setModel] = useState<string>(modelsData[0]?.model || "");
+    const [modelNumber, setModelNumber] = useLocalStorage<number>("chat-model-number", 0);
+    if(modelNumber && modelNumber > modelsData.length - 1) {
+        setModelNumber(0);
+    }
     const { authToken } = useAuth();
     const chatName = title
     const chatDescription = description
+
+    const options = modelToOption(modelsData);
 
     async function handleSendPrompt(prompt: string) {
         const userMessage = { role: "user", content: prompt }
@@ -28,7 +50,8 @@ export default function ChatPageContent({ id, initialData }: { id: string, initi
         const response = await authenticatedFetch(`conversation/${id}/message`, { 
             method: "POST", 
             body: { 
-                user_input: prompt 
+                user_input: prompt,
+                model: model
             }}, authToken);
 
         if (!response.ok || !response.body) {
@@ -91,11 +114,16 @@ export default function ChatPageContent({ id, initialData }: { id: string, initi
         authToken)
     }
 
+    function handleModelSelect(model: string, index: number) {
+        setModel(model);
+        setModelNumber(index);
+    }
+
     return (
         <div className="chat_main">
             <div className="chat_header">
                 <ProjetoTitle title={chatName} description={chatDescription} editable onSubmit={handleUpdateTitle}/>
-                <Dropdown title="Modelos" options={options} onSelect={() => {}} titleByOption/>
+                <Dropdown title="Modelos" options={options} onSelect={handleModelSelect} selected={modelNumber} titleByOption/>
             </div>
             <ChatArea messages={conversation} />
             <div className="chat_footer">
