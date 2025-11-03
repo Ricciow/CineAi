@@ -8,7 +8,6 @@ import geminiLogo from "../../assets//gemini.svg";
 import gptLogo from "../../assets//openai.svg";
 import claudeLogo from "../../assets/claude.svg";
 import Prompter from "./Prompter";
-import { useAuth } from "../Auth/AuthProvider";
 import authenticatedFetch from "../../api/authenticatedFetch";
 import { useLocalStorage } from "react-use";
 
@@ -39,7 +38,6 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
     if(modelNumber && modelsData[modelNumber] && model !== modelsData[modelNumber].model) {
         setModel(modelsData[modelNumber].model);
     }
-    const { authToken } = useAuth();
     const chatName = title
     const chatDescription = description
 
@@ -55,7 +53,7 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
             body: { 
                 user_input: prompt,
                 model: model
-            }}, authToken);
+            }});
 
         if (!response.ok || !response.body) {
             setConversation(prev => [...prev.slice(0, -1)]);
@@ -113,8 +111,7 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
                 body: {
                     title: title
                 }
-            }, 
-        authToken)
+            })
     }
 
     function handleModelSelect(model: string, index: number) {

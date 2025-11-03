@@ -1,3 +1,4 @@
+import { authTokenLocalStorage, refreshAccessToken } from "../components/Auth/authService";
 import { BackendUrl } from "../constants/env";
 
 
@@ -8,8 +9,10 @@ type authenticatedFetchParams = {
     }
 }
 
-export default async function authenticatedFetch(url : string, { method, body }: authenticatedFetchParams,  token ?: string | null) : Promise<Response> {
-    return fetch(`${BackendUrl}/${url}`, { 
+export default async function authenticatedFetch(url : string, { method, body }: authenticatedFetchParams) : Promise<Response> {
+    const token = authTokenLocalStorage();
+
+    const fetching = await fetch(`${BackendUrl}/${url}`, { 
         method, 
         body: JSON.stringify(body),
         headers: {
@@ -17,4 +20,21 @@ export default async function authenticatedFetch(url : string, { method, body }:
             "Authorization": `Bearer ${token}`,
         }
     });
+
+    if(fetching.status === 401) {
+        const { token: newToken } =  await refreshAccessToken();
+
+        const retryFetch = await fetch(`${BackendUrl}/${url}`, { 
+            method, 
+            body: JSON.stringify(body),
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${newToken}`,
+            }
+        });
+
+        return retryFetch
+    }
+
+    return fetching
 }

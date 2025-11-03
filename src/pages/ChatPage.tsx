@@ -8,16 +8,13 @@ import type { ChatModel, Conversation } from "../components/chat/chatTypes";
 import ErrorPage from "./ErrorPage";
 import Spinner from "../components/Outros/Spinner";
 import ChatPageContent from "../components/chat/ChatPageContent";
-import { authTokenLocalStorage } from "../constants/localstorage";
 import authenticatedFetch from "../api/authenticatedFetch";
 
 async function loadConversation(id: string): Promise<Conversation> {
-    const token = authTokenLocalStorage();
     const response = await authenticatedFetch(`conversation/${id}`, 
         { 
             method: "GET" 
-        }, 
-        token
+        }
     );
 
     if (!response.ok) {
@@ -37,12 +34,10 @@ async function loadConversation(id: string): Promise<Conversation> {
 }
 
 async function loadModels(): Promise<ChatModel[]> {
-    const token = authTokenLocalStorage();
     const response = await authenticatedFetch(`conversation/models`, 
         {
             method: "GET"
-        }, 
-        token
+        }
     );
 
     if (!response.ok) {

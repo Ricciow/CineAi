@@ -5,17 +5,13 @@ import ProjetoTitle from "../components/projetos/ProjetoTitle";
 import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import ChatList from "../components/chat/ChatList";
 import Spinner from "../components/Outros/Spinner";
-import { useAuth } from "../components/Auth/AuthProvider";
-import { authTokenLocalStorage } from "../constants/localstorage";
 import authenticatedFetch from "../api/authenticatedFetch";
 
 async function loadChats() {
-    const token = authTokenLocalStorage();
     const response = await authenticatedFetch(`conversation/`, 
         { 
             method: "GET" 
-        }, 
-        token
+        }
     );
 
     if (!response.ok) {
@@ -34,7 +30,6 @@ export async function roteiroPageLoader() {
 
 export default function RoteiroPage() {
     const loaderData : { chatsRequest: Promise<ChatCardProps[]>} = useLoaderData();
-    const { authToken } = useAuth();
     const navigate = useNavigate();
 
     async function handleCreateChat() {
@@ -42,8 +37,7 @@ export default function RoteiroPage() {
             { 
                 method: "POST",
                 body: { title: "Novo Chat", description: "Sem descrição" }
-            }, 
-            authToken
+            }
         );
 
         if (!response.ok) {
