@@ -87,8 +87,22 @@ export default function Authprovider({ children }: AuthProviderProps) {
     }
 
     async function handleLogout() {
-        setAuthToken(null);
-        setUserId(null);
+        try {
+            const token = authToken;
+            await fetch(`${BackendUrl}/auth/logout`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token ? `Bearer ${token}` : "",
+                }
+            });
+        } catch (e) {
+            console.error("Erro ao fazer logout no backend:", e);
+        } finally {
+            setAuthToken(null);
+            setUserId(null);
+        }
     }
 
     useEffect(() => {

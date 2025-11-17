@@ -1,10 +1,13 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import React from 'react';
 import Button from "../Buttons/Button";
+import { useAuth } from "../Auth/AuthProvider";
 
 export default function ProjetoHeader() {
     // URL atual
     const location = useLocation();
+    const navigate = useNavigate();
+    const { handleLogout } = useAuth();
 
     // Divide a URL
     const pathnames = location.pathname.split('/').filter((x) => x);
@@ -34,6 +37,17 @@ export default function ProjetoHeader() {
                     );
                 })}
             </nav>
+            <div style={{ marginLeft: 'auto' }}>
+                <Button 
+                    text="Sair" 
+                    style="delete_button_bg" 
+                    fileInput={false} 
+                    onClick={async () => {
+                        await handleLogout();
+                        navigate('/login');
+                    }} 
+                />
+            </div>
         </header>
     );
 }
