@@ -1,4 +1,4 @@
-name: Deploy Frontend Angular
+name: Deploy Frontend React
 
 on:
   push:
