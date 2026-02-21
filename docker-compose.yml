@@ -1,0 +1,14 @@
+services:
+  cineai:
+    build:
+      context: .
+      args:
+        VITE_BACKEND_URL: ${VITE_BACKEND_URL}
+    container_name: cineai
+    restart: always
+    networks:
+      - web-public
+
+networks:
+  web-public:
+    external: true
