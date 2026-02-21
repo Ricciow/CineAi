@@ -1,1 +1,1 @@
-export const BackendUrl = "cineai.glitchdev.cloud/api";
+export const BackendUrl = "https://cineai.glitchdev.cloud/api";
