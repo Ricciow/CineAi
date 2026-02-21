@@ -2,7 +2,7 @@ name: Deploy Frontend React
 
 on:
   push:
-    branches: ['master'] # Confirme se é 'main' ou 'master'
+    branches: ['main'] # Confirme se é 'main' ou 'master'
 
 jobs:
   build-and-push:
