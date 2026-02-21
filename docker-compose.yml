@@ -1,9 +1,6 @@
 services:
   cineai:
-    build:
-      context: .
-      args:
-        VITE_BACKEND_URL: ${VITE_BACKEND_URL}
+    image: ricciow/cineai:latest
     container_name: cineai
     restart: always
     networks:
