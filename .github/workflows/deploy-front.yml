@@ -57,7 +57,7 @@ jobs:
             cd /app/cine-ai/
 
             # Baixa a nova versão da imagem (que acabamos de subir)
-            docker compose pull ricciow/cine-ai:latest
+            docker compose pull
 
             # Recria o container com a nova versão
             docker compose up -d --remove-orphans

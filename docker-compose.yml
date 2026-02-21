@@ -1,6 +1,6 @@
 services:
   cineai:
-    image: ricciow/cineai:latest
+    image: ricciow/cine-ai:latest
     container_name: cineai
     restart: always
     networks:
