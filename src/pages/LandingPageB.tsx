@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CineAiLogo from "../assets/CineAi.png";
+import { BackendUrl } from "../constants/env";
 
 const LandingPageB: React.FC = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const LandingPageB: React.FC = () => {
   const trackClick = async (elementId: string, userEmail?: string) => {
     console.log(`Tracking click: ${elementId} ${userEmail ? `with email: ${userEmail}` : ''}`);
     try {
-        await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1'}/analytics/track-click`, {
+        await fetch(`${BackendUrl}/analytics/track-click`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 

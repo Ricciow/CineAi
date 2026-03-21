@@ -7,6 +7,7 @@ import dev1 from "../assets/dev1.jpg";
 import dev2 from "../assets/dev2.jpg";
 import dev3 from "../assets/dev3.jpg";
 import AuthentifiedComponent from "../components/Auth/AuthentifiedComponent";
+import { BackendUrl } from "../constants/env";
 
 export default function CineAI() {
     const [email, setEmail] = useState("");
@@ -14,8 +15,10 @@ export default function CineAI() {
 
     const trackClick = async (elementId: string, userEmail?: string) => {
         console.log(`Tracking click: ${elementId} ${userEmail ? `with email: ${userEmail}` : ''}`);
+
+        // Envio para o Backend em tempo real
         try {
-            await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1'}/analytics/track-click`, {
+            await fetch(`${BackendUrl}/analytics/track-click`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
