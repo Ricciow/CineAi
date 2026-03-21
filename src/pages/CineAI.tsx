@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useRef } from "react";
 import "../styles/pages/CineAI.css";
 import "../styles/components/projetos/CineAIHeader.css";
 import "../styles/components/projetos/CineAIFooter.css";
@@ -8,6 +9,38 @@ import dev3 from "../assets/dev3.jpg";
 import AuthentifiedComponent from "../components/Auth/AuthentifiedComponent";
 
 export default function CineAI() {
+    const [email, setEmail] = useState("");
+    const newsletterRef = useRef<HTMLElement>(null);
+
+    const trackClick = async (elementId: string, userEmail?: string) => {
+        console.log(`Tracking click: ${elementId} ${userEmail ? `with email: ${userEmail}` : ''}`);
+        try {
+            await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1'}/analytics/track-click`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    elementId, 
+                    variant: "A",
+                    email: userEmail || null
+                })
+            });
+        } catch (err) {
+            console.error("Falha ao enviar rastreio:", err);
+        }
+    };
+
+    const scrollToNewsletter = (id: string) => {
+        trackClick(id);
+        newsletterRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    const handleEmailSubmit = (id: string) => {
+        if (!email) return;
+        trackClick(id, email);
+        alert("Obrigado pelo interesse! Em breve entraremos em contato.");
+        setEmail("");
+    };
+
     return (
         <div className="cineai-container">
             <header className="cineai-navbar">
@@ -19,10 +52,10 @@ export default function CineAI() {
                     <a href="#devs">Desenvolvedores</a>
                 </nav>
                 <div className="nav-buttons">
-                    <AuthentifiedComponent unauthorized={<Link to="/login" className="login-btn">Login</Link>}>
-                        <Link to="/projetos" className="login-btn">Entrar</Link>
+                    <AuthentifiedComponent unauthorized={<Link to="/login" className="login-btn" onClick={() => trackClick('nav-login')}>Login</Link>}> 
+                        <Link to="/projetos" className="login-btn" onClick={() => trackClick('nav-entrar')}>Entrar</Link>
                     </AuthentifiedComponent>
-                    <button className="signup-btn">Inscreva-se</button>
+                    <button className="signup-btn" onClick={() => scrollToNewsletter('nav-signup-scroll')}>Tenho Interesse</button>
                 </div>
             </header>
 
@@ -38,10 +71,10 @@ export default function CineAI() {
                     suas possibilidades.
                 </p>
                 <div className="hero-buttons">
-                    <Link className="primary-btn" to="/projetos/vingadores">
+                    <button className="primary-btn" onClick={() => scrollToNewsletter('hero-acessar-scroll')}>
                         Acessar o Sistema
-                    </Link>
-                    <button className="secondary-btn">Ver Demonstração</button>
+                    </button>
+                    <button className="secondary-btn" onClick={() => scrollToNewsletter('hero-demo-scroll')}>Ver Demonstração</button>
                 </div>
             </section>
 
@@ -62,7 +95,6 @@ export default function CineAI() {
             <section id="plans" className="cineai-plans">
                 <h3>Planos Flexíveis para Cada Criador</h3>
                 <div className="plans-grid">
-                    {/* Beginner Plan */}
                     <div className="plan-card">
                         <h4>Iniciante</h4>
                         <p className="price">Grátis</p>
@@ -71,14 +103,11 @@ export default function CineAI() {
                             <li>Geração de Roteiro Básica</li>
                             <li>10 Gerações de Imagem/mês</li>
                         </ul>
-                        <button className="plan-btn">Comece Agora</button>
+                        <button className="plan-btn" onClick={() => scrollToNewsletter('plan-beginner-scroll')}>Tenho Interesse</button>
                     </div>
 
-                    {/* Pro Plan */}
                     <div className="plan-card">
-                        <h4>
-                            Pro <span className="badge">Mais Popular</span>
-                        </h4>
+                        <h4>Pro <span className="badge">Mais Popular</span></h4>
                         <p className="price">R$ 99/mês</p>
                         <ul>
                             <li>Projetos Ilimitados</li>
@@ -86,10 +115,9 @@ export default function CineAI() {
                             <li>500 Gerações de Imagem/mês</li>
                             <li>20 Gerações de Vídeo/mês</li>
                         </ul>
-                        <button className="plan-btn">Ir para Pagamento</button>
+                        <button className="plan-btn" onClick={() => scrollToNewsletter('plan-pro-scroll')}>Tenho Interesse</button>
                     </div>
 
-                    {/* Business Plan */}
                     <div className="plan-card">
                         <h4>Empresarial</h4>
                         <p className="price">Customizado</p>
@@ -98,7 +126,7 @@ export default function CineAI() {
                             <li>Modelos de IA Dedicados</li>
                             <li>Suporte Prioritário 24/7</li>
                         </ul>
-                        <button className="plan-btn">Entre em Contato</button>
+                        <button className="plan-btn" onClick={() => scrollToNewsletter('plan-business-scroll')}>Entre em Contato</button>
                     </div>
                 </div>
             </section>
@@ -134,15 +162,19 @@ export default function CineAI() {
                 </div>
             </section>
 
-            <section className="cineai-newsletter">
-                <h3>Obtenha Vantagens Exclusivas</h3>
+            <section ref={newsletterRef} className="cineai-newsletter">
+                <h3>Garanta seu Acesso Antecipado</h3>
                 <p>
-                    Inscreva-se na nossa newsletter para receber atualizações e
-                    novidades.
+                    Deixe seu e-mail para ser avisado assim que abrirmos novas vagas no sistema.
                 </p>
                 <div className="newsletter-form">
-                    <input type="email" placeholder="Seu melhor e-mail" />
-                    <button>Inscrever-se</button>
+                    <input 
+                        type="email" 
+                        placeholder="Seu melhor e-mail" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <button onClick={() => handleEmailSubmit('newsletter-submit')}>Garantir Acesso</button>
                 </div>
             </section>
 

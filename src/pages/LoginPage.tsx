@@ -43,8 +43,8 @@ export default function LoginPage() {
                 <FormField type="password" name="password" placeholder="Senha" title="Senha" required value=""/>
                 {error && <p className="error">{error}</p>}
                 <FormField type="submit" name="submit" placeholder="" required value="Entrar"/>
-                <p className="register_text">Ainda não possui uma conta? <Link to="/register" className="register_link">Cadastre-se</Link></p>
-            </Form>
-        </div>
+                </Form>
+                </div>
+
     )
 }

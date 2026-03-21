@@ -10,16 +10,26 @@ import LayoutProjeto, { projetoLoader } from "./LayoutProjeto";
 import RoteiroPage, { roteiroPageLoader } from "./pages/RoteiroPage";
 import ErrorPage from "./pages/ErrorPage";
 import CineAI from "./pages/CineAI";
+import LandingPageB from "./pages/LandingPageB";
 import ChatPage, { chatPageLoader } from "./pages/ChatPage";
 import LoginPage from "./pages/LoginPage";
 import Authprovider from "./components/Auth/AuthProvider";
 import RegisterPage from "./pages/RegisterPage";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 
+const getLandingPage = () => {
+    let variant = localStorage.getItem("cineai_variant");
+    if (!variant) {
+        variant = Math.random() < 0.5 ? "A" : "B";
+        localStorage.setItem("cineai_variant", variant);
+    }
+    return variant === "B" ? <LandingPageB /> : <CineAI />;
+};
+
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <CineAI />,
+        element: getLandingPage(),
     },
     {
         path: "/login",
