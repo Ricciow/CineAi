@@ -44,7 +44,7 @@ export default function RoteiroPage() {
             throw new Response("Nao foi possivel criar o chat", { status: response.status, statusText: response.statusText });
         }
         const newChat = await response.json();
-        navigate(`./${newChat._id}`);
+        navigate(`./${newChat.id}`);
     }
 
     return (
