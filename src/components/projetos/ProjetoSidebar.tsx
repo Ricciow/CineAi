@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent } from "react";
 import Button from "../Buttons/Button";
 
-export default function ProjetoSidebar({ projeto }: { projeto: string }) {
+export default function ProjetoSidebar({ projeto, isOpen, toggleSidebar }: { projeto: string, isOpen: boolean, toggleSidebar: () => void }) {
     const [arquivos, setArquivos] = useState<File[]>([]);
 
     //Propriamente enviar/deletar arquivos no futuro
@@ -23,7 +23,12 @@ export default function ProjetoSidebar({ projeto }: { projeto: string }) {
     }
 
     return (
-        <aside className="sidebar">
+        <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+            <div className="sidebar_header mobile_only">
+                <button className="sidebar_close" onClick={toggleSidebar}>
+                    <i className="fi fi-br-cross"></i>
+                </button>
+            </div>
             <h1 className="sidebar_title">Etapas do Projeto</h1>
             <nav className="sidebar_nav">
                 <Button

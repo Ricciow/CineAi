@@ -41,3 +41,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+@media (max-width: 768px) {
+    .chat_main {
+        padding: var(--md);
+    }
+
+    .chat_header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

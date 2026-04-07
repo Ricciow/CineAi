@@ -1,3 +1,22 @@
+.cineai-container {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cineai-container section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 /* Main Poster */
 .cineai-hero {
   padding: calc(var(--xl) * 5) var(--md) calc(var(--xl) * 3);
@@ -6,12 +25,14 @@
     var(--purple-button-hover),
     var(--primary-color)
   );
+  width: 100%;
 }
 
 .cineai-hero h2 {
   font-size: calc(var(--font-title) * 1.6);
   font-weight: 700;
   color: var(--text-white);
+  max-width: 900px;
 }
 
 .cineai-hero h2 span {
@@ -22,45 +43,47 @@
   font-size: var(--font-subtitle);
   margin-top: var(--sm);
   color: var(--text-light-gray);
+  max-width: 700px;
 }
 
-/* Video Demonstration */
-.cineai-demo {
-  padding: calc(var(--xl) * 4) var(--md);
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--md);
+    margin-top: var(--lg);
 }
 
-.cineai-demo h3 {
-  font-size: var(--font-header);
-  margin-bottom: var(--xs);
+.primary-btn, .secondary-btn {
+    padding: var(--smd) var(--xl);
+    border-radius: var(--smd);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-.cineai-demo p {
-  color: var(--text-light-gray);
+.primary-btn {
+    background-color: var(--purple-button-color);
+    color: var(--text-white);
+    border: none;
 }
 
-.video-demo {
-  background-color: var(--secondary-color);
-  border-radius: var(--smd);
-  padding: calc(var(--xl) * 3);
-  margin: var(--xl) auto 0;
-  width: 80%;
-  max-width: 600px;
-}
-
-.video-placeholder {
-  color: var(--purple-button-hover);
-  font-weight: 600;
-  font-size: 1.3rem;
+.secondary-btn {
+    background-color: transparent;
+    color: var(--text-white);
+    border: 1px solid var(--text-white);
 }
 
 /* Plans */
 .cineai-plans {
   background: var(--primary-color);
   padding: calc(var(--xl) * 4) var(--md);
+  color: var(--text-white);
 }
 
 .cineai-plans h3 {
   font-size: var(--font-header);
+  color: var(--text-white);
+  margin-bottom: var(--xl);
 }
 
 .plans-grid {
@@ -69,6 +92,8 @@
   justify-content: center;
   gap: calc(var(--xl) * 1.5);
   margin-top: var(--xl);
+  width: 100%;
+  max-width: 1200px;
 }
 
 .plan-card {
@@ -80,6 +105,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: left;
 }
 
 .plan-card:hover {
@@ -108,6 +134,21 @@
   margin: var(--xs) 0;
 }
 
+.plan-btn {
+    margin-top: var(--md);
+    padding: var(--sm);
+    border-radius: var(--xs);
+    border: 1px solid var(--purple-button-color);
+    background: transparent;
+    color: var(--text-white);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.plan-btn:hover {
+    background: var(--purple-button-color);
+}
+
 /* Our Mission */
 .cineai-mission {
   padding: calc(var(--xl) * 4) var(--md);
@@ -115,6 +156,7 @@
   max-width: 800px;
   margin: var(--xl) auto;
   border-radius: var(--smd);
+  color: var(--text-white);
 }
 
 .cineai-mission h3 {
@@ -132,12 +174,14 @@
 .cineai-devs {
   padding: calc(var(--xl) * 4) var(--md);
   background: var(--secondary-color);
+  color: var(--text-white);
 }
 
 .cineai-devs h3 {
   font-size: var(--font-header);
   text-align: center;
   color: var(--text-white);
+  margin-bottom: var(--xl);
 }
 
 .devs-grid {
@@ -145,7 +189,6 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: calc(var(--xl) * 2);
-  margin-top: var(--xl);
 }
 
 .dev-card {
@@ -185,11 +228,14 @@
 .cineai-newsletter {
   background: var(--midway-color);
   padding: calc(var(--xl) * 4) var(--md);
+  color: var(--text-white);
+  width: 100%;
 }
 
 .cineai-newsletter h3 {
   font-size: var(--font-header);
   margin-bottom: var(--xs);
+  color: var(--text-white);
 }
 
 .cineai-newsletter p {
@@ -208,7 +254,6 @@
   border-radius: var(--smd);
   border: 1px solid var(--outline-variant, rgba(255, 255, 255, 0.1));
   width: 250px;
-  background-color: #161c2c; /* Usando primary-color (mais escuro) para contrastar com o fundo midway-color */
   background-color: var(--primary-color);
   color: var(--text-white);
   outline: none;
@@ -241,4 +286,77 @@
 
 .newsletter-form button:hover {
   transform: scale(1.05);
+}
+
+@media (max-width: 992px) {
+  .cineai-hero h2 {
+    font-size: calc(var(--font-title) * 1.2);
+  }
+
+  .plans-grid {
+    gap: var(--md);
+  }
+
+  .devs-grid {
+    gap: var(--md);
+  }
+}
+
+@media (max-width: 768px) {
+  .cineai-hero {
+    padding: calc(var(--xl) * 4) var(--md) calc(var(--xl) * 2);
+  }
+
+  .cineai-hero h2 {
+    font-size: var(--font-header);
+  }
+
+  .plan-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .dev-card {
+    width: 140px;
+  }
+
+  .dev-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .newsletter-form input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .newsletter-form button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cineai-hero h2 {
+    font-size: var(--font-subtitle);
+  }
+
+  .cineai-hero p {
+    font-size: var(--font-text);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
+  }
+
+  .primary-btn, .secondary-btn {
+    width: 100%;
+  }
 }

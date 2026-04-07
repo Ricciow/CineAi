@@ -3,7 +3,7 @@ import React from 'react';
 import Button from "../Buttons/Button";
 import { useAuth } from "../Auth/AuthProvider";
 
-export default function ProjetoHeader() {
+export default function ProjetoHeader({ toggleSidebar }: { toggleSidebar: () => void }) {
     // URL atual
     const location = useLocation();
     const navigate = useNavigate();
@@ -14,9 +14,14 @@ export default function ProjetoHeader() {
 
     return (
         <header className="header">
-            <Link to="/" className="cine_ai_title">CineAI</Link>
-            <i className="fi fi-rr-angle-small-right header_arrow"></i>
-            <nav className="header_nav">
+            <div className="header_left">
+                <button className="menu_button" onClick={toggleSidebar}>
+                    <i className="fi fi-br-menu-burger"></i>
+                </button>
+                <Link to="/" className="cine_ai_title">CineAI</Link>
+            </div>
+            <i className="fi fi-rr-angle-small-right header_arrow header_desktop_only"></i>
+            <nav className="header_nav header_desktop_only">
                 {pathnames.map((name_unformatted, index) => {
                     // Link para o segmento atual
                     const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;

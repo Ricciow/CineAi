@@ -9,6 +9,22 @@ header {
     height: var(--header-height);
 }
 
+.header_left {
+    display: flex;
+    align-items: center;
+    gap: var(--md);
+}
+
+.menu_button {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-white);
+    font-size: var(--lg);
+    cursor: pointer;
+    padding: 0;
+}
+
 .header_arrow {
     display: flex;
     color: color-mix(in srgb, var(--text-gray) 50%, transparent);
@@ -53,4 +69,14 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: var(--sm);
+}
+
+@media (max-width: 768px) {
+    .menu_button {
+        display: block;
+    }
+
+    .header_desktop_only {
+        display: none;
+    }
 }

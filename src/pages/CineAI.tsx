@@ -81,19 +81,6 @@ export default function CineAI() {
                 </div>
             </section>
 
-            <section id="demo" className="cineai-demo">
-                <h3>Veja a Mágica Acontecer</h3>
-                <p>
-                    Descubra como nossa ferramenta foi usada para criar algo
-                    incrível.
-                </p>
-                <div className="video-demo">
-                    <div className="video-placeholder">
-                        Demonstração em Vídeo
-                    </div>
-                </div>
-            </section>
-
             {/* Plans */}
             <section id="plans" className="cineai-plans">
                 <h3>Planos Flexíveis para Cada Criador</h3>

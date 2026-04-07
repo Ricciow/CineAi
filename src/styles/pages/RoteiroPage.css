@@ -5,8 +5,30 @@
     gap: var(--lg);
 }
 
+.projeto_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--md);
+}
+
 .projeto_content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;   
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--lg);
+}
+
+@media (max-width: 768px) {
+    .projeto_main {
+        padding: var(--md);
+    }
+
+    .projeto_header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .projeto_content {
+        grid-template-columns: 1fr;
+    }
 }

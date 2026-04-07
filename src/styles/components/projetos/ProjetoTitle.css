@@ -32,3 +32,17 @@
     color: var(--text-light-gray);
     font-size: var(--font-subtitle);
 }
+
+@media (max-width: 768px) {
+    .projeto_title {
+        font-size: var(--font-header);
+    }
+
+    .projeto_title input {
+        font-size: var(--font-header);
+    }
+
+    .projeto_description {
+        font-size: var(--font-text);
+    }
+}

@@ -1,11 +1,3 @@
-.cineai-container {
-  background-color: var(--primary-color);
-  color: var(--text-white);
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-  overflow-x: hidden;
-}
-
 .cineai-navbar {
   display: flex;
   justify-content: space-between;
@@ -15,12 +7,18 @@
   position: sticky;
   top: 0;
   z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .cineai-navbar .logo {
   font-size: var(--font-header);
   font-weight: 700;
   color: var(--purple-button-hover);
+}
+
+.cineai-navbar nav {
+  display: flex;
 }
 
 .cineai-navbar nav a {
@@ -47,6 +45,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: 0.3s ease;
+  white-space: nowrap;
 }
 
 .login-btn {
@@ -69,4 +68,29 @@
 
 .signup-btn:hover {
   transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .cineai-navbar {
+    padding: var(--md);
+  }
+
+  .cineai-navbar nav {
+    display: none; /* Esconder links centrais no mobile como na LandingPageB */
+  }
+
+  .nav-buttons {
+    gap: var(--xs);
+  }
+
+  .login-btn, .signup-btn {
+    padding: var(--sm) var(--smd);
+    font-size: var(--font-small);
+  }
+}
+
+@media (max-width: 480px) {
+    .cine_ai_title {
+        font-size: var(--font-subtitle);
+    }
 }

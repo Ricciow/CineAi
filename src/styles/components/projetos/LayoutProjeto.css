@@ -7,9 +7,35 @@
         "sidebar main";
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 
 .layout_content {
     grid-area: main;
     position: relative;
+    overflow-y: auto;
+}
+
+.sidebar_overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "main";
+    }
+
+    .sidebar_overlay {
+        display: block;
+    }
 }
