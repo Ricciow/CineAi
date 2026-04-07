@@ -157,11 +157,11 @@ const LandingPageB: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-headline font-bold text-white mb-6">Pronto para o próximo nível?</h2>
           <p className="text-on-surface-variant text-lg mb-10">Junte-se à lista de espera e seja um dos primeiros a experimentar o futuro do cinema.</p>
           
-          <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4 p-2 rounded-3xl bg-surface-variant border border-outline-variant focus-within:border-blue-500 transition-all">
+          <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4 p-2 rounded-3xl bg-surface-variant border border-outline-variant focus-within:border-blue-500 transition-all shadow-2xl">
             <input 
               type="email" 
               placeholder="Seu melhor e-mail" 
-              className="flex-1 bg-transparent border-none focus:ring-0 text-white px-6 py-4 text-lg"
+              className="flex-1 bg-transparent border-none focus:ring-0 text-white placeholder:text-on-surface-variant px-6 py-4 text-lg outline-none"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

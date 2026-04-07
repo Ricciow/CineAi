@@ -136,6 +136,8 @@
 
 .cineai-devs h3 {
   font-size: var(--font-header);
+  text-align: center;
+  color: var(--text-white);
 }
 
 .devs-grid {
@@ -152,6 +154,10 @@
   border-radius: var(--md);
   width: 180px;
   transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .dev-card:hover {
@@ -200,8 +206,23 @@
 .newsletter-form input {
   padding: var(--smd) var(--md);
   border-radius: var(--smd);
-  border: none;
+  border: 1px solid var(--outline-variant, rgba(255, 255, 255, 0.1));
   width: 250px;
+  background-color: #161c2c; /* Usando primary-color (mais escuro) para contrastar com o fundo midway-color */
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newsletter-form input:focus {
+  border-color: var(--purple-button-color);
+  box-shadow: 0 0 8px rgba(159, 95, 219, 0.3);
+}
+
+.newsletter-form input::placeholder {
+  color: var(--text-light-gray);
+  opacity: 0.8;
 }
 
 .newsletter-form button {
