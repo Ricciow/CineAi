@@ -1,1 +1,1 @@
-export const BackendUrl = "http://localhost:8000/api/v1";
+export const BackendUrl = "https://cineai.glitchdev.cloud/api/v1";
