@@ -17,6 +17,7 @@ import LoginPage from "./pages/LoginPage";
 import Authprovider from "./components/Auth/AuthProvider";
 import RegisterPage from "./pages/RegisterPage";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
+import ProjetosPage, { projetosPageLoader } from "./pages/ProjetosPage";
 
 const getLandingPage = () => {
     let variant = localStorage.getItem("cineai_variant");
@@ -42,7 +43,12 @@ const router = createBrowserRouter([
     },
     {
         path: "/projetos",
-        loader: () => redirect("/projetos/vingadores/roteiro"),
+        element: (
+            <ProtectedRoute forceNavigateToLogin>
+                <ProjetosPage />
+            </ProtectedRoute>
+        ),
+        loader: projetosPageLoader,
     },
     {
         path: "/projetos/:projeto",
@@ -55,7 +61,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => redirect("/projetos/vingadores/roteiro"),
+                loader: ({ params }) => redirect(`/projetos/${params.projeto}/roteiro`),
             },
             {
                 path: "roteiro",

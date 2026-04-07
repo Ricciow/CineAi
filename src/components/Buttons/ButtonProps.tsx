@@ -45,13 +45,13 @@ export type ButtonProps = | (
         className?: never
     }
 ) | (
-    //Botão para uso genérico com className
+    //Botão para uso genérico
     BaseButton & {
         style?: buttonStyle
         file?: never
         to?: never
         fileInput?: never
 
-        className: string
+        className?: string
     }
 )

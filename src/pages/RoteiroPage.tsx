@@ -2,13 +2,13 @@ import { Suspense } from "react";
 import Button from "../components/Buttons/Button";
 import { type ChatCardProps } from "../components/Card/ChatCard";
 import ProjetoTitle from "../components/projetos/ProjetoTitle";
-import { Await, useLoaderData, useNavigate } from "react-router-dom";
+import { Await, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import ChatList from "../components/chat/ChatList";
 import Spinner from "../components/Outros/Spinner";
 import authenticatedFetch from "../api/authenticatedFetch";
 
-async function loadChats() {
-    const response = await authenticatedFetch(`conversation/`, 
+async function loadChats(projectId: string) {
+    const response = await authenticatedFetch(`conversation/?project_id=${projectId}`, 
         { 
             method: "GET" 
         }
@@ -17,26 +17,32 @@ async function loadChats() {
     if (!response.ok) {
         throw new Response("Nao foi possivel carregar os chats", { status: response.status, statusText: response.statusText });
     }
-    
+
     return response.json(); 
 }
 
-export async function roteiroPageLoader() {
-    const chatsPromise = loadChats();
+export async function roteiroPageLoader({ params }: any) {
+    const projectId = params.projeto;
+    const chatsPromise = loadChats(projectId);
 
     return { chatsRequest: chatsPromise }; 
 }
 
 
 export default function RoteiroPage() {
-    const loaderData : { chatsRequest: Promise<ChatCardProps[]>} = useLoaderData();
+    const { chatsRequest } = useLoaderData() as { chatsRequest: Promise<ChatCardProps[]>};
+    const { projeto } = useParams();
     const navigate = useNavigate();
 
     async function handleCreateChat() {
         const response = await authenticatedFetch(`conversation/`, 
             { 
                 method: "POST",
-                body: { title: "Novo Chat", description: "Sem descrição" }
+                body: { 
+                    title: "Novo Chat", 
+                    description: "Sem descrição",
+                    project_id: projeto
+                }
             }
         );
 
@@ -53,15 +59,15 @@ export default function RoteiroPage() {
                 <ProjetoTitle title="Roteirização" description="Crie, analise e refine seu roteiro. Comece um novo chat para gerar uma história, corrija um script ou peça sugestões à IA." />
                 <Button text="Novo Chat de Roteiro" style="projeto_button" iconClass="fi fi-rr-add" fileInput={false} onClick={handleCreateChat} />
             </div>
-            
+
             <div className="projeto_content">
                 <Suspense fallback={<Spinner message="Carregando chats..." />}>
                     <Await
-                        resolve={loaderData.chatsRequest}
+                        resolve={chatsRequest}
                         errorElement={<p style={{ color: 'red' }}>Erro ao carregar os chats.</p>}
                     >
                         {(resolvedChats: ChatCardProps[]) => (
-                            <ChatList initialChats={resolvedChats} />
+                            <ChatList initialChats={resolvedChats} onCreateChat={handleCreateChat} />
                         )}
                     </Await>
                 </Suspense>
