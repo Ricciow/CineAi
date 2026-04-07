@@ -42,7 +42,12 @@ export default function ProjetoHeader({ toggleSidebar }: { toggleSidebar: () => 
                     );
                 })}
             </nav>
-            <div style={{ marginLeft: 'auto' }}>
+            <div className="header_right">
+                {pathnames.length > 3 && (
+                    <button className="back_button" onClick={() => navigate(-1)}>
+                        <i className="fi fi-rr-angle-small-left"></i>
+                    </button>
+                )}
                 <Button 
                     text="Sair" 
                     style="delete_button_bg" 

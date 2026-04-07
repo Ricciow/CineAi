@@ -135,6 +135,10 @@
     cursor: pointer;
     transition: color 0.3s ease-in-out;
     flex: 1;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .delete_button_bg:hover {

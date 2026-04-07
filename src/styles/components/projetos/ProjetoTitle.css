@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--sm);
-    width: 100%;
+    flex: 1;
+    min-width: 0; /* Allow shrinking if title is long */
 }
 
 .projeto_title {

@@ -7,7 +7,7 @@
     flex-direction: column;
     gap: var(--md);
     transition: transform 0.3s ease;
-    z-index: 100;
+    z-index: 2000;
 }
 
 .sidebar_header {

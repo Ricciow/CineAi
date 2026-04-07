@@ -15,6 +15,38 @@ header {
     gap: var(--md);
 }
 
+.header_right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--sm);
+}
+
+.back_button {
+    display: none;
+    background-color: color-mix(in srgb, var(--midway-color) 30%, transparent);
+    border: none;
+    color: var(--text-white);
+    cursor: pointer;
+    padding: var(--smd) var(--md);
+    border-radius: var(--sm);
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    height: 38px; /* Fixed height to match logout button */
+    width: 38px; /* Square shape for icon-only button */
+}
+
+.back_button:hover {
+    background-color: color-mix(in srgb, var(--midway-color) 50%, transparent);
+}
+
+.back_button i {
+    font-size: var(--lg);
+    line-height: 1;
+    display: flex;
+}
+
 .menu_button {
     display: none;
     background: none;
@@ -72,6 +104,10 @@ header {
 }
 
 @media (max-width: 768px) {
+    .back_button {
+        display: flex;
+    }
+
     .menu_button {
         display: block;
     }

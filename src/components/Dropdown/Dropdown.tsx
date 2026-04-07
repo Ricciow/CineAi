@@ -19,7 +19,7 @@ type DropDownProps = {
 export default function Dropdown({ title, options, selected = 0, titleByOption = false, onSelect }: DropDownProps) {
     const [open, setOpen] = useState(false);
 
-    const [titleUsed, setTitleUsed] = useState(titleByOption ? (options[selected]?.name) ?? title : title);
+    const selectedOption = options[selected];
 
     function handleClick() {
         setOpen(!open);
@@ -27,7 +27,6 @@ export default function Dropdown({ title, options, selected = 0, titleByOption =
 
     function handleSelect(index: number) {
         onSelect(options[index].value, index);
-        setTitleUsed(titleByOption ? (options[index]?.name) ?? title : title);
         setOpen(false);
     }
 
@@ -37,7 +36,16 @@ export default function Dropdown({ title, options, selected = 0, titleByOption =
                 onClick={handleClick}
                 className="dropbtn"
             >
-                {titleUsed}
+                <div className="dropbtn_left">
+                    {titleByOption && selectedOption && (
+                        selectedOption.image ? 
+                            <img src={selectedOption.icon} alt={selectedOption.name} className="dropbtn_icon" /> : 
+                            selectedOption.icon && <i className={`${selectedOption.icon} dropbtn_icon`}></i>
+                    )}
+                    <span className="dropbtn_title">
+                        {titleByOption ? (selectedOption?.name ?? title) : title}
+                    </span>
+                </div>
                 <i className={`fi fi-br-angle-${open ? "up" : "down"}`}></i>
             </button>
             <div className={`dropdown-content` + (open ? "" : " invisible")}>

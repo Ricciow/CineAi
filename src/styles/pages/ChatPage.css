@@ -48,7 +48,9 @@
     }
 
     .chat_header {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: flex-start;
+        gap: var(--sm);
     }
 }
