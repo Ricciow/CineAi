@@ -1,10 +1,27 @@
 .error_page {
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    gap: var(--lg);
+    padding: var(--xl);
+}
+
+.error_icon {
+    font-size: clamp(3rem, 10vw, 6rem); 
+    color: var(--text-red);
+}
+
+.error_title {
+    font-size: clamp(2rem, 8vw, 5rem); 
+    margin: 0;
     color: var(--text-white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--md);
-    width: 100%;
-    height: 100%;
+}
+
+.error_description {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--text-light-gray);
+    margin-bottom: var(--md);
+    text-align: center;
 }

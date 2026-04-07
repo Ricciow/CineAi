@@ -9,6 +9,7 @@ import {
 import LayoutProjeto, { projetoLoader } from "./LayoutProjeto";
 import RoteiroPage, { roteiroPageLoader } from "./pages/RoteiroPage";
 import ErrorPage from "./pages/ErrorPage";
+import ComingSoonPage from "./pages/ComingSoonPage";
 import CineAI from "./pages/CineAI";
 import LandingPageB from "./pages/LandingPageB";
 import ChatPage, { chatPageLoader } from "./pages/ChatPage";
@@ -66,6 +67,20 @@ const router = createBrowserRouter([
                 loader: chatPageLoader,
                 element: <ChatPage />,
                 errorElement: <ErrorPage />,
+            },
+            {
+                path: "imagem",
+                element: <ComingSoonPage 
+                    title="Esboço" 
+                    description="Visualize sua história com storyboards e esboços gerados por IA." 
+                />,
+            },
+            {
+                path: "video",
+                element: <ComingSoonPage 
+                    title="Geração de vídeo" 
+                    description="Transforme seu roteiro em cenas de vídeo impressionantes." 
+                />,
             },
             {
                 path: "*",
