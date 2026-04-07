@@ -7,6 +7,8 @@ import type { ChatMessage, ChatModel, Conversation } from "./chatTypes";
 import geminiLogo from "../../assets//gemini.svg";
 import gptLogo from "../../assets//openai.svg";
 import claudeLogo from "../../assets/claude.svg";
+import minimaxLogo from "../../assets/minimax.svg";
+import stepfunLogo from "../../assets/stepfun.svg";
 import Prompter from "./Prompter";
 import authenticatedFetch from "../../api/authenticatedFetch";
 import { useLocalStorage } from "react-use";
@@ -14,15 +16,26 @@ import { useLocalStorage } from "react-use";
 function modelToOption(modelsData: ChatModel[]) {
     return modelsData.map(model => {
         let icon;
-        if (model.provider === "openai") {
-            icon = gptLogo;
-        } else if (model.provider === "gemini") {
-            icon = geminiLogo;
-        } else if (model.provider === "claude") {
-            icon = claudeLogo;
-        } else {
-            icon = "";
+        switch(model.provider) {
+            case "minimax":                
+                icon = minimaxLogo;
+                break;
+            case "openai":
+                icon = gptLogo;
+                break;
+            case "gemini":
+                icon = geminiLogo;
+                break;
+            case "claude":
+                icon = claudeLogo;
+                break;
+            case "stepfun":
+                icon = stepfunLogo;
+                break;
+            default:
+                icon = "";
         }
+    
         return { name: model.name, icon: icon, image: icon !== "", value: model.model };
     });
 }
