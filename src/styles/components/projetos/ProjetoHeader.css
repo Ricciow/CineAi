@@ -20,7 +20,9 @@ header {
     background-image: linear-gradient(90deg, #5347E6, #A555F6);
     font-size: var(--font-header);
     font-weight: bold;
+    -webkit-background-clip: text;
     background-clip: text;
+    color: #5347E6; /* Fallback for when background-clip is not supported */
     color: transparent;
 }
 

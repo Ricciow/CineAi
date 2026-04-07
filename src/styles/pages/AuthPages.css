@@ -15,6 +15,7 @@
     width: 100%;
     max-width: 24rem;
     padding: var(--md);
+    background-color: #242b40; /* Fallback for oklch */
     background-color: var(--secondary-color);
     border: 1px solid var(--midway-color);
     border-radius: var(--md);

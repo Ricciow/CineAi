@@ -46,5 +46,6 @@ a {
 }
 
 body {
+    background-color: #161c2c; /* Fallback for oklch */
     background-color: var(--primary-color);
 }

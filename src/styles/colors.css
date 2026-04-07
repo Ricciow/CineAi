@@ -1,25 +1,43 @@
 :root {
-    --primary-color: oklch(21% 0.034 264.665);
-    --midway-color: oklch(37.3% 0.034 259.733);
-    --secondary-color: oklch(27.8% 0.033 256.848);
+    /* Fallback colors (Hex) */
+    --primary-color: #161c2c;
+    --midway-color: #353e57;
+    --secondary-color: #242b40;
 
+    --nav-selected-color: rgba(159, 95, 219, 0.3);
+    --nav-selected-text-color: #e5c8f8;
+    --nav-hover-color: rgba(255, 255, 255, 0.1);
 
-    --nav-selected-color: oklch(55.8% 0.288 302.321 / 30%);
-    --nav-selected-text-color: oklch(82.7% 0.119 306.383);
-    --nav-hover-color: oklch(100% 0.00011 271.152 / 10%);
-
-    --purple-button-color: oklch(55.8% 0.288 302.321);
-    --purple-button-hover: oklch(49.6% 0.265 301.924);
+    --purple-button-color: #9f5fdb;
+    --purple-button-hover: #8a49c3;
     
-    --bright-purple-button-color: oklch(70.594% 0.20461 308.836);
-    --bright-purple-button-hover: oklch(55.8% 0.288 302.321);
-
+    --bright-purple-button-color: #d69ef9;
+    --bright-purple-button-hover: #9f5fdb;
 
     --text-white: #fff;
-    --text-light-gray: oklch(70.7% 0.022 261.325);
+    --text-light-gray: #a1aab5;
     --text-gray: #666;
     --text-red: rgba(255, 110, 110, 0.75);
     --text-black: #000;
+
+    /* oklch colors for modern browsers */
+    @supports (color: oklch(0% 0 0)) {
+        --primary-color: oklch(21% 0.034 264.665);
+        --midway-color: oklch(37.3% 0.034 259.733);
+        --secondary-color: oklch(27.8% 0.033 256.848);
+
+        --nav-selected-color: oklch(55.8% 0.288 302.321 / 30%);
+        --nav-selected-text-color: oklch(82.7% 0.119 306.383);
+        --nav-hover-color: oklch(100% 0.00011 271.152 / 10%);
+
+        --purple-button-color: oklch(55.8% 0.288 302.321);
+        --purple-button-hover: oklch(49.6% 0.265 301.924);
+        
+        --bright-purple-button-color: oklch(70.594% 0.20461 308.836);
+        --bright-purple-button-hover: oklch(55.8% 0.288 302.321);
+
+        --text-light-gray: oklch(70.7% 0.022 261.325);
+    }
 
     --xs: 0.25rem;
     --sm: 0.5rem;
