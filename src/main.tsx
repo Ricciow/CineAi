@@ -18,6 +18,7 @@ import Authprovider from "./components/Auth/AuthProvider";
 import RegisterPage from "./pages/RegisterPage";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ProjetosPage, { projetosPageLoader } from "./pages/ProjetosPage";
+import AnalyticsPage, { analyticsPageLoader } from "./pages/AnalyticsPage";
 
 const getLandingPage = () => {
     let variant = localStorage.getItem("cineai_variant");
@@ -93,6 +94,15 @@ const router = createBrowserRouter([
                 element: <ErrorPage />,
             },
         ],
+    },
+    {
+        path: "/analytics",
+        element: (
+            <ProtectedRoute forceNavigateToLogin>
+                <AnalyticsPage />
+            </ProtectedRoute>
+        ),
+        loader: analyticsPageLoader,
     },
     {
         path: "*",
