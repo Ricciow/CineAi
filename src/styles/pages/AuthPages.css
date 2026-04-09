@@ -16,7 +16,7 @@
     max-width: 24rem;
     padding: var(--md);
     background-color: #242b40; /* Fallback for oklch */
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color, #242b40);
     border: 1px solid var(--midway-color);
     border-radius: var(--md);
     color: var(--text-white);

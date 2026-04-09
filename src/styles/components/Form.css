@@ -30,7 +30,7 @@
     color: var(--text-white);
     padding: var(--sm);
     background-color: #353e57; /* Fallback for oklch */
-    background-color: var(--midway-color);
+    background-color: var(--midway-color, #353e57);
     height: var(--xl);
 }
 
