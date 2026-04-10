@@ -82,6 +82,8 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
             reasoning: "",
         }
 
+        let partialChunk = "";
+
         async function processStream() {
             const { done, value } = await reader.read();
 
@@ -91,9 +93,13 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
             }
 
             const chunkString = decoder.decode(value, { stream: true });
-            const jsonStrings = chunkString.trim().split('\n');
+            const combinedChunk = partialChunk + chunkString;
+            const lines = combinedChunk.split('\n');
+            
+            // O último elemento pode ser um JSON incompleto
+            partialChunk = lines.pop() || "";
 
-            jsonStrings.forEach(str => {
+            lines.forEach(str => {
                 if (str) {
                     try {
                         const jsonData = JSON.parse(str);
