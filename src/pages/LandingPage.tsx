@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CineAiLogo from "../assets/CineAi.png";
 import { BackendUrl } from "../constants/env";
 
-const LandingPageB: React.FC = () => {
+const LandingPage: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const emailSectionRef = useRef<HTMLDivElement>(null);
@@ -16,10 +16,8 @@ const LandingPageB: React.FC = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 elementId, 
-                variant: "B",
                 email: userEmail || null
-            })
-        });
+            })        });
     } catch (err) {
         console.error("Falha ao enviar rastreio:", err);
     }
@@ -197,4 +195,4 @@ const LandingPageB: React.FC = () => {
   );
 };
 
-export default LandingPageB;
+export default LandingPage;

@@ -1,24 +1,24 @@
 :root {
-    /* Fallback colors (Hex) */
-    --primary-color: #161c2c;
-    --midway-color: #353e57;
-    --secondary-color: #242b40;
+    /* Updated to match LandingPageB (Winning Style) */
+    --primary-color: #0c0e12;     /* surface */
+    --midway-color: #23262c;      /* surface-variant */
+    --secondary-color: #111318;    /* surface-container-low */
 
-    --nav-selected-color: rgba(159, 95, 219, 0.3);
-    --nav-selected-text-color: #e5c8f8;
-    --nav-hover-color: rgba(255, 255, 255, 0.1);
+    --nav-selected-color: rgba(37, 99, 235, 0.2);
+    --nav-selected-text-color: #60a5fa;
+    --nav-hover-color: rgba(255, 255, 255, 0.05);
 
-    --purple-button-color: #9f5fdb;
-    --purple-button-hover: #8a49c3;
+    --purple-button-color: #2563eb; /* Blue Primary */
+    --purple-button-hover: #1e40af;
     
-    --bright-purple-button-color: #d69ef9;
-    --bright-purple-button-hover: #9f5fdb;
+    --bright-purple-button-color: #3b82f6;
+    --bright-purple-button-hover: #2563eb;
 
-    --text-white: #fff;
-    --text-light-gray: #a1aab5;
-    --text-gray: #666;
-    --text-red: rgba(255, 110, 110, 0.75);
-    --text-black: #000;
+    --text-white: #f6f6fc;        /* on-surface */
+    --text-light-gray: #aaabb0;   /* on-surface-variant */
+    --text-gray: #74757a;        /* outline */
+    --text-red: #ff6e84;         /* error */
+    --text-black: #000000;
 
     --xs: 0.25rem;
     --sm: 0.5rem;
@@ -42,20 +42,20 @@
 /* oklch colors for modern browsers */
 @supports (color: oklch(0% 0 0)) {
     :root {
-        --primary-color: oklch(21% 0.034 264.665);
-        --midway-color: oklch(37.3% 0.034 259.733);
-        --secondary-color: oklch(27.8% 0.033 256.848);
+        --primary-color: oklch(14.5% 0.016 264);
+        --midway-color: oklch(24% 0.016 264);
+        --secondary-color: oklch(18% 0.016 264);
 
-        --nav-selected-color: oklch(55.8% 0.288 302.321 / 30%);
-        --nav-selected-text-color: oklch(82.7% 0.119 306.383);
-        --nav-hover-color: oklch(100% 0.00011 271.152 / 10%);
+        --nav-selected-color: oklch(49.8% 0.207 260 / 20%);
+        --nav-selected-text-color: oklch(70% 0.15 260);
+        --nav-hover-color: oklch(100% 0 / 5%);
 
-        --purple-button-color: oklch(55.8% 0.288 302.321);
-        --purple-button-hover: oklch(49.6% 0.265 301.924);
+        --purple-button-color: oklch(49.8% 0.207 260);
+        --purple-button-hover: oklch(35.6% 0.174 262);
 
-        --bright-purple-button-color: oklch(70.594% 0.20461 308.836);
-        --bright-purple-button-hover: oklch(55.8% 0.288 302.321);
+        --bright-purple-button-color: oklch(60% 0.18 260);
+        --bright-purple-button-hover: oklch(49.8% 0.207 260);
 
-        --text-light-gray: oklch(70.7% 0.022 261.325);
+        --text-light-gray: oklch(72% 0.01 260);
     }
 }

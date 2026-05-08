@@ -10,8 +10,7 @@ import LayoutProjeto, { projetoLoader } from "./LayoutProjeto";
 import RoteiroPage, { roteiroPageLoader } from "./pages/RoteiroPage";
 import ErrorPage from "./pages/ErrorPage";
 import ComingSoonPage from "./pages/ComingSoonPage";
-import CineAI from "./pages/CineAI";
-import LandingPageB from "./pages/LandingPageB";
+import LandingPage from "./pages/LandingPage";
 import ChatPage, { chatPageLoader } from "./pages/ChatPage";
 import LoginPage from "./pages/LoginPage";
 import Authprovider from "./components/Auth/AuthProvider";
@@ -20,19 +19,10 @@ import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ProjetosPage, { projetosPageLoader } from "./pages/ProjetosPage";
 import AnalyticsPage, { analyticsPageLoader } from "./pages/AnalyticsPage";
 
-const getLandingPage = () => {
-    let variant = localStorage.getItem("cineai_variant");
-    if (!variant) {
-        variant = Math.random() < 0.5 ? "A" : "B";
-        localStorage.setItem("cineai_variant", variant);
-    }
-    return variant === "B" ? <LandingPageB /> : <CineAI />;
-};
-
 const router = createBrowserRouter([
     {
         path: "/",
-        element: getLandingPage(),
+        element: <LandingPage />,
     },
     {
         path: "/login",

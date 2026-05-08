@@ -43,12 +43,13 @@
     justify-content: center;
     gap: var(--sm);
 
-    background-color: var(--purple-button-color);
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
     color: var(--text-white);
 
     cursor: pointer;
 
-    transition: scale 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
 }
 
 .projeto_button p {
@@ -57,63 +58,11 @@
 }
 
 .projeto_button:hover {
-    background-color: var(--purple-button-hover);
-    scale: 1.05;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
 }
 
-/* CineAI buttons */
-
-.hero-buttons {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.primary-btn,
-.secondary-btn {
-  border: none;
-  border-radius: 8px;
-  padding: 12px 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.primary-btn {
-  background: linear-gradient(90deg, #7c4dff, #b388ff);
-  color: #fff;
-}
-
-.secondary-btn {
-  background: transparent;
-  border: 1px solid #b388ff;
-  color: #b388ff;
-}
-
-.primary-btn:hover {
-  transform: scale(1.05);
-}
-
-.secondary-btn:hover {
-  background: #b388ff;
-  color: #0b0b1f;
-}
-
-.plan-btn {
-    margin-top: auto;
-    background: linear-gradient(90deg, #7c4dff, #b388ff);
-    border: none;
-    border-radius: 6px;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-  
-.plan-btn:hover {
-  transform: scale(1.05);
-}
+/* Project and Generic buttons */
 
 .delete_button {
     background-color: transparent;
