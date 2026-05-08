@@ -3,6 +3,7 @@ import TextDropdown from "../Dropdown/TextDropdown";
 import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import Spinner from "../Outros/Spinner";
+import { useSmoothStreaming } from "./useSmoothStreaming";
 
 type AgentMessageProps = {
     model?: string
@@ -11,7 +12,9 @@ type AgentMessageProps = {
 }
 
 function AgentMessage({ model, message, reasoning }: AgentMessageProps) {
-    if(message == "" && reasoning == "") {
+    const smoothedMessage = useSmoothStreaming(message, 10); 
+
+    if(message == "" && (reasoning == "" || reasoning == undefined)) {
         return (<div className="message agent"><Spinner message="Gerando..."/></div>)
     }
 
@@ -20,7 +23,7 @@ function AgentMessage({ model, message, reasoning }: AgentMessageProps) {
             {model && <h2>{model}</h2>}
             {reasoning && <TextDropdown title="Pensamento" text={reasoning} />}
             <div className="message_area">
-                <Markdown remarkPlugins={[remarkGfm]}>{message}</Markdown>
+                <Markdown remarkPlugins={[remarkGfm]}>{smoothedMessage}</Markdown>
             </div>
         </div>
     )
