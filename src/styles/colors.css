@@ -1,8 +1,8 @@
 :root {
-    /* Updated to match LandingPageB (Winning Style) */
+    /* Updated to match LandingPageB (Winning Style) - Slightly brightened for contrast */
     --primary-color: #0c0e12;     /* surface */
-    --midway-color: #23262c;      /* surface-variant */
-    --secondary-color: #111318;    /* surface-container-low */
+    --midway-color: #2d3139;      /* surface-variant (brightened) */
+    --secondary-color: #1a1d24;    /* surface-container-low (brightened) */
 
     --nav-selected-color: rgba(37, 99, 235, 0.2);
     --nav-selected-text-color: #60a5fa;
@@ -43,8 +43,8 @@
 @supports (color: oklch(0% 0 0)) {
     :root {
         --primary-color: oklch(14.5% 0.016 264);
-        --midway-color: oklch(24% 0.016 264);
-        --secondary-color: oklch(18% 0.016 264);
+        --midway-color: oklch(30% 0.016 264);
+        --secondary-color: oklch(22% 0.016 264);
 
         --nav-selected-color: oklch(49.8% 0.207 260 / 20%);
         --nav-selected-text-color: oklch(70% 0.15 260);

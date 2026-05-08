@@ -25,13 +25,20 @@
 }
 
 .chat_card {
-    background-color: color-mix(in oklch, var(--secondary-color) 30%, transparent);
+    background-color: var(--secondary-color);
     border: 1px solid var(--midway-color);
-    padding: var(--md);
-    border-radius: var(--md);
+    padding: 1.5rem;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     gap: var(--sm);
+    transition: all 0.3s ease;
+}
+
+.chat_card:hover {
+    border-color: var(--purple-button-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .chat_card_header {

@@ -13,14 +13,22 @@
 }
 
 .message.user p{
-    background-color: var(--midway-color);
-    padding: var(--smd) var(--md);
-    border-radius: var(--md);
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 18px 18px 4px 18px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
 .message.agent {
     align-self: flex-start;
-    width: calc(100% - 2rem);
+    width: fit-content;
+    max-width: 85%;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--midway-color);
+    padding: 1.2rem;
+    border-radius: 18px 18px 18px 4px;
+    margin-bottom: 1rem;
 }
 
 .message_area {
