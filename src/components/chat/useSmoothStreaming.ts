@@ -8,7 +8,7 @@ import { useState, useEffect, useRef } from 'react';
 export function useSmoothStreaming(targetText: string, baseSpeed: number = 10) {
     const [displayedText, setDisplayedText] = useState(targetText);
     const queueRef = useRef<string[]>([]);
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const intervalRef = useRef<any>(null);
     const lastProcessedTargetRef = useRef(targetText);
     const isInitialRender = useRef(true);
 
