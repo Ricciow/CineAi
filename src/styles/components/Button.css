@@ -87,21 +87,22 @@
 }
 
 .delete_button_bg {
-    background-color: #8b1d2e; /* Deeper, more cinematic red */
-    color: #ffffff; /* Bright white for maximum contrast */
+    background-color: #8b1d2e;
+    color: #ffffff;
     font-size: var(--font-text);
-    font-weight: 700; /* Increased weight for legibility */
-    padding: 0;
+    font-weight: 700;
+    padding: 0 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
-    flex: 1;
+    flex: 0 0 auto;
     height: 44px;
+    min-width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .delete_button_bg p {
@@ -110,7 +111,7 @@
 }
 
 .delete_button_bg:hover {
-    background-color: #a71d31; /* Slightly brighter on hover but still deep */
+    background-color: #a71d31;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(139, 29, 46, 0.4);
 }
@@ -120,13 +121,14 @@
     color: var(--text-white);
     font-size: var(--font-text);
     font-weight: 600;
-    padding: 0;
+    padding: 0 1.5rem;
     border: 1px solid var(--midway-color);
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
-    flex: 1;
+    flex: 0 0 auto;
     height: 44px;
+    min-width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,8 +1,7 @@
 :root {
-    /* Updated to match LandingPageB (Winning Style) - Slightly brightened for contrast */
-    --primary-color: #0c0e12;     /* surface */
-    --midway-color: #2d3139;      /* surface-variant (brightened) */
-    --secondary-color: #1a1d24;    /* surface-container-low (brightened) */
+    --primary-color: #0c0e12;
+    --midway-color: #2d3139;
+    --secondary-color: #1a1d24;
 
     --nav-selected-color: rgba(37, 99, 235, 0.2);
     --nav-selected-text-color: #60a5fa;

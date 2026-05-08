@@ -1,7 +1,7 @@
 .alert_card {
     display: flex;
     flex-direction: column;
-    position: fixed; /* Fixed is better for modals */
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -115,9 +115,9 @@
 
 .chat_card_delete .generic_button,
 .chat_card_delete .delete_button_bg {
-    height: 44px; /* Consistent height */
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1;
+    flex: 1 1 0;
 }
