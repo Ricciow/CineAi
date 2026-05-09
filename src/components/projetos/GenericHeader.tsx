@@ -1,11 +1,10 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import React from 'react';
 import Button from "../Buttons/Button";
 import LogoutButton from "../Buttons/LogoutButton";
 
 export default function GenericHeader() {
     const location = useLocation();
-    const navigate = useNavigate();
 
     const pathnames = location.pathname.split('/').filter((x) => x);
 

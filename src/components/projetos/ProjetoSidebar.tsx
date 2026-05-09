@@ -1,24 +1,10 @@
-import { useState, type ChangeEvent } from "react";
+import { useState } from "react";
 import Button from "../Buttons/Button";
 import ComingSoonModal from "../Outros/ComingSoonModal";
 
 export default function ProjetoSidebar({ projeto, isOpen, toggleSidebar }: { projeto: string, isOpen: boolean, toggleSidebar: () => void }) {
     const [arquivos, setArquivos] = useState<File[]>([]);
     const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
-
-    //Propriamente enviar/deletar arquivos no futuro
-    function handleUpload(e : ChangeEvent<HTMLInputElement>) {
-        const files = e.target.files;
-        
-        if (files) {
-            const file = files[0];
-            if(arquivos.find(arquivo => arquivo.name === file.name)) {
-                alert("Arquivo com mesmo nome já existe!");
-                return
-            }
-            setArquivos([...arquivos, file]);
-        }
-    }
 
     function handleDelete(index : number) {
         setArquivos(arquivos.filter((_, i) => i !== index));

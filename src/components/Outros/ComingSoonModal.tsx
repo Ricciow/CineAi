@@ -25,7 +25,6 @@ export default function ComingSoonModal({ isOpen, onClose }: ComingSoonModalProp
                     style="generic_button" 
                     onClick={onClose} 
                     text="Fechar" 
-                    fileInput={false}
                     className="w-full"
                 />
             </div>
