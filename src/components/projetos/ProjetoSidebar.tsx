@@ -1,8 +1,10 @@
 import { useState, type ChangeEvent } from "react";
 import Button from "../Buttons/Button";
+import ComingSoonModal from "../Outros/ComingSoonModal";
 
 export default function ProjetoSidebar({ projeto, isOpen, toggleSidebar }: { projeto: string, isOpen: boolean, toggleSidebar: () => void }) {
     const [arquivos, setArquivos] = useState<File[]>([]);
+    const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
 
     //Propriamente enviar/deletar arquivos no futuro
     function handleUpload(e : ChangeEvent<HTMLInputElement>) {
@@ -58,13 +60,17 @@ export default function ProjetoSidebar({ projeto, isOpen, toggleSidebar }: { pro
                     <Button key={arquivo.name} file={arquivo} onDelete={() => handleDelete(index)} style="sidebar_label"/>
                 ))}
 
-                <Button 
-                    fileInput 
-                    text="Novo Arquivo" 
-                    onChange={handleUpload} 
+                <Button
+                    text="Novo Arquivo"
+                    onClick={() => setIsComingSoonOpen(true)}
                     style="sidebar_label"
                 />
             </div>
+            
+            <ComingSoonModal 
+                isOpen={isComingSoonOpen} 
+                onClose={() => setIsComingSoonOpen(false)} 
+            />
         </aside>
     )
 }
