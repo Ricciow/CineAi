@@ -28,9 +28,12 @@ export default function Prompter({ onSubmit = () => {} }: PrompterProps) {
     };
 
     function handleSubmit() {
+        if (text.trim().length === 0) return;
         onSubmit(text);
         setText("");
     };
+
+    const isButtonDisabled = text.trim().length === 0;
 
     return (
         <label className={`prompter`} htmlFor="prompter_input">
@@ -43,7 +46,11 @@ export default function Prompter({ onSubmit = () => {} }: PrompterProps) {
                 ref={textAreaRef}
                 placeholder="Digite sua mensagem aqui..."
             />
-            <button className="send_button" onClick={handleSubmit}>
+            <button 
+                className="send_button" 
+                onClick={handleSubmit}
+                disabled={isButtonDisabled}
+            >
                 <i className="fi fi-rr-paper-plane-top" />
             </button>
         </label>

@@ -55,3 +55,10 @@
     background-color: var(--purple-button-hover);
     transform: scale(1.05);
 }
+
+.send_button:disabled {
+    background-color: var(--midway-color);
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.6;
+}

@@ -57,6 +57,8 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
     const options = modelToOption(modelsData);
 
     async function handleSendPrompt(prompt: string) {
+        if (!prompt.trim()) return;
+
         const userMessage = { role: "user", content: prompt }
         const agentMessage = { role: "assistant", content: "", reasoning: "" }
         setConversation([...conversation, userMessage, agentMessage])
