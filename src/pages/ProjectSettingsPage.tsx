@@ -19,6 +19,7 @@ interface Permissions {
 interface Member {
     user_id: string;
     email: string;
+    username?: string;
     role: "admin" | "member";
     permissions: Permissions;
 }
@@ -28,12 +29,14 @@ interface Project {
     name: string;
     description: string;
     user_id: string;
+    owner_email?: string;
+    owner_username?: string;
     members: Member[];
 }
 
 export default function ProjectSettingsPage() {
     const { projeto: projectId } = useParams();
-    const { userId } = useAuth();
+    const { userId, userEmail, username: currentUsername } = useAuth();
     const navigate = useNavigate();
     
     const [project, setProject] = useState<Project | null>(null);
@@ -304,37 +307,46 @@ export default function ProjectSettingsPage() {
                         )}
 
                         <div className="members_list">
-                            <div className="member_item owner">
+                            <div className={`member_item ${isOwner ? 'owner' : ''}`}>
                                 <div className="member_info">
-                                    <span className="member_email">Dono do Projeto</span>
+                                    <span className="member_email">
+                                        {(isOwner ? (currentUsername || project.owner_username) : project.owner_username) || "Dono do Projeto"} {isOwner && "(Você)"}
+                                        <span className="member_email_secondary"> ({(isOwner ? (userEmail || project.owner_email) : project.owner_email)})</span>
+                                    </span>
                                     <span className="member_role_badge owner">Proprietário</span>
                                 </div>
                             </div>
-                            {project.members.map(member => (
-                                <div key={member.email} className="member_item">
-                                    <div className="member_info">
-                                        <span className="member_email">{member.email}</span>
-                                        <span className={`member_role_badge ${member.role}`}>{member.role === "admin" ? "Administrador" : "Membro"}</span>
-                                    </div>
-                                    <div className="member_actions">
-                                        <div className="member_perms_mini">
-                                            {member.permissions.read && <i className="fi fi-rr-eye" title="Pode ler"></i>}
-                                            {member.permissions.send_messages && <i className="fi fi-rr-paper-plane" title="Pode enviar mensagens"></i>}
-                                            {member.permissions.create_chats && <i className="fi fi-rr-comment-alt" title="Pode criar chats"></i>}
+                            {project.members.map(member => {
+                                const isMe = String(member.user_id) === String(userId);
+                                return (
+                                    <div key={member.email} className={`member_item ${isMe ? 'owner' : ''}`}>
+                                        <div className="member_info">
+                                            <span className="member_email">
+                                                {member.username || member.email} {isMe && "(Você)"}
+                                                {member.username && <span className="member_email_secondary"> ({member.email})</span>}
+                                            </span>
+                                            <span className={`member_role_badge ${member.role}`}>{member.role === "admin" ? "Administrador" : "Membro"}</span>
                                         </div>
-                                        {isAdmin && (isOwner || (member.role !== "admin" && member.user_id !== userId)) && (
-                                            <>
-                                                <button className="edit_member_btn" onClick={() => setEditingMember(member)} title="Editar permissões">
-                                                    <i className="fi fi-rr-edit"></i>
-                                                </button>
-                                                <button className="remove_member_btn" onClick={() => setMemberToRemove(member)} title="Remover membro">
-                                                    <i className="fi fi-rr-trash"></i>
-                                                </button>
-                                            </>
-                                        )}
+                                        <div className="member_actions">
+                                            <div className="member_perms_mini">
+                                                {member.permissions.read && <i className="fi fi-rr-eye" title="Pode ler"></i>}
+                                                {member.permissions.send_messages && <i className="fi fi-rr-paper-plane" title="Pode enviar mensagens"></i>}
+                                                {member.permissions.create_chats && <i className="fi fi-rr-comment-alt" title="Pode criar chats"></i>}
+                                            </div>
+                                            {isAdmin && (isOwner || (member.role !== "admin" && !isMe)) && (
+                                                <>
+                                                    <button className="edit_member_btn" onClick={() => setEditingMember(member)} title="Editar permissões">
+                                                        <i className="fi fi-rr-edit"></i>
+                                                    </button>
+                                                    <button className="remove_member_btn" onClick={() => setMemberToRemove(member)} title="Remover membro">
+                                                        <i className="fi fi-rr-trash"></i>
+                                                    </button>
+                                                </>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </section>
                 )}

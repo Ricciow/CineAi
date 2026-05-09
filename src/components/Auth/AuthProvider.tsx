@@ -7,6 +7,8 @@ import { refreshAccessToken } from "./authService"
 type AuthContext = {
     authToken?: string | null,
     userId?: string | null,
+    userEmail?: string | null,
+    username?: string | null,
     handleLogin: (email: string, password: string) => Promise<void>
     handleRegister: (email: string, password: string, username: string) => Promise<void>
     handleLogout: () => Promise<void>
@@ -24,18 +26,26 @@ type AuthProviderProps = {
 export default function Authprovider({ children }: AuthProviderProps) {
     const [authToken, setAuthToken] = useLocalStorage<string | null>("token", undefined)
     const [userId, setUserId] = useState<string | null>(null)
+    const [userEmail, setUserEmail] = useState<string | null>(null)
+    const [username, setUsername] = useState<string | null>(null)
 
     useEffect(() => {
         if (authToken) {
             try {
-                const tokenData: { user_id: string } = jwtDecode(authToken);
+                const tokenData: { user_id: string, email: string, username: string } = jwtDecode(authToken);
                 setUserId(tokenData.user_id);
+                setUserEmail(tokenData.email);
+                setUsername(tokenData.username);
             } catch (e) {
                 setAuthToken(null);
                 setUserId(null);
+                setUserEmail(null);
+                setUsername(null);
             }
         } else {
             setUserId(null);
+            setUserEmail(null);
+            setUsername(null);
         }
     }, [authToken, setAuthToken]);
 
@@ -135,6 +145,8 @@ export default function Authprovider({ children }: AuthProviderProps) {
         value={{
             authToken,
             userId,
+            userEmail,
+            username,
             handleLogin,
             handleRegister,
             handleLogout,

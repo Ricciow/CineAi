@@ -163,6 +163,13 @@
     font-weight: 600;
 }
 
+.member_email_secondary {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-gray);
+    margin-left: 0.5rem;
+}
+
 .member_role_badge {
     font-size: 0.75rem;
     font-weight: 700;
