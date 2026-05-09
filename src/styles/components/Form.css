@@ -49,6 +49,8 @@ input.form_input {
     color: var(--text-white);
     cursor: pointer;
     transition: background-color 0.15s ease-in-out;
+    height: 2.75rem;
+    font-weight: 600;
 }
 
 .form_input[type="submit"]:hover {

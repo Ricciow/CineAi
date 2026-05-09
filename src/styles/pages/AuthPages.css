@@ -8,6 +8,17 @@
     gap: var(--xl);
 }
 
+.cine_ai_title {
+    font-size: var(--font-header);
+    font-weight: bolder;
+    text-decoration: none;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+}
+
 .login_form {
     display: flex;
     flex-direction: column;
