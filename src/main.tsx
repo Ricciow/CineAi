@@ -19,6 +19,9 @@ import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ProjetosPage, { projetosPageLoader } from "./pages/ProjetosPage";
 import AnalyticsPage, { analyticsPageLoader } from "./pages/AnalyticsPage";
 
+import { Toaster } from "react-hot-toast";
+import ProjectSettingsPage from "./pages/ProjectSettingsPage";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -66,6 +69,10 @@ const router = createBrowserRouter([
                 errorElement: <ErrorPage />,
             },
             {
+                path: "configuracoes",
+                element: <ProjectSettingsPage />,
+            },
+            {
                 path: "imagem",
                 element: <ComingSoonPage 
                     title="Esboço" 
@@ -103,6 +110,14 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <Authprovider>
+            <Toaster position="bottom-right" toastOptions={{
+                style: {
+                    background: '#1a1d23',
+                    color: '#fff',
+                    border: '1px solid #30363d',
+                    borderRadius: '12px',
+                },
+            }} />
             <RouterProvider router={router} />
         </Authprovider>
     </StrictMode>

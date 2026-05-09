@@ -45,8 +45,9 @@ export default function Button(props : ButtonProps) {
     if(props.className) {
         return (
             <button 
-                className={props.style ? `${props.style} ${props.className}` : props.className}
+                className={`${props.style ? `${props.style} ${props.className}` : props.className} ${props.disabled ? 'disabled' : ''}`}
                 onClick={props.onClick}
+                disabled={props.disabled}
             >
                 {props.iconClass &&<i className={props.iconClass}></i>}
                 {props.text && <p>{props.text}</p>}
@@ -55,8 +56,9 @@ export default function Button(props : ButtonProps) {
     }
     return (
         <button 
-            className={props.style}
+            className={`${props.style} ${props.disabled ? 'disabled' : ''}`}
             onClick={props.onClick}
+            disabled={props.disabled}
         >
             {props.iconClass &&<i className={props.iconClass}></i>}
             {props.text && <p>{props.text}</p>}

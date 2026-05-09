@@ -2,6 +2,7 @@ export type Conversation = {
     title: string,
     description: string,
     messages: ChatMessage[],
+    project_id?: string
 }
 
 export type ChatMessage = {

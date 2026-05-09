@@ -4,6 +4,8 @@ import authenticatedFetch from "../api/authenticatedFetch";
 import Spinner from "../components/Outros/Spinner";
 import Button from "../components/Buttons/Button";
 import AlertCard from "../components/Card/AlertCard";
+import { useAuth } from "../components/Auth/AuthProvider";
+import toast from "react-hot-toast";
 import "../styles/pages/ProjetosPage.css";
 
 import GenericHeader from "../components/projetos/GenericHeader";
@@ -11,6 +13,7 @@ import GenericHeader from "../components/projetos/GenericHeader";
 interface Project {
     id: string;
     name: string;
+    user_id: string;
     description?: string;
 }
 
@@ -31,6 +34,7 @@ export async function projetosPageLoader() {
 
 export default function ProjetosPage() {
     const { projectsPromise } = useLoaderData() as { projectsPromise: Promise<Project[]> };
+    const { userId } = useAuth();
     const navigate = useNavigate();
     const [isCreating, setIsCreating] = useState(false);
     const [newProjectName, setNewProjectName] = useState("");
@@ -41,36 +45,92 @@ export default function ProjetosPage() {
     async function handleCreateProject() {
         if (!newProjectName.trim()) return;
 
-        const response = await authenticatedFetch("project/", {
+        const createPromise = authenticatedFetch("project/", {
             method: "POST",
             body: { name: newProjectName, description: newProjectDescription }
+        }).then(async res => {
+            if (!res.ok) throw new Error("Erro ao criar");
+            return res.json();
         });
 
-        if (response.ok) {
-            const newProject = await response.json();
-            navigate(`/projetos/${newProject.id}/roteiro`);
-        } else {
-            alert("Erro ao criar projeto.");
-        }
+        toast.promise(createPromise, {
+            loading: 'Criando projeto...',
+            success: (newProject) => {
+                navigate(`/projetos/${newProject.id}/roteiro`);
+                return 'Projeto criado com sucesso!';
+            },
+            error: 'Erro ao criar projeto.',
+        });
     }
 
     async function confirmDeleteProject() {
         if (!projectToDelete) return;
 
-        const response = await authenticatedFetch(`project/${projectToDelete.id}`, {
+        const deletePromise = authenticatedFetch(`project/${projectToDelete.id}`, {
             method: "DELETE"
+        }).then(async res => {
+            if (!res.ok) throw new Error("Erro ao excluir");
+            return res;
         });
 
-        if (response.ok) {
-            if (localProjects) {
-                setLocalProjects(localProjects.filter(p => p.id !== projectToDelete.id));
-            }
-            setProjectToDelete(null);
-        } else {
-            alert("Erro ao excluir projeto.");
-            setProjectToDelete(null);
-        }
+        toast.promise(deletePromise, {
+            loading: 'Excluindo projeto...',
+            success: () => {
+                if (localProjects) {
+                    setLocalProjects(localProjects.filter(p => p.id !== projectToDelete.id));
+                }
+                setProjectToDelete(null);
+                return 'Projeto excluído.';
+            },
+            error: 'Erro ao excluir projeto.',
+        });
     }
+
+    const renderProjectList = (projectsList: Project[], emptyMessage: string) => (
+        <div className="projects_grid">
+            {projectsList.map((project) => (
+                <Link key={project.id} to={`/projetos/${project.id}/roteiro`} className="project_card">
+                    <div className="project_card_icon">
+                        <i className="fi fi-rr-film"></i>
+                    </div>
+                    <div className="project_card_info">
+                        <h4>{project.name}</h4>
+                        <p>{project.description || "Sem descrição disponível"}</p>
+                    </div>
+                    {String(project.user_id) === String(userId) && (
+                        <button 
+                            className="delete_project_button" 
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setProjectToDelete(project);
+                            }}
+                            title="Excluir projeto"
+                        >
+                            <i className="fi fi-rr-trash"></i>
+                        </button>
+                    )}
+                    <div className="project_card_arrow">
+                        <i className="fi fi-rr-angle-small-right"></i>
+                    </div>
+                </Link>
+            ))}
+            {projectsList.length === 0 && (
+                <div className="empty_state">
+                    <div className="empty_state_icon">
+                        <i className="fi fi-rr-folder-open"></i>
+                    </div>
+                    <h3>{emptyMessage}</h3>
+                    {emptyMessage === "Nenhum projeto próprio encontrado" && (
+                        <>
+                            <p>Você ainda não tem projetos criados. Comece criando um agora!</p>
+                            <Button text="Criar meu primeiro projeto" onClick={() => setIsCreating(true)} style="projeto_button" />
+                        </>
+                    )}
+                </div>
+            )}
+        </div>
+    );
 
     return (
         <div className="layout">
@@ -97,46 +157,24 @@ export default function ProjetosPage() {
                                     if (!localProjects && projects) {
                                         setLocalProjects(projects);
                                     }
-                                    const displayedProjects = localProjects || projects;
+                                    const allProjects = localProjects || projects;
+                                    const ownedProjects = allProjects.filter(p => String(p.user_id) === String(userId));
+                                    const sharedProjects = allProjects.filter(p => String(p.user_id) !== String(userId));
 
                                     return (
-                                        <div className="projects_grid">
-                                            {displayedProjects.map((project) => (
-                                                <Link key={project.id} to={`/projetos/${project.id}/roteiro`} className="project_card">
-                                                    <div className="project_card_icon">
-                                                        <i className="fi fi-rr-film"></i>
-                                                    </div>
-                                                    <div className="project_card_info">
-                                                        <h4>{project.name}</h4>
-                                                        <p>{project.description || "Sem descrição disponível"}</p>
-                                                    </div>
-                                                    <button 
-                                                        className="delete_project_button" 
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            e.stopPropagation();
-                                                            setProjectToDelete(project);
-                                                        }}
-                                                        title="Excluir projeto"
-                                                    >
-                                                        <i className="fi fi-rr-trash"></i>
-                                                    </button>
-                                                    <div className="project_card_arrow">
-                                                        <i className="fi fi-rr-angle-small-right"></i>
-                                                    </div>
-                                                </Link>
-                                            ))}
-                                            {displayedProjects.length === 0 && (
-                                                <div className="empty_state">
-                                                    <div className="empty_state_icon">
-                                                        <i className="fi fi-rr-folder-open"></i>
-                                                    </div>
-                                                    <h3>Nenhum projeto encontrado</h3>
-                                                    <p>Você ainda não tem projetos criados. Comece criando um agora!</p>
-                                                    <Button text="Criar meu primeiro projeto" onClick={() => setIsCreating(true)} style="projeto_button" />
-                                                </div>
+                                        <>
+                                            <section className="project_section">
+                                                <h2 className="section_title">Meus Projetos</h2>
+                                                {renderProjectList(ownedProjects, "Nenhum projeto próprio encontrado")}
+                                            </section>
+
+                                            {sharedProjects.length > 0 && (
+                                                <section className="project_section">
+                                                    <h2 className="section_title">Compartilhados Comigo</h2>
+                                                    {renderProjectList(sharedProjects, "Nenhum projeto compartilhado")}
+                                                </section>
                                             )}
-                                        </div>
+                                        </>
                                     );
                                 }}
                             </Await>

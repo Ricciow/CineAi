@@ -4,9 +4,10 @@ type PrompterProps = {
     onSubmit?: (text: string) => void;
     value?: string;
     onValueChange?: (value: string) => void;
+    disabled?: boolean;
 };
 
-export default function Prompter({ onSubmit = () => {}, value, onValueChange }: PrompterProps) {
+export default function Prompter({ onSubmit = () => {}, value, onValueChange, disabled = false }: PrompterProps) {
     const [localText, setLocalText] = useState("");
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -22,6 +23,7 @@ export default function Prompter({ onSubmit = () => {}, value, onValueChange }: 
     }, [text]);
 
     function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+        if (disabled) return;
         const newVal = event.target.value;
         if (onValueChange) {
             onValueChange(newVal);
@@ -33,22 +35,22 @@ export default function Prompter({ onSubmit = () => {}, value, onValueChange }: 
     function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault();
-            handleSubmit();
+            if (!disabled) handleSubmit();
         }
     };
 
     function handleSubmit() {
-        if (text.trim().length === 0) return;
+        if (text.trim().length === 0 || disabled) return;
         onSubmit(text);
         if (!onValueChange) {
             setLocalText("");
         }
     };
 
-    const isButtonDisabled = text.trim().length === 0;
+    const isButtonDisabled = text.trim().length === 0 || disabled;
 
     return (
-        <label className={`prompter`} htmlFor="prompter_input">
+        <div className={`prompter ${disabled ? 'disabled' : ''}`}>
             <textarea
                 className="prompter_input"
                 id="prompter_input"
@@ -56,7 +58,8 @@ export default function Prompter({ onSubmit = () => {}, value, onValueChange }: 
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
                 ref={textAreaRef}
-                placeholder="Digite sua mensagem aqui..."
+                placeholder={disabled ? "Você não tem permissão para enviar mensagens" : "Digite sua mensagem aqui..."}
+                disabled={disabled}
             />
             <button 
                 className="send_button" 
@@ -65,6 +68,6 @@ export default function Prompter({ onSubmit = () => {}, value, onValueChange }: 
             >
                 <i className="fi fi-rr-paper-plane-top" />
             </button>
-        </label>
+        </div>
     );
 }

@@ -6,7 +6,8 @@ export type BaseButton = {
     text?: string,
     onClick?: (...args: any) => void,
 
-    iconClass?: string
+    iconClass?: string,
+    disabled?: boolean
 }
 
 export type ButtonProps = | (

@@ -24,12 +24,13 @@ async function loadConversation(id: string): Promise<Conversation> {
         });
     }
 
-    const data: Conversation = await response.json();
+    const data: any = await response.json();
     
     return {
         messages: data.messages,
         title: data.title,
-        description: data.description
+        description: data.description,
+        project_id: data.project_id
     };
 }
 

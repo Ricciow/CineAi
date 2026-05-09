@@ -37,6 +37,12 @@ export default function ProjetoSidebar({ projeto, isOpen, toggleSidebar }: { pro
                     iconClass="fi fi-rr-video-camera-alt" 
                     text="Geração de vídeo" 
                 />
+                <Button 
+                    to={`/projetos/${projeto}/configuracoes`} 
+                    type="sidebar" 
+                    iconClass="fi fi-rr-settings" 
+                    text="Configurações" 
+                />
             </nav>
             <div className="sidebar_files">
                 <hr className="sidebar_divider"/>

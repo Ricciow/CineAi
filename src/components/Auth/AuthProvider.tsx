@@ -23,7 +23,7 @@ type AuthProviderProps = {
 
 export default function Authprovider({ children }: AuthProviderProps) {
     const [authToken, setAuthToken] = useLocalStorage<string | null>("token", undefined)
-    const [userId, setUserId] = useState<string | null>()
+    const [userId, setUserId] = useState<string | null>(null)
 
     useEffect(() => {
         if (authToken) {

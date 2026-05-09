@@ -14,6 +14,9 @@ import authenticatedFetch from "../../api/authenticatedFetch";
 import { useLocalStorage } from "react-use";
 import { useOutletContext } from "react-router-dom";
 
+import { useAuth } from "../Auth/AuthProvider";
+import toast from "react-hot-toast";
+
 function modelToOption(modelsData: ChatModel[]) {
     return modelsData.map(model => {
         let icon;
@@ -42,19 +45,36 @@ function modelToOption(modelsData: ChatModel[]) {
 }
 
 export default function ChatPageContent({ id, initialData, modelsData }: { id: string, initialData: Conversation, modelsData: ChatModel[] }) {
-    const { messages, title, description: initialDescription } = initialData;
+    const { messages, title, description: initialDescription, project_id } = initialData;
     const [conversation, setConversation] = useState<ChatMessage[]>(messages);
     const [model, setModel] = useState<string>(modelsData[0]?.model || "");
     const [modelNumber, setModelNumber] = useLocalStorage<number>("chat-model-number", 0);
     const [inputText, setInputText] = useState("");
     const [chatDescription, setChatDescription] = useState(initialDescription);
+    const [canSend, setCanSend] = useState(true);
 
     const { setChatName } = useOutletContext<{ setChatName: (name: string | undefined) => void }>();
+    const { userId } = useAuth();
 
     useEffect(() => {
         setChatName(title);
+        
+        if (project_id && userId) {
+            authenticatedFetch(`project/${project_id}`, { method: "GET" }).then(async res => {
+                if (res.ok) {
+                    const data = await res.json();
+                    const isOwner = String(data.user_id) === String(userId);
+                    const member = data.members?.find((m: any) => String(m.user_id) === String(userId));
+                    const isAdmin = isOwner || member?.role === "admin";
+                    
+                    console.log("Chat Permission Debug:", { userId, projectOwner: data.user_id, member, isAdmin });
+                    setCanSend(isAdmin || member?.permissions?.send_messages);
+                }
+            });
+        }
+        
         return () => setChatName(undefined);
-    }, [title, setChatName]);
+    }, [title, setChatName, project_id, userId]);
 
     if(modelNumber && modelNumber > modelsData.length - 1) {
         setModelNumber(0);
@@ -82,8 +102,19 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
                     model: model
                 }});
 
-            if (!response.ok || !response.body) {
+            if (!response.ok) {
+                if (response.status === 403) {
+                    const err = await response.json();
+                    toast.error(err.detail || "Sem permissão para enviar mensagens");
+                    setConversation(prev => prev.slice(0, -2));
+                    setInputText(prompt);
+                    return;
+                }
                 throw new Error(`Erro na requisição: ${response.status}`);
+            }
+
+            if (!response.body) {
+                throw new Error("Corpo da resposta vazio");
             }
             
             const reader = response.body.getReader();
@@ -153,7 +184,7 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
             await processStream();
         } catch (error) {
             console.error("Erro no chat:", error);
-            alert("Ocorreu um erro ao gerar a resposta. Tente novamente.");
+            toast.error("Ocorreu um erro ao gerar a resposta. Tente novamente.");
             
             // Restore original prompt
             setInputText(prompt);
@@ -163,15 +194,28 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
         }
     }
 
-    async function handleUpdateTitle(title: string) {
-        setChatName(title);
-        await authenticatedFetch(`conversation/${id}`, 
+    async function handleUpdateTitle(newTitle: string) {
+        const oldTitle = title;
+        setChatName(newTitle);
+        
+        const response = await authenticatedFetch(`conversation/${id}`, 
             { 
                 method: "PATCH",
                 body: {
-                    title: title
+                    title: newTitle
                 }
-            })
+            });
+        
+        if (!response.ok) {
+            if (response.status === 403) {
+                const err = await response.json();
+                toast.error(err.detail || "Sem permissão para alterar o título");
+                setChatName(oldTitle);
+            } else {
+                toast.error("Erro ao atualizar título");
+                setChatName(oldTitle);
+            }
+        }
     }
 
     function handleModelSelect(model: string, index: number) {
@@ -187,7 +231,12 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
             </div>
             <ChatArea messages={conversation} />
             <div className="chat_footer">
-                <Prompter onSubmit={handleSendPrompt} value={inputText} onValueChange={setInputText}/>
+                <Prompter 
+                    onSubmit={handleSendPrompt} 
+                    value={inputText} 
+                    onValueChange={setInputText}
+                    disabled={!canSend}
+                />
             </div>
         </div>
     )
