@@ -1,12 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import React from 'react';
 import Button from "../Buttons/Button";
-import { useAuth } from "../Auth/AuthProvider";
+import LogoutButton from "../Buttons/LogoutButton";
 
 export default function GenericHeader() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { handleLogout } = useAuth();
 
     const pathnames = location.pathname.split('/').filter((x) => x);
 
@@ -40,15 +39,7 @@ export default function GenericHeader() {
             </nav>
 
             <div className="header_right">
-                <Button 
-                    text="Sair" 
-                    style="delete_button_bg" 
-                    fileInput={false} 
-                    onClick={async () => {
-                        await handleLogout();
-                        navigate('/login');
-                    }} 
-                />
+                <LogoutButton />
             </div>
         </header>
     );
