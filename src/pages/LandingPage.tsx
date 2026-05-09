@@ -45,6 +45,12 @@ const LandingPage: React.FC = () => {
     navigate("/login");
   };
 
+  const handleRegister = (e: React.MouseEvent) => {
+    e.preventDefault();
+    trackClick("nav-register");
+    navigate("/register");
+  };
+
   useEffect(() => {
     document.title = "CineAI - O Futuro do Cinema";
     document.documentElement.classList.add("dark");
@@ -70,7 +76,7 @@ const LandingPage: React.FC = () => {
             <div className="flex items-center gap-4">
               <button onClick={handleLogin} className="px-5 py-2.5 text-sm font-semibold text-white hover:text-blue-500 transition-colors">Entrar</button>
               <button 
-                onClick={() => scrollToEmail("nav-cta-scroll")}
+                onClick={handleRegister}
                 className="px-6 py-2.5 cinematic-gradient text-white font-bold rounded-full text-sm hover:scale-105 transition-transform shadow-[0_0_20px_rgba(37,99,235,0.3)]"
               >
                 Começar agora
@@ -104,7 +110,7 @@ const LandingPage: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <button 
-                onClick={() => scrollToEmail("hero-cta-scroll")}
+                onClick={handleRegister}
                 className="group relative px-10 py-5 cinematic-gradient text-white font-bold rounded-2xl text-lg hover:scale-105 transition-all shadow-2xl"
             >
               Criar meu primeiro roteiro

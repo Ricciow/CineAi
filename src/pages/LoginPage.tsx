@@ -43,6 +43,10 @@ export default function LoginPage() {
                 <FormField type="password" name="password" placeholder="Senha" title="Senha" required value=""/>
                 {error && <p className="error">{error}</p>}
                 <FormField type="submit" name="submit" placeholder="" required value="Entrar"/>
+                <div className="register_container" style={{ marginTop: '20px', textAlign: 'center' }}>
+                    <span className="register_text">Não tem uma conta? </span>
+                    <Link to="/register" className="register_link">Cadastre-se</Link>
+                </div>
                 </Form>
                 </div>
 

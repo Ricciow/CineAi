@@ -8,6 +8,7 @@ type AuthContext = {
     authToken?: string | null,
     userId?: string | null,
     handleLogin: (email: string, password: string) => Promise<void>
+    handleRegister: (email: string, password: string, username: string) => Promise<void>
     handleLogout: () => Promise<void>
     handleRefresh: () => Promise<void>
 }
@@ -86,6 +87,26 @@ export default function Authprovider({ children }: AuthProviderProps) {
         setAuthToken(data.token);
     }
 
+    async function handleRegister(email: string, password: string, username: string) {
+        const response = await fetch(`${BackendUrl}/auth/register`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({ 
+                email, 
+                password,
+                username
+            })
+        })
+
+        const data = await response.json();
+
+        if(!response.ok) {
+            throw new Error(data.detail);
+        }
+    }
+
     async function handleLogout() {
         try {
             const token = authToken;
@@ -98,7 +119,7 @@ export default function Authprovider({ children }: AuthProviderProps) {
                 }
             });
         } catch (e) {
-            console.error("Erro ao fazer logout no backend:", e);
+            console.error("Erro some error logout no backend:", e);
         } finally {
             setAuthToken(null);
             setUserId(null);
@@ -116,6 +137,7 @@ export default function Authprovider({ children }: AuthProviderProps) {
             authToken,
             userId,
             handleLogin,
+            handleRegister,
             handleLogout,
             handleRefresh
         }}
