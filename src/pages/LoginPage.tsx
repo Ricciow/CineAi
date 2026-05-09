@@ -1,4 +1,4 @@
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormField from "../components/Form/FormField";
 import FormTitle from "../components/Form/FormTitle";
 import { useAuth } from "../components/Auth/AuthProvider";
@@ -37,18 +37,18 @@ export default function LoginPage() {
     return (
         <div className="login_main"> 
             <Link to="/" className="cine_ai_title">CineAI</Link>
-            <Form method="post" className="login_form" onSubmit={handleSubmit}>
+            <form className="login_form" onSubmit={handleSubmit}>
                 <FormTitle title="Bem-vindo de volta!" description="Acesse sua conta para continuar"/>
                 <FormField type="email" name="email" placeholder="Email" title="Email" required value=""/>
                 <FormField type="password" name="password" placeholder="Senha" title="Senha" required value=""/>
                 {error && <p className="error">{error}</p>}
                 <FormField type="submit" name="submit" placeholder="" required value="Entrar"/>
-                <div className="register_container" style={{ marginTop: '20px', textAlign: 'center' }}>
+                <div className="register_container auth_footer">
                     <span className="register_text">Não tem uma conta? </span>
                     <Link to="/register" className="register_link">Cadastre-se</Link>
                 </div>
-                </Form>
-                </div>
+            </form>
+        </div>
 
     )
 }

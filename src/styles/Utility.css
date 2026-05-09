@@ -14,3 +14,7 @@
     align-items: center;
     justify-content: center;
 }
+
+.text_error {
+    color: #ff6e84;
+}

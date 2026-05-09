@@ -67,19 +67,19 @@
 
 .prompter.disabled {
     opacity: 0.7;
-    background-color: rgba(0, 0, 0, 0.2) !important;
-    cursor: not-allowed !important;
-    border: 1px solid var(--midway-color) !important;
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+    border: 1px solid var(--midway-color);
 }
 
 .prompter.disabled .prompter_input {
-    cursor: not-allowed !important;
+    cursor: not-allowed;
     color: var(--text-gray);
 }
 
 .prompter.disabled .send_button {
-    cursor: not-allowed !important;
-    background-color: var(--midway-color) !important;
+    cursor: not-allowed;
+    background-color: var(--midway-color);
     opacity: 0.5;
 }
 

@@ -12,13 +12,13 @@ export default function ComingSoonModal({ isOpen, onClose }: ComingSoonModalProp
 
     return (
         <AlertCard darken className="chat_card_confirmation">
-            <div className="coming_soon_content" style={{ padding: 0, opacity: 1 }}>
-                <i className="fi fi-rr-time-past coming_soon_icon" style={{ fontSize: '4rem' }}></i>
-                <h2 className="coming_soon_title" style={{ fontSize: '1.5rem' }}>Em Breve</h2>
+            <div className="coming_soon_content modal_version">
+                <i className="fi fi-rr-time-past coming_soon_icon modal_version"></i>
+                <h2 className="coming_soon_title modal_version">Em Breve</h2>
                 <p className="coming_soon_description">
                     Estamos trabalhando para permitir o upload de novos arquivos em breve!
                 </p>
-                <div className="coming_soon_divider" style={{ width: '100px', marginTop: '1rem' }}></div>
+                <div className="coming_soon_divider modal_version"></div>
             </div>
             <div className="chat_card_delete">
                 <Button 

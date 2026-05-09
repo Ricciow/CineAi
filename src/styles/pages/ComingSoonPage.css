@@ -43,3 +43,22 @@
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--purple-button-color), transparent);
 }
+
+/* Modal specific overrides */
+.coming_soon_content.modal_version {
+    padding: 0;
+    opacity: 1;
+}
+
+.coming_soon_icon.modal_version {
+    font-size: 4rem;
+}
+
+.coming_soon_title.modal_version {
+    font-size: 1.5rem;
+}
+
+.coming_soon_divider.modal_version {
+    width: 100px;
+    margin-top: 1rem;
+}

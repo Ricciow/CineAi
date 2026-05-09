@@ -17,7 +17,7 @@ export default function ChatList({ initialChats, onCreateChat }: { initialChats:
     }
 
     return (
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <div className="chat_list_container">
             {chats.length > 0 ? (
                 <div className="chats_grid">
                     {chats.map((chat) => (
@@ -31,13 +31,13 @@ export default function ChatList({ initialChats, onCreateChat }: { initialChats:
                     ))}
                 </div>
             ) : (
-                <div className="empty_state" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem' }}>
+                <div className="empty_state chat_list_empty_state">
                     <div className="empty_state_icon">
                         <i className="fi fi-rr-comment-dots"></i>
                     </div>
                     <h3>Nenhum chat encontrado</h3>
                     <p>Você ainda não tem chats de roteiro neste projeto. Comece um novo agora!</p>
-                    <div style={{ marginTop: '1.5rem' }}>
+                    <div className="chat_list_empty_state_button_wrapper">
                         <Button text="Criar meu primeiro chat" onClick={onCreateChat} style="projeto_button" />
                     </div>
                 </div>

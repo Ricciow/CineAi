@@ -1,4 +1,4 @@
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormField from "../components/Form/FormField";
 import FormTitle from "../components/Form/FormTitle";
 import { useAuth } from "../components/Auth/AuthProvider";
@@ -45,11 +45,11 @@ export default function RegisterPage() {
                 <Link to="/" className="cine_ai_title">CineAI</Link>
                 <div className="login_form">
                     <FormTitle title="Cadastro realizado!" description="Sua conta foi criada com sucesso."/>
-                    <div style={{ padding: '20px', textAlign: 'center' }}>
-                        <p style={{ color: 'var(--success-color)', marginBottom: '20px' }}>
+                    <div className="auth_success_container">
+                        <p className="auth_success_text">
                             Você será redirecionado para a página de login em instantes...
                         </p>
-                        <Link to="/login" className="register_link" style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
+                        <Link to="/login" className="register_link auth_success_link">
                             Ir para o Login agora
                         </Link>
                     </div>
@@ -61,18 +61,18 @@ export default function RegisterPage() {
     return (
         <div className="login_main"> 
             <Link to="/" className="cine_ai_title">CineAI</Link>
-            <Form method="post" className="login_form" onSubmit={handleSubmit}>
+            <form className="login_form" onSubmit={handleSubmit}>
                 <FormTitle title="Crie sua conta" description="Preencha os dados abaixo para começar"/>
                 <FormField type="text" name="username" placeholder="Nome de usuário" title="Usuário" required value=""/>
                 <FormField type="email" name="email" placeholder="Email" title="Email" required value=""/>
                 <FormField type="password" name="password" placeholder="Senha" title="Senha" required value=""/>
                 {error && <p className="error">{error}</p>}
                 <FormField type="submit" name="submit" placeholder="" required value="Cadastrar"/>
-                <div className="register_container" style={{ marginTop: '20px', textAlign: 'center' }}>
+                <div className="register_container auth_footer">
                     <span className="register_text">Já tem uma conta? </span>
                     <Link to="/login" className="register_link">Entrar</Link>
                 </div>
-            </Form>
+            </form>
         </div>
     )
 }

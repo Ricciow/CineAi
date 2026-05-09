@@ -131,7 +131,7 @@ export default function RoteiroPage() {
                 <Suspense fallback={<Spinner message="Carregando chats..." />}>
                     <Await
                         resolve={chatsRequest}
-                        errorElement={<p style={{ color: 'red' }}>Erro ao carregar os chats.</p>}
+                        errorElement={<p className="text_error">Erro ao carregar os chats.</p>}
                     >
                         {(resolvedChats: ChatCardProps[]) => {
                             if (loadingProject || !userId) {

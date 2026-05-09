@@ -27,6 +27,7 @@
 /* Páginas */
 @import url(styles/pages/ErrorPage.css);
 @import url(styles/pages/RoteiroPage.css);
+@import url(styles/pages/AnalyticsPage.css);
 @import url(styles/pages/ChatPage.css);
 @import url(styles/pages/AuthPages.css);
 

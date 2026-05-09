@@ -1,0 +1,97 @@
+.analytics_table_container {
+    padding: 24px;
+    background: var(--secondary-color);
+    border-radius: 24px;
+    border: 1px solid var(--midway-color);
+    color: var(--text-white);
+}
+
+.analytics_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.analytics_table thead tr {
+    border-bottom: 1px solid var(--midway-color);
+    text-align: left;
+}
+
+.analytics_table th {
+    padding: 16px;
+    color: var(--text-light-gray);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+.analytics_table tbody tr {
+    border-bottom: 1px solid var(--primary-color);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.analytics_table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.analytics_table td {
+    padding: 20px 16px;
+}
+
+.variant_badge {
+    background: var(--midway-color);
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.element_id_code {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: var(--bright-purple-button-color);
+    font-size: 0.9rem;
+}
+
+.cliques_count {
+    font-weight: bold;
+    color: var(--purple-button-color);
+    font-size: 1.2rem;
+}
+
+.emails_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.email_badge {
+    background: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    border: 1px solid var(--midway-color);
+    color: var(--text-light-gray);
+}
+
+.no_emails_text {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.6;
+}
+
+.no_data_cell {
+    padding: 48px;
+    text-align: center;
+    color: var(--text-light-gray);
+}
+
+.no_data_icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}

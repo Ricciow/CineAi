@@ -50,3 +50,23 @@
 .register_link:hover {
     color: var(--bright-purple-button-hover);
 }
+
+.auth_footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.auth_success_container {
+    padding: 20px;
+    text-align: center;
+}
+
+.auth_success_text {
+    color: var(--success-color);
+    margin-bottom: 20px;
+}
+
+.auth_success_link {
+    font-size: 1.1rem;
+    font-weight: bold;
+}

@@ -3,7 +3,6 @@
     flex-direction: column;
     padding: var(--xl);
     gap: var(--lg);
-    height: 100%; /* Change to fixed 100% to fill container */
 }
 
 .projeto_header {
@@ -24,6 +23,24 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--lg);
+}
+
+.chat_list_container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat_list_empty_state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.chat_list_empty_state_button_wrapper {
+    margin-top: 1.5rem;
 }
 
 @media (max-width: 768px) {
