@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../Buttons/Button";
 import ComingSoonModal from "../Outros/ComingSoonModal";
 
-export default function ProjetoSidebar({ projeto, isOpen, toggleSidebar }: { projeto: string, isOpen: boolean, toggleSidebar: () => void }) {
+export default function ProjetoSidebar({ projeto, isOpen, toggleSidebar, isAdmin }: { projeto: string, isOpen: boolean, toggleSidebar: () => void, isAdmin: boolean }) {
     const [arquivos, setArquivos] = useState<File[]>([]);
     const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
 
@@ -31,20 +31,21 @@ export default function ProjetoSidebar({ projeto, isOpen, toggleSidebar }: { pro
                     iconClass="fi fi-rr-layout-fluid"
                     text="Esboço"
                 />
-                <Button 
-                    to={`/projetos/${projeto}/video`} 
-                    type="sidebar" 
-                    iconClass="fi fi-rr-video-camera-alt" 
-                    text="Geração de vídeo" 
+                <Button
+                    to={`/projetos/${projeto}/video`}
+                    type="sidebar"
+                    iconClass="fi fi-rr-video-camera-alt"
+                    text="Geração de vídeo"
                 />
-                <Button 
-                    to={`/projetos/${projeto}/configuracoes`} 
-                    type="sidebar" 
-                    iconClass="fi fi-rr-settings" 
-                    text="Configurações" 
-                />
-            </nav>
-            <div className="sidebar_files">
+                {isAdmin && (
+                    <Button
+                        to={`/projetos/${projeto}/configuracoes`}
+                        type="sidebar"
+                        iconClass="fi fi-rr-settings"
+                        text="Configurações"
+                    />
+                )}
+            </nav>            <div className="sidebar_files">
                 <hr className="sidebar_divider"/>
                 <h1 className="sidebar_title">Arquivos de Projeto</h1>
 

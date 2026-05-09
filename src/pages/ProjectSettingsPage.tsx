@@ -81,6 +81,12 @@ export default function ProjectSettingsPage() {
     const isOwner = project?.user_id && userId ? String(project.user_id) === String(userId) : false;
     const isAdmin = isOwner || (project?.members?.some(m => String(m.user_id) === String(userId) && m.role === "admin") ?? false);
 
+    useEffect(() => {
+        if (!loading && project && !isAdmin) {
+            navigate(`/projetos/${projectId}/roteiro`);
+        }
+    }, [loading, project, isAdmin, navigate, projectId]);
+
     console.log("Settings Permission Debug:", { userId, projectOwner: project?.user_id, isOwner, isAdmin });
 
     async function handleUpdateGeneral() {
