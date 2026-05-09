@@ -222,7 +222,7 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
         <div className="chat_main">
             <div className="chat_header">
                 <ProjetoTitle title={chatName} description={chatDescription} editable onSubmit={handleUpdateTitle}/>
-                <Dropdown title="Modelos" options={options} onSelect={handleModelSelect} selected={modelNumber} titleByOption/>
+                <Dropdown title="Modelos" options={options} onSelect={handleModelSelect} selected={modelNumber} titleByOption disabled={!canSend}/>
             </div>
             <ChatArea messages={conversation} />
             <div className="chat_footer">

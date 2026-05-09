@@ -13,16 +13,19 @@ type DropDownProps = {
     options: Option[];
     selected?: number;
     titleByOption?: boolean;
+    disabled?: boolean;
     onSelect: (value: any, index: number) => void;
 }
 
-export default function Dropdown({ title, options, selected = 0, titleByOption = false, onSelect }: DropDownProps) {
+export default function Dropdown({ title, options, selected = 0, titleByOption = false, onSelect, disabled = false }: DropDownProps) {
     const [open, setOpen] = useState(false);
 
     const selectedOption = options[selected];
 
     function handleClick() {
-        setOpen(!open);
+        if (!disabled) {
+            setOpen(!open);
+        }
     }
 
     function handleSelect(index: number) {
@@ -31,10 +34,11 @@ export default function Dropdown({ title, options, selected = 0, titleByOption =
     }
 
     return (
-        <div className="dropdown">
+        <div className={`dropdown ${disabled ? 'disabled' : ''}`}>
             <button
                 onClick={handleClick}
                 className="dropbtn"
+                disabled={disabled}
             >
                 <div className="dropbtn_left">
                     {titleByOption && selectedOption && (
