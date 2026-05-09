@@ -2,11 +2,16 @@ import { useEffect, useRef, useState } from "react";
 
 type PrompterProps = {
     onSubmit?: (text: string) => void;
+    value?: string;
+    onValueChange?: (value: string) => void;
 };
 
-export default function Prompter({ onSubmit = () => {} }: PrompterProps) {
-    const [text, setText] = useState("");
+export default function Prompter({ onSubmit = () => {}, value, onValueChange }: PrompterProps) {
+    const [localText, setLocalText] = useState("");
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+    // Use controlled value if provided, otherwise use local state
+    const text = value !== undefined ? value : localText;
 
     useEffect(() => {
         const textarea = textAreaRef.current;
@@ -17,7 +22,12 @@ export default function Prompter({ onSubmit = () => {} }: PrompterProps) {
     }, [text]);
 
     function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-        setText(event.target.value);
+        const newVal = event.target.value;
+        if (onValueChange) {
+            onValueChange(newVal);
+        } else {
+            setLocalText(newVal);
+        }
     };
 
     function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
@@ -30,7 +40,9 @@ export default function Prompter({ onSubmit = () => {} }: PrompterProps) {
     function handleSubmit() {
         if (text.trim().length === 0) return;
         onSubmit(text);
-        setText("");
+        if (!onValueChange) {
+            setLocalText("");
+        }
     };
 
     const isButtonDisabled = text.trim().length === 0;

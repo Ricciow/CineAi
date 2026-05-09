@@ -46,6 +46,7 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
     const [conversation, setConversation] = useState<ChatMessage[]>(messages);
     const [model, setModel] = useState<string>(modelsData[0]?.model || "");
     const [modelNumber, setModelNumber] = useLocalStorage<number>("chat-model-number", 0);
+    const [inputText, setInputText] = useState("");
 
     const { setChatName } = useOutletContext<{ setChatName: (name: string | undefined) => void }>();
 
@@ -71,67 +72,89 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
         const userMessage = { role: "user", content: prompt }
         const agentMessage = { role: "assistant", content: "", reasoning: "" }
         setConversation([...conversation, userMessage, agentMessage])
+        setInputText(""); // Clear input on submit
 
-        const response = await authenticatedFetch(`conversation/${id}/message`, { 
-            method: "POST", 
-            body: { 
-                user_input: prompt,
-                model: model
-            }});
+        try {
+            const response = await authenticatedFetch(`conversation/${id}/message`, { 
+                method: "POST", 
+                body: { 
+                    user_input: prompt,
+                    model: model
+                }});
 
-        if (!response.ok || !response.body) {
-            setConversation(prev => [...prev.slice(0, -1)]);
-            throw new Error(`Erro na requisição: ${response.status}`);
-        }
-        
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
+            if (!response.ok || !response.body) {
+                throw new Error(`Erro na requisição: ${response.status}`);
+            }
+            
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
 
-        let baseResponse = {
-            role: "assistant" as const,
-            content: "",
-            reasoning: "",
-        }
-
-        let partialChunk = "";
-
-        async function processStream() {
-            const { done, value } = await reader.read();
-
-            if (done) {
-                console.log('Stream finalizado.');
-                return;
+            let baseResponse = {
+                role: "assistant" as const,
+                content: "",
+                reasoning: "",
             }
 
-            const chunkString = decoder.decode(value, { stream: true });
-            const combinedChunk = partialChunk + chunkString;
-            const lines = combinedChunk.split('\n');
-            
-            // O último elemento pode ser um JSON incompleto
-            partialChunk = lines.pop() || "";
+            let partialChunk = "";
 
-            lines.forEach(str => {
-                if (str) {
-                    try {
-                        const jsonData = JSON.parse(str);
-                        
-                        if (jsonData.content) baseResponse.content += jsonData.content;
-                        if (jsonData.reasoning) baseResponse.reasoning += jsonData.reasoning;
+            const processStream = async (): Promise<void> => {
+                const { done, value } = await reader.read();
 
-                        setConversation(prev => {
-                            const updatedLastMessage = { ...baseResponse };
-                            return [...prev.slice(0, -1), updatedLastMessage];
-                        });
-                    } catch (err) {
-                        console.error("Não foi possível parsear o JSON do chunk:", str, err);
+                if (done) {
+                    console.log('Stream finalizado.');
+                    return;
+                }
+
+                const chunkString = decoder.decode(value, { stream: true });
+                const combinedChunk = partialChunk + chunkString;
+                const lines = combinedChunk.split('\n');
+                
+                // O último elemento pode ser um JSON incompleto
+                partialChunk = lines.pop() || "";
+
+                for (const str of lines) {
+                    if (str) {
+                        try {
+                            const jsonData = JSON.parse(str);
+                            
+                            // Check for error chunks injected by backend
+                            if (jsonData.content && jsonData.content.includes("[Erro:")) {
+                                throw new Error(jsonData.content);
+                            }
+
+                            if (jsonData.reset) {
+                                baseResponse.content = "";
+                                baseResponse.reasoning = "";
+                            }
+
+                            if (jsonData.content) baseResponse.content += jsonData.content;
+                            if (jsonData.reasoning) baseResponse.reasoning += jsonData.reasoning;
+
+                            setConversation(prev => {
+                                const updatedLastMessage = { ...baseResponse };
+                                return [...prev.slice(0, -1), updatedLastMessage];
+                            });
+                        } catch (err) {
+                            if (err instanceof Error && err.message.includes("[Erro:")) throw err;
+                            console.error("Não foi possível parsear o JSON do chunk:", str, err);
+                        }
                     }
                 }
-            });
+
+                return processStream();
+            };
 
             await processStream();
-        };
-
-        await processStream();
+        } catch (error) {
+            console.error("Erro no chat:", error);
+            alert("Ocorreu um erro ao gerar a resposta. Tente novamente.");
+            
+            // Restore original prompt
+            setInputText(prompt);
+            
+            // Remove the failed messages (user + assistant)
+            setConversation(prev => prev.slice(0, -2));
+        }
     }
 
     async function handleUpdateTitle(title: string) {
@@ -158,7 +181,7 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
             </div>
             <ChatArea messages={conversation} />
             <div className="chat_footer">
-                <Prompter onSubmit={handleSendPrompt}/>
+                <Prompter onSubmit={handleSendPrompt} value={inputText} onValueChange={setInputText}/>
             </div>
         </div>
     )
