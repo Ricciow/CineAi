@@ -58,7 +58,6 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="bg-surface text-on-surface font-body overflow-x-hidden min-h-screen">
-      {/* TopNavBar */}
       <nav className="fixed top-0 w-full z-50 bg-[#0c0e12]/80 backdrop-blur-xl shadow-[0_24px_48px_rgba(0,0,0,0.5)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
@@ -86,7 +85,6 @@ const LandingPage: React.FC = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full"></div>
@@ -125,7 +123,6 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Feature Section */}
       <section id="recursos" className="py-32 bg-surface-container-low">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
@@ -154,7 +151,6 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Dedicated Email Section (Newsletter style) */}
       <section ref={emailSectionRef} className="py-32 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 blur-[120px] rounded-full"></div>
         <div className="max-w-3xl mx-auto px-4 text-center relative">
@@ -177,7 +173,6 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-20 border-t border-outline-variant/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-12">
@@ -192,7 +187,6 @@ const LandingPage: React.FC = () => {
       
       <style>{`
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        /* NEW DEEP BLUE GRADIENT */
         .cinematic-gradient { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); }
         .text-glow { text-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
         .bg-clip-text { -webkit-background-clip: text; background-clip: text; }

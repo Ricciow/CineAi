@@ -1,9 +1,9 @@
 import { 
     useLoaderData, 
     type LoaderFunctionArgs, 
-    Await // Await remains
+    Await
 } from "react-router-dom";
-import { Suspense } from "react"; // Suspense remains
+import { Suspense } from "react";
 import type { ChatModel, Conversation } from "../components/chat/chatTypes";
 import ErrorPage from "./ErrorPage";
 import Spinner from "../components/Outros/Spinner";

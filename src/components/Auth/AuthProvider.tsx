@@ -39,7 +39,6 @@ export default function Authprovider({ children }: AuthProviderProps) {
         }
     }, [authToken, setAuthToken]);
 
-    // Use useMemo para calcular a expiração
     const expiration = useMemo(() => {
         if (!authToken) return undefined;
         try {

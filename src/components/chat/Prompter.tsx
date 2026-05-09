@@ -11,7 +11,6 @@ export default function Prompter({ onSubmit = () => {}, value, onValueChange, di
     const [localText, setLocalText] = useState("");
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-    // Use controlled value if provided, otherwise use local state
     const text = value !== undefined ? value : localText;
 
     useEffect(() => {

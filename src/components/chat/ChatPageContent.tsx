@@ -4,8 +4,8 @@ import ProjetoTitle from "../projetos/ProjetoTitle";
 import ChatArea from "./ChatArea";
 import type { ChatMessage, ChatModel, Conversation } from "./chatTypes";
 
-import geminiLogo from "../../assets//gemini.svg";
-import gptLogo from "../../assets//openai.svg";
+import geminiLogo from "../../assets/gemini.svg";
+import gptLogo from "../../assets/openai.svg";
 import claudeLogo from "../../assets/claude.svg";
 import minimaxLogo from "../../assets/minimax.svg";
 import stepfunLogo from "../../assets/stepfun.svg";
@@ -92,7 +92,7 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
         const userMessage = { role: "user", content: prompt }
         const agentMessage = { role: "assistant", content: "", reasoning: "" }
         setConversation([...conversation, userMessage, agentMessage])
-        setInputText(""); // Clear input on submit
+        setInputText("");
 
         try {
             const response = await authenticatedFetch(`conversation/${id}/message`, { 
@@ -140,7 +140,6 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
                 const combinedChunk = partialChunk + chunkString;
                 const lines = combinedChunk.split('\n');
                 
-                // O último elemento pode ser um JSON incompleto
                 partialChunk = lines.pop() || "";
 
                 for (const str of lines) {
@@ -148,13 +147,11 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
                         try {
                             const jsonData = JSON.parse(str);
                             
-                            // Check for description update
                             if (jsonData.description) {
                                 setChatDescription(jsonData.description);
                                 continue;
                             }
 
-                            // Check for error chunks injected by backend
                             if (jsonData.content && jsonData.content.includes("[Erro:")) {
                                 throw new Error(jsonData.content);
                             }
@@ -186,10 +183,8 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
             console.error("Erro no chat:", error);
             toast.error("Ocorreu um erro ao gerar a resposta. Tente novamente.");
             
-            // Restore original prompt
             setInputText(prompt);
             
-            // Remove the failed messages (user + assistant)
             setConversation(prev => prev.slice(0, -2));
         }
     }

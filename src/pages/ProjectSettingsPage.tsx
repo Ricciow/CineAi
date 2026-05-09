@@ -40,11 +40,9 @@ export default function ProjectSettingsPage() {
     const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState<"geral" | "membros" | "perigo">("geral");
     
-    // General Form
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     
-    // Member Form
     const [newMemberEmail, setNewMemberEmail] = useState("");
     const [newMemberRole, setNewMemberRole] = useState<"admin" | "member">("member");
     const [newMemberPermissions, setNewMemberPermissions] = useState<Permissions>({
@@ -55,7 +53,6 @@ export default function ProjectSettingsPage() {
         video: false
     });
     
-    // Modals
     const [isDeleting, setIsDeleting] = useState(false);
     const [memberToRemove, setMemberToRemove] = useState<Member | null>(null);
     const [editingMember, setEditingMember] = useState<Member | null>(null);

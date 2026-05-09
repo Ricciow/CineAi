@@ -3,7 +3,7 @@ import { useLoaderData, Await } from "react-router-dom";
 import authenticatedFetch from "../api/authenticatedFetch";
 import Spinner from "../components/Outros/Spinner";
 import GenericHeader from "../components/projetos/GenericHeader";
-import "../styles/pages/ProjetosPage.css"; // Reuse some layout styles
+import "../styles/pages/ProjetosPage.css";
 
 interface AnalyticsStat {
     _id: {

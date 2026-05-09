@@ -7,16 +7,16 @@
     --nav-selected-text-color: #60a5fa;
     --nav-hover-color: rgba(255, 255, 255, 0.05);
 
-    --purple-button-color: #2563eb; /* Blue Primary */
+    --purple-button-color: #2563eb;
     --purple-button-hover: #1e40af;
     
     --bright-purple-button-color: #3b82f6;
     --bright-purple-button-hover: #2563eb;
 
-    --text-white: #f6f6fc;        /* on-surface */
-    --text-light-gray: #aaabb0;   /* on-surface-variant */
-    --text-gray: #74757a;        /* outline */
-    --text-red: #ff6e84;         /* error */
+    --text-white: #f6f6fc;
+    --text-light-gray: #aaabb0;
+    --text-gray: #74757a;
+    --text-red: #ff6e84;
     --text-black: #000000;
 
     --xs: 0.25rem;
@@ -38,7 +38,6 @@
     --darkened-color: rgba(0, 0, 0, 0.25);
 }
 
-/* oklch colors for modern browsers */
 @supports (color: oklch(0% 0 0)) {
     :root {
         --primary-color: oklch(14.5% 0.016 264);

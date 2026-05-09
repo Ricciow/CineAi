@@ -1,5 +1,5 @@
 .projetos_container {
-    padding: 3rem 1.5rem; /* Slight padding adjustment */
+    padding: 3rem 1.5rem;
     max-width: 1000px;
     margin: 0 auto;
     width: 100%;
@@ -9,12 +9,12 @@
     margin-bottom: 3rem;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Alinhado centralmente na vertical */
+    align-items: center;
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--midway-color);
     width: 100%;
     min-height: fit-content;
-    background: none; /* Sem background */
+    background: none;
 }
 
 .projetos_title_group {
@@ -29,7 +29,7 @@
     font-weight: 800;
     color: var(--text-white);
     margin: 0;
-    line-height: 1.2; /* Increased for better vertical breathing */
+    line-height: 1.2;
 }
 
 .projetos_description {
@@ -157,7 +157,6 @@
     color: var(--purple-button-color);
 }
 
-/* Modal Styling */
 .modal_overlay {
     position: fixed;
     top: 0;
@@ -196,7 +195,7 @@
     margin: 0;
     font-size: 1.6rem;
     font-weight: 800;
-    color: var(--text-white); /* Texto branco */
+    color: var(--text-white);
 }
 
 .close_modal {
@@ -267,7 +266,6 @@
     margin-top: 0.5rem;
 }
 
-/* Feedback States */
 .spinner_full_container, .error_full_message, .empty_state {
     display: flex;
     flex-direction: column;

@@ -3,10 +3,8 @@ import React from 'react';
 import Button from "../Buttons/Button";
 
 export default function CineAIHeader() {
-    // URL atual
     const location = useLocation();
 
-    // Divide a URL
     const pathnames = location.pathname.split('/').filter((x) => x);
 
     return (

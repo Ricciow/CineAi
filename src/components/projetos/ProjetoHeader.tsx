@@ -4,11 +4,9 @@ import Button from "../Buttons/Button";
 import LogoutButton from "../Buttons/LogoutButton";
 
 export default function ProjetoHeader({ toggleSidebar, projectName, chatName }: { toggleSidebar: () => void, projectName?: string, chatName?: string }) {
-    // URL atual
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Divide a URL
     const pathnames = location.pathname.split('/').filter((x) => x);
 
     return (
@@ -22,18 +20,15 @@ export default function ProjetoHeader({ toggleSidebar, projectName, chatName }: 
             <i className="fi fi-rr-angle-small-right header_arrow header_desktop_only"></i>
             <nav className="header_nav header_desktop_only">
                 {pathnames.map((name_unformatted, index) => {
-                    // Link para o segmento atual
                     const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
                     const isLast = (index === pathnames.length - 1);
                     
                     let name = name_unformatted.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 
-                    // Se for o segundo segmento (o ID do projeto), usa o projectName se fornecido
                     if (index === 1 && projectName) {
                         name = projectName;
                     }
 
-                    // Se for o quarto segmento (o ID do chat/roteiro), usa o chatName se fornecido
                     if (index === 3) {
                         name = chatName || "...";
                     }

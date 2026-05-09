@@ -59,7 +59,6 @@ export default function RoteiroPage() {
         }
     }, [projectId, userId]);
 
-    // Use derived state for clarity
     const getAccess = () => {
         if (!project || !userId) return { canRead: false, canCreate: false, isReady: false };
         
@@ -139,7 +138,6 @@ export default function RoteiroPage() {
                                 return <Spinner message="Verificando permissões..." />;
                             }
                             
-                            // Only show chats if user has read permission
                             if (!canRead) {
                                 return (
                                     <div className="empty_state">
