@@ -21,6 +21,7 @@ import AnalyticsPage, { analyticsPageLoader } from "./pages/AnalyticsPage";
 
 import { Toaster } from "react-hot-toast";
 import ProjectSettingsPage from "./pages/ProjectSettingsPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <RegisterPage />,
+    },
+    {
+        path: "/perfil",
+        element: (
+            <ProtectedRoute forceNavigateToLogin>
+                <ProfilePage />
+            </ProtectedRoute>
+        ),
     },
     {
         path: "/projetos",

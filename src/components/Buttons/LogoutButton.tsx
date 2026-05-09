@@ -6,7 +6,7 @@ import AlertCard from "../Card/AlertCard";
 
 export default function LogoutButton() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { handleLogout } = useAuth();
+    const { handleLogout, username } = useAuth();
     const navigate = useNavigate();
 
     async function onConfirmLogout() {
@@ -15,7 +15,17 @@ export default function LogoutButton() {
     }
 
     return (
-        <>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {username && (
+                <span style={{ 
+                    color: 'var(--text-white)', 
+                    fontSize: 'var(--font-text)',
+                    fontWeight: 500,
+                    opacity: 0.8
+                }}>
+                    {username}
+                </span>
+            )}
             <Button 
                 text="Sair" 
                 style="delete_button_bg" 
@@ -43,6 +53,6 @@ export default function LogoutButton() {
                     </div>
                 </AlertCard>
             )}
-        </>
+        </div>
     );
 }

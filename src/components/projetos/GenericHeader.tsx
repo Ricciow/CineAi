@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import React from 'react';
 import Button from "../Buttons/Button";
-import LogoutButton from "../Buttons/LogoutButton";
 
 export default function GenericHeader() {
     const location = useLocation();
@@ -38,7 +37,21 @@ export default function GenericHeader() {
             </nav>
 
             <div className="header_right">
-                <LogoutButton />
+                <Link to="/perfil" className="profile_icon_link" style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--midway-color)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--text-white)',
+                    textDecoration: 'none',
+                    fontSize: '1.2rem',
+                    transition: 'background-color 0.2s'
+                }}>
+                    <i className="fi fi-rr-user"></i>
+                </Link>
             </div>
         </header>
     );

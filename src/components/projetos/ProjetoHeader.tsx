@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import React from 'react';
 import Button from "../Buttons/Button";
-import LogoutButton from "../Buttons/LogoutButton";
 
 export default function ProjetoHeader({ toggleSidebar, projectName, chatName }: { toggleSidebar: () => void, projectName?: string, chatName?: string }) {
     const location = useLocation();
@@ -52,7 +51,21 @@ export default function ProjetoHeader({ toggleSidebar, projectName, chatName }: 
                         <i className="fi fi-rr-angle-small-left"></i>
                     </button>
                 )}
-                <LogoutButton />
+                <Link to="/perfil" className="profile_icon_link" style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--midway-color)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--text-white)',
+                    textDecoration: 'none',
+                    fontSize: '1.2rem',
+                    transition: 'background-color 0.2s'
+                }}>
+                    <i className="fi fi-rr-user"></i>
+                </Link>
             </div>
         </header>
     );
