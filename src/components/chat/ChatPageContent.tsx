@@ -42,11 +42,12 @@ function modelToOption(modelsData: ChatModel[]) {
 }
 
 export default function ChatPageContent({ id, initialData, modelsData }: { id: string, initialData: Conversation, modelsData: ChatModel[] }) {
-    const { messages, title, description } = initialData;
+    const { messages, title, description: initialDescription } = initialData;
     const [conversation, setConversation] = useState<ChatMessage[]>(messages);
     const [model, setModel] = useState<string>(modelsData[0]?.model || "");
     const [modelNumber, setModelNumber] = useLocalStorage<number>("chat-model-number", 0);
     const [inputText, setInputText] = useState("");
+    const [chatDescription, setChatDescription] = useState(initialDescription);
 
     const { setChatName } = useOutletContext<{ setChatName: (name: string | undefined) => void }>();
 
@@ -62,7 +63,6 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
         setModel(modelsData[modelNumber].model);
     }
     const chatName = title
-    const chatDescription = description
 
     const options = modelToOption(modelsData);
 
@@ -117,6 +117,12 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
                         try {
                             const jsonData = JSON.parse(str);
                             
+                            // Check for description update
+                            if (jsonData.description) {
+                                setChatDescription(jsonData.description);
+                                continue;
+                            }
+
                             // Check for error chunks injected by backend
                             if (jsonData.content && jsonData.content.includes("[Erro:")) {
                                 throw new Error(jsonData.content);
