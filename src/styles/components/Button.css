@@ -33,10 +33,11 @@
 
 .projeto_button {
     border: none;
-    border-radius: var(--sm);
-    padding: var(--md) var(--lg);
+    border-radius: 12px;
+    padding: 0 1.5rem;
     font-size: var(--font-text);
     font-weight: bold;
+    height: 44px;
 
     display: flex;
     align-items: center;

@@ -15,6 +15,7 @@
 
 /* Componentes genéricos */
 @import url(styles/components/Button.css);
+@import url(styles/components/Modal.css);
 @import url(styles/components/Card.css);
 @import url(styles/components/Dropdown.css);
 @import url(styles/components/chat/Prompter.css);
