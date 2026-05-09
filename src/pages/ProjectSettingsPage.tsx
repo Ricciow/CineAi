@@ -380,7 +380,7 @@ export default function ProjectSettingsPage() {
                     <p>Tem certeza que deseja excluir "{project.name}"? Esta ação não pode ser desfeita.</p>
                     <div className="chat_card_delete">
                         <Button style="generic_button" onClick={() => setIsDeleting(false)} text="Cancelar" />
-                        <Button style="delete_button_bg" onClick={handleDeleteProject} text="Deletar permanentemente" />
+                        <Button style="delete_button_bg" onClick={handleDeleteProject} text="Excluir" />
                     </div>
                 </AlertCard>
             )}
