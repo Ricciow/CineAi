@@ -19,15 +19,16 @@ export async function projetoLoader({ params }: LoaderFunctionArgs) {
 export default function LayoutProjeto() {
     const { projeto, projectName } = useLoaderData() as { projeto: string, projectName: string };
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [chatName, setChatName] = useState<string | undefined>(undefined);
 
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
     return (
         <div className={`layout ${isSidebarOpen ? 'sidebar_open' : ''}`}>
-            <ProjetoHeader toggleSidebar={toggleSidebar} projectName={projectName} />
+            <ProjetoHeader toggleSidebar={toggleSidebar} projectName={projectName} chatName={chatName} />
             <ProjetoSidebar projeto={projeto} isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
             <main className="layout_content">
-                <Outlet />
+                <Outlet context={{ setChatName }} />
             </main>
             {isSidebarOpen && <div className="sidebar_overlay" onClick={toggleSidebar}></div>}
         </div>

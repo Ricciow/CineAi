@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import ProjetoTitle from "../projetos/ProjetoTitle";
 import ChatArea from "./ChatArea";
@@ -12,6 +12,7 @@ import stepfunLogo from "../../assets/stepfun.svg";
 import Prompter from "./Prompter";
 import authenticatedFetch from "../../api/authenticatedFetch";
 import { useLocalStorage } from "react-use";
+import { useOutletContext } from "react-router-dom";
 
 function modelToOption(modelsData: ChatModel[]) {
     return modelsData.map(model => {
@@ -45,6 +46,14 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
     const [conversation, setConversation] = useState<ChatMessage[]>(messages);
     const [model, setModel] = useState<string>(modelsData[0]?.model || "");
     const [modelNumber, setModelNumber] = useLocalStorage<number>("chat-model-number", 0);
+
+    const { setChatName } = useOutletContext<{ setChatName: (name: string | undefined) => void }>();
+
+    useEffect(() => {
+        setChatName(title);
+        return () => setChatName(undefined);
+    }, [title, setChatName]);
+
     if(modelNumber && modelNumber > modelsData.length - 1) {
         setModelNumber(0);
     }
@@ -126,6 +135,7 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
     }
 
     async function handleUpdateTitle(title: string) {
+        setChatName(title);
         await authenticatedFetch(`conversation/${id}`, 
             { 
                 method: "PATCH",

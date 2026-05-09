@@ -3,7 +3,7 @@ import React from 'react';
 import Button from "../Buttons/Button";
 import LogoutButton from "../Buttons/LogoutButton";
 
-export default function ProjetoHeader({ toggleSidebar, projectName }: { toggleSidebar: () => void, projectName?: string }) {
+export default function ProjetoHeader({ toggleSidebar, projectName, chatName }: { toggleSidebar: () => void, projectName?: string, chatName?: string }) {
     // URL atual
     const location = useLocation();
     const navigate = useNavigate();
@@ -31,6 +31,11 @@ export default function ProjetoHeader({ toggleSidebar, projectName }: { toggleSi
                     // Se for o segundo segmento (o ID do projeto), usa o projectName se fornecido
                     if (index === 1 && projectName) {
                         name = projectName;
+                    }
+
+                    // Se for o quarto segmento (o ID do chat/roteiro), usa o chatName se fornecido
+                    if (index === 3) {
+                        name = chatName || "...";
                     }
 
                     return (
