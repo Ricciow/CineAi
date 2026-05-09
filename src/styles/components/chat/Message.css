@@ -31,6 +31,44 @@
     margin-bottom: 1rem;
 }
 
+.agent_message_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--md);
+    margin-bottom: var(--sm);
+}
+
+.agent_message_header h2 {
+    font-size: var(--font-subtitle);
+    margin: 0;
+}
+
+.copy_button {
+    background: none;
+    border: none;
+    color: var(--text-light-gray);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.copy_button:hover {
+    background-color: var(--midway-color);
+    color: var(--text-white);
+}
+
+.copy_button i {
+    font-size: 1.1rem;
+    display: flex;
+}
+
+
 .message_area {
     display: flex;
     flex-direction: column;
