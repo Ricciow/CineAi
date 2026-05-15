@@ -51,8 +51,12 @@ export default function EditableText({ startingText, onSubmit, className, maxLen
 
     return (
         <div className={className} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} >
-            {editing ? <input value={text} onChange={handleChange} onKeyDown={handleKeyDown} onBlur={() => {handleDisableEdit()}} ref={inputRef}/> : <p>{text}</p>}
-            {!editing && <Button onClick={handleEnableEdit} className={`editable_text_button ${!hovered ? "invisible" : ""}`} iconClass="fi fi-rr-pencil"/>}
+            {editing ? 
+                <input value={text} onChange={handleChange} onKeyDown={handleKeyDown} onBlur={() => {handleDisableEdit()}} ref={inputRef}/> 
+                : 
+                <p onClick={handleEnableEdit} style={{ cursor: 'pointer' }}>{text}</p>
+            }
+            {!editing && <Button onClick={handleEnableEdit} className={`editable_text_button ${hovered ? "visible" : ""}`} iconClass="fi fi-rr-pencil"/>}
         </div>
     )
 }

@@ -5,8 +5,21 @@
     font-size: var(--font-subtitle);
     cursor: pointer;
     transition: color 0.3s ease-in-out, opacity 0.15s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.editable_text_button.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .editable_text_button:hover {
     color: var(--text-gray);
+}
+
+@media (max-width: 768px) {
+    .editable_text_button {
+        display: none !important;
+    }
 }
