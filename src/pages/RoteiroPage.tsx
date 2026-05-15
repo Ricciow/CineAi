@@ -46,9 +46,6 @@ export default function RoteiroPage() {
             authenticatedFetch(`project/${projectId}`, { method: "GET" }).then(async res => {
                 if (res.ok) {
                     const data = await res.json();
-                    console.log("Permission Debug - UserID:", userId);
-                    console.log("Permission Debug - Project Owner:", data.user_id);
-                    console.log("Permission Debug - Members:", data.members);
                     setProject(data);
                 }
                 setLoadingProject(false);
@@ -65,8 +62,6 @@ export default function RoteiroPage() {
         const isOwner = String(project.user_id) === String(userId);
         const member = project.members?.find((m: any) => String(m.user_id) === String(userId));
         const isAdmin = isOwner || member?.role === "admin";
-
-        console.log("Permission Debug - Results:", { isOwner, member, isAdmin });
 
         return {
             canRead: isAdmin || member?.permissions?.read,

@@ -9,7 +9,6 @@ const LandingPage: React.FC = () => {
   const emailSectionRef = useRef<HTMLDivElement>(null);
 
   const trackClick = async (elementId: string, userEmail?: string) => {
-    console.log(`Tracking click: ${elementId} ${userEmail ? `with email: ${userEmail}` : ''}`);
     try {
         await fetch(`${BackendUrl}/analytics/track-click`, {
             method: 'POST',

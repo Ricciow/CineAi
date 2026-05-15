@@ -87,8 +87,6 @@ export default function ProjectSettingsPage() {
         }
     }, [loading, project, isAdmin, navigate, projectId]);
 
-    console.log("Settings Permission Debug:", { userId, projectOwner: project?.user_id, isOwner, isAdmin });
-
     async function handleUpdateGeneral() {
         const updatePromise = authenticatedFetch(`project/${projectId}`, {
             method: "PATCH",

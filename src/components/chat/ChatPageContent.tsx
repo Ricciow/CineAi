@@ -67,7 +67,6 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
                     const member = data.members?.find((m: any) => String(m.user_id) === String(userId));
                     const isAdmin = isOwner || member?.role === "admin";
                     
-                    console.log("Chat Permission Debug:", { userId, projectOwner: data.user_id, member, isAdmin });
                     setCanSend(isAdmin || member?.permissions?.send_messages);
                 }
             });
@@ -132,7 +131,6 @@ export default function ChatPageContent({ id, initialData, modelsData }: { id: s
                 const { done, value } = await reader.read();
 
                 if (done) {
-                    console.log('Stream finalizado.');
                     return;
                 }
 
