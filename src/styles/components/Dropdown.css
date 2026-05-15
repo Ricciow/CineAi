@@ -148,6 +148,14 @@
 @media (max-width: 768px) {
     .dropdown {
         width: auto;
+        align-self: flex-end; /* Ensure the container itself stays right */
+    }
+
+    .dropdown-content {
+        right: 0;
+        left: auto;
+        width: 80vw; /* Limit width on mobile to avoid overflow */
+        max-width: 280px;
     }
 
     .dropdown .dropbtn_title {

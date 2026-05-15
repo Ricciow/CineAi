@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DropdownOption from "./DropdownOption";
 
 type Option = {
@@ -19,6 +19,18 @@ type DropDownProps = {
 
 export default function Dropdown({ title, options, selected = 0, titleByOption = false, onSelect, disabled = false }: DropDownProps) {
     const [open, setOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (open && dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [open]);
 
     const selectedOption = options[selected];
 
@@ -34,7 +46,7 @@ export default function Dropdown({ title, options, selected = 0, titleByOption =
     }
 
     return (
-        <div className={`dropdown ${disabled ? 'disabled' : ''}`}>
+        <div className={`dropdown ${disabled ? 'disabled' : ''}`} ref={dropdownRef}>
             <button
                 onClick={handleClick}
                 className="dropbtn"
