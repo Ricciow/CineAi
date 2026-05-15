@@ -164,6 +164,20 @@
     justify-content: center;
     padding: 6rem 2rem;
     text-align: center;
+    min-height: 300px;
+}
+
+@media (max-width: 768px) {
+    .spinner_full_container, .error_full_message, .empty_state {
+        padding: 2rem 1rem;
+        min-height: 200px;
+    }
+    
+    .empty_state_icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
 }
 
 .error_full_message {
