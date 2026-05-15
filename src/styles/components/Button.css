@@ -124,18 +124,18 @@ button:disabled {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.delete_button_bg p {
+button.delete_button_bg p {
     color: #ffffff;
     margin: 0;
 }
 
-.delete_button_bg:hover {
+button.delete_button_bg:hover {
     background-color: #a71d31;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(139, 29, 46, 0.4);
 }
 
-.generic_button {
+button.generic_button {
     background-color: var(--midway-color);
     color: var(--text-white);
     font-size: var(--font-text);
@@ -153,7 +153,7 @@ button:disabled {
     justify-content: center;
 }
 
-.generic_button p {
+button.generic_button p {
     color: var(--text-white);
     margin: 0;
 }
