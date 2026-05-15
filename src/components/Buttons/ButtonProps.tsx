@@ -22,7 +22,7 @@ export type ButtonProps = | (
     }
 ) | (
     BaseButton & {
-        style?: never
+        style?: buttonStyle
         file?: never
 
         to: string
@@ -30,7 +30,7 @@ export type ButtonProps = | (
         end?: boolean
 
         fileInput?: never
-        className?: never
+        className?: string
     }
 ) | (
     BaseButton & {
