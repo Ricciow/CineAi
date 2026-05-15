@@ -52,6 +52,8 @@
     flex-direction: column;
     gap: var(--sm);
     transition: all 0.3s ease;
+    min-height: 180px;
+    height: 100%;
 }
 
 .chat_card:hover {
@@ -87,12 +89,15 @@
 .chat_card p {
     color: var(--text-light-gray);
     font-size: var(--font-text);
+    margin-bottom: 1rem;
 }
 
 .chat_card a {
     color: var(--bright-purple-button-color);
     font-size: var(--font-text);
     align-self: flex-end;
+    margin-top: auto;
+    font-weight: 600;
 }
 
 .chat_card a:hover {
