@@ -36,6 +36,20 @@
     flex: 1;
 }
 
+.sidebar_mobile_footer {
+    display: none;
+    flex-direction: column;
+    gap: var(--md);
+    margin-top: var(--md);
+    margin-bottom: -0.5rem; /* Reduce gap before the divider */
+}
+
+@media (max-width: 768px) {
+    .sidebar_mobile_footer {
+        display: flex;
+    }
+}
+
 .sidebar_link {
     color: var(--text-white);
     padding: var(--smd) var(--md);

@@ -19,6 +19,7 @@ export default function Button(props : ButtonProps) {
             iconClass={props.iconClass} 
             text={props.text}
             end={props.end}
+            className={props.className || props.style}
         />
     }
     if(props.fileInput) {
