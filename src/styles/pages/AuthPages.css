@@ -5,7 +5,10 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     gap: var(--xl);
+    overflow: hidden;
+    overscroll-behavior: none;
 }
 
 .cine_ai_title {

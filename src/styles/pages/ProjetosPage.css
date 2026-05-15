@@ -213,10 +213,16 @@
 }
 
 @media (max-width: 768px) {
+    .projetos_container {
+        padding: 1.5rem 1rem;
+    }
+
     .projetos_main_header {
         flex-direction: column;
         align-items: stretch;
         gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
     }
     
     .projetos_title {

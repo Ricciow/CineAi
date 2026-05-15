@@ -15,6 +15,7 @@
     grid-area: main;
     position: relative;
     overflow-y: auto;
+    overscroll-behavior-y: contain;
 }
 
 .sidebar_overlay {
