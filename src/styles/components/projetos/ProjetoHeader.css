@@ -1,4 +1,4 @@
-header {
+.header {
     background-color: color-mix(in oklch, var(--secondary-color) 50%, transparent);
     border-bottom: 1px solid var(--midway-color);
     display: flex;
@@ -105,6 +105,11 @@ header {
 }
 
 @media (max-width: 768px) {
+    .header {
+        height: 3.5rem;
+        padding: 0 var(--md);
+    }
+
     .back_button {
         display: flex;
     }
@@ -115,5 +120,9 @@ header {
 
     .header_desktop_only {
         display: none;
+    }
+
+    .cine_ai_title {
+        font-size: 1.25rem;
     }
 }
